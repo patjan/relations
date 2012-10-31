@@ -1,0 +1,86 @@
+#mainArea {
+    border-radius: 25px;
+    -moz-bottomleft: 25px;
+    padding: 15px;
+    margin-top: 5px;
+    background: #fff;
+    text-align: left;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    z-index:1;
+}
+
+.thumbnailItem {
+    width: 75px;
+    height: 75px;
+    float: left;
+    margin-right: 10px;
+    cursor:pointer;
+}
+
+div.is-selected {
+    border: 2px solid #000;
+    width: 100px;
+    height: 100px;
+}
+div.is-selected:after {
+    content: '';
+    display:block;
+    position: relative;
+    width:0;
+    height:0;
+    bottom:126px;
+    left: 40px;
+    border-color: transparent transparent black transparent; /*border color should be same as div div background color*/
+    border-style: solid;
+    border-width: 10px;
+}
+
+
+.thumbnailViewList {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    height: 100px;
+}
+
+.selectedPhoto h1 {
+    text-decoration: none;
+    clear: left;
+    display: block;
+    padding: 0px;
+    margin: 0 0 0.2em 0;
+    border-bottom: 1px dashed #dba;
+    font-weight: bold;
+    text-align: center;
+}
+
+.selectedPhotoItem {
+    position: absolute;
+    top: 55px;
+    left: 10px;
+    right: 10px;
+    bottom: 150px;
+    overflow: scroll;
+    border-radius: 25px;
+    -moz-bottomleft: 25px;
+}
+
+.selectedPhotoItem img {
+    border-radius: 25px;
+    -moz-bottomleft: 25px;
+    width: 100%;
+}
+
+.controlButtons {
+    position: absolute;
+    bottom: 115px;
+    left: 10px;
+    right: 10px;
+    height: 30px;
+    text-align: center;
+}

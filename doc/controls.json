@@ -1,0 +1,18 @@
+relations/index.php/ajax?command=get_index&table=Controls&filter=&select=Root&display=All&order_by=control_name&specific=
+
+{"status":"ok"
+,"rows":
+[{"id":"1000000064","created_by":"1000000001","created_at":"2011-05-25 16:53:58","updated_by":null		  ,"updated_at":null				 ,"status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"Company Types"	,"control_value":""}
+,{"id":"1000000201","created_by":"1000000001","created_at":"2012-04-25 08:28:07","updated_by":"1000000001","updated_at":"2012-07-20 16:47:41","status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"Display Rows"		,"control_value":""}
+,{"id":"1000000195","created_by":"1000000001","created_at":"2011-09-17 07:38:33","updated_by":null		  ,"updated_at":null				 ,"status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"Group Types"		,"control_value":""}
+,{"id":"1000000231","created_by":"1000000001","created_at":"2012-08-06 08:13:29","updated_by":null		  ,"updated_at":null				 ,"status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"Priorities"		,"control_value":""}
+,{"id":"1000000010","created_by":"1000000001","created_at":"2011-05-09 20:05:41","updated_by":"1000000001","updated_at":"2011-05-09 20:17:24","status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"Root"				,"control_value":""}
+,{"id":"1000000002","created_by":null		 ,"created_at":null					,"updated_by":"1000000001","updated_at":"2011-05-09 20:17:27","status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"Status Codes"		,"control_value":""}
+,{"id":"1000000236","created_by":"1000000001","created_at":"2012-08-15 13:45:03","updated_by":null		  ,"updated_at":null				 ,"status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"Summary"			,"control_value":""}
+,{"id":"1000000003","created_by":null		 ,"created_at":null					,"updated_by":"1000000001","updated_at":"2011-05-09 20:06:10","status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"System Defaults"	,"control_value":""}
+,{"id":"1000000004","created_by":null		 ,"created_at":null					,"updated_by":"1000000001","updated_at":"2011-05-09 20:17:29","status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"System Keys"		,"control_value":""}
+,{"id":"1000000076","created_by":null		 ,"created_at":null					,"updated_by":null		  ,"updated_at":null				 ,"status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"Template Types"	,"control_value":""}
+,{"id":"1000000044","created_by":"1000000001","created_at":"2011-05-15 06:30:40","updated_by":"1000000001","updated_at":"2011-05-15 06:37:37","status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"User Actions"		,"control_value":""}
+,{"id":"1000000037","created_by":"1000000001","created_at":"2011-05-15 06:22:43","updated_by":null		  ,"updated_at":null				 ,"status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"User Resources"	,"control_value":""}
+,{"id":"1000000027","created_by":"1000000001","created_at":"2011-05-12 18:41:49","updated_by":null		  ,"updated_at":null				 ,"status":"active","company_id":"1000000001","control_set":"Root","sequence":"0","control_name":"User Roles"		,"control_value":""}
+]}

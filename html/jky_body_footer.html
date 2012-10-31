@@ -1,0 +1,60 @@
+<div id='jky_footer'>
+     <div class='margin'>
+          <div id='jky_copyright' ><a onclick='JC.redirect("home.php");'>© 2012 JKY Software Corp.</a></div>
+          <div id='jky_contact_us'><a onclick='JC.process_contact_us();'><?=translate('Contact Us')?></a></div>
+     </div>
+</div>
+
+<style>
+     .modal-backdrop, .modal-backdrop.fade.in { opacity:0.5; }
+     .modal-header  { background-color:#317082; color:#ffffff; }
+     .close         { color:#ffffff; opacity:1; text-decoration:none; }
+     .close:hover   { color: #7b8049; }
+
+     #jky_delete    { position:absolute; top:auto; left:auto; bottom:0; right:0; display:none; width:240px; z-index:2000; }
+     #jky_message   { position:absolute; top:auto; left:auto; bottom:0; right:0; display:none; width:340px; z-index:2000; }
+     #jky_comments  { position:absolute; top:auto; left:auto; bottom:0; right:0; display:none; width:400px; z-index:2000; }
+     #jky_dynamic   { display:none; }
+</style>
+
+<div id='jky_delete' class='modal'>
+     <div class='modal-header'>
+          <a class='close' onclick="$('#jky_delete').css('display', 'none')">x</a>
+          <h3>Delete</h3>
+     </div>
+     <div class='modal-body'>
+          <div><?=translate('Are you sure')?> ?</div>
+     </div>
+     <div class='modal-footer'>
+          <a class='btn'           onclick="$('#jky_delete').css('display', 'none')">No</a>
+          <a class='btn btn-info'  onclick='JC.request_delete()'>Yes</a>
+     </div>
+</div>
+
+<div id='jky_message' class='modal'>
+     <div class='modal-header'>
+          <a class='close' onclick="$('#jky_message').css('display', 'none')">x</a>
+          <h3><?=translate('Message')?></h3>
+     </div>
+     <div class='modal-body'>
+          <div id='jky_message_body'></div>
+     </div>
+</div>
+
+<div id='jky_comments' class='modal'>
+     <div class='modal-header'>
+          <a class='close' onclick="$('#jky_comments').css('display', 'none')">x</a>
+          <h3><?=translate('Comments')?></h3>
+     </div>
+     <div class='modal-body'>
+          <div id='jky_comments_body'></div>
+     </div>
+     <div class='modal-footer'>
+          <a class='btn btn-info'  onclick='JC.insert_comment()'><?=translate('Add Comment')?></a>
+     </div>
+</div>
+
+<div id='jky_loading'><img src='img/loading.gif' /></div>
+<div id='jky_dynamic' class='modal hide fade in'></div>
+<div id='jky_export_html' ></div>
+

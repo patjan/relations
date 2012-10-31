@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>ember.js • TodoMVC</title>
+	<link rel="stylesheet" href="css/todosbase.css">
+	<link rel="stylesheet" href="css/todos.css">
+</head>
+<body>
+	<section id="todoapp"></section>
+	<footer id="info">
+		<p>Double-click to edit a todo</p>
+		<p>
+			Created by
+			<a href="http://github.com/tomdale">Tom Dale</a>,
+			<a href="http://github.com/addyosmani">Addy Osmani</a>
+		</p>
+		<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+	</footer>
+
+	<script id="statsTemplate" type="text/x-handlebars">
+		{{#with view}}
+			{{#if oneLeft }}
+				<strong>{{entries.remaining}}</strong> item left
+			{{else}}
+				<strong>{{entries.remaining}}</strong> items left
+			{{/if}}
+		{{/with}}
+	</script>
+
+	<script id="filtersTemplate" type="text/x-handlebars">
+		<ul id="filters">
+			<li><a {{action showAll 		href=true}} {{bindAttr class="view.isAll:selected"		}}>All		</a></li>
+			<li><a {{action showActive 		href=true}} {{bindAttr class="view.isActive:selected"	}}>Active	</a></li>
+			<li><a {{action showCompleted 	href=true}} {{bindAttr class="view.isCompleted:selected"}}>Completed</a></li>
+		</ul>
+	</script>
+
+	<script id="clearBtnTemplate" type="text/x-handlebars">
+		{{#with view}}
+			<button {{action "clearCompleted" target="entries"}} {{bindAttr class="buttonClass:hidden"}} >
+				Clear completed ({{entries.completed}})
+			</button>
+		{{/with}}
+	</script>
+
+	<script id="todosTemplate" type="text/x-handlebars">
+		{{#unless view.content.editing}}
+			{{view Ember.Checkbox checkedBinding="view.content.completed" class="toggle"}}
+			<label>{{view.content.title}}</label>
+			<button {{action removeItem target="this"}} class="destroy" ></button>
+		{{else}}
+			{{view view.ItemEditorView contentBinding="view.content"}}
+		{{/unless}}
+	</script>
+
+		<script src="lib/jquery-1.7.1.js"					></script>
+		<script src="lib/handlebars.js"						></script>
+		<script src="lib/ember-1.0.pre.js"					></script>
+
+<script>
+<!--script src="js/app.js"-->
+(function( win ) {
+	'use strict';
+	win.Todos = Ember.Application.create({
+		VERSION: '1.0',
+		rootElement: '#todoapp',
+		storeNamespace: 'todos-emberjs',
+		// Extend to inherit outlet support
+		ApplicationController: Ember.Controller.extend(),
+		ready: function() {
+			this.initialize();
+		}
+	});
+})( window ); 
+
+<!--script src="js/router.js"-->
+(function( app ) {
+	'use strict';
+	var Router = Ember.Router.extend({
+		root: Ember.Route.extend({
+			showAll			: Ember.Route.transitionTo( 'index' ),
+			showActive		: Ember.Route.transitionTo( 'active' ),
+			showCompleted	: Ember.Route.transitionTo( 'completed' ),
+
+			index			: Ember.Route.extend({
+				route: '/',
+				connectOutlets: function( router ) {
+					var controller = router.get( 'applicationController' );
+					var context = app.entriesController;
+					context.set( 'filterBy', '' );
+					controller.connectOutlet( 'todos', context )
+				}
+			}),
+			active: Ember.Route.extend({
+				route: '/active',
+				connectOutlets: function( router ) {
+					var controller = router.get( 'applicationController' );
+					var context = app.entriesController;
+					context.set( 'filterBy', 'active' );
+					controller.connectOutlet( 'todos', context )
+				}
+			}),
+			completed: Ember.Route.extend({
+				route: '/completed',
+				connectOutlets: function( router ) {
+					var controller = router.get( 'applicationController' );
+					var context = app.entriesController;
+					context.set( 'filterBy', 'completed' );
+					controller.connectOutlet( 'todos', context )
+				}
+			}),
+			specs: Ember.Route.extend({
+				route: '/specs',
+				connectOutlets: function() {
+					// TODO: Write them
+				}
+			})
+		})
+	});
+	app.Router = Router;
+})( window.Todos ); 
+
+<!--script src="js/models/todo.js"-->
+(function( app ) {
+	'use strict';
+	app.Todo = Ember.Object.extend({
+		id			: null,
+		title		: null,
+		completed	: false,
+		// set store reference upon creation instead of creating static bindings
+		store		: null,
+		// Observer that will react on item change and will update the storage
+		todoChanged	: function() {
+			this.get( 'store' ).update( this );
+		}.observes( 'title', 'completed' )
+	});
+})( window.Todos); 
+
+<!--script src="js/models/store.js"-->
+(function( app ) {
+	'use strict';
+	var Store = function( name ) {
+		this.name = name;
+		var store = localStorage.getItem( this.name );
+		this.data = ( store && JSON.parse( store ) ) || {};
+		// Save the current state of the **Store** to *localStorage*.
+		this.save = function() {
+			localStorage.setItem( this.name, JSON.stringify( this.data ) );
+		};
+		// Wrapper around `this.create`
+		// Creates a `Todo` model object out of the title
+		this.createFromTitle = function( title ) {
+			var todo = app.Todo.create({
+				title: title,
+				store: this
+			});
+			this.create( todo );
+			return todo;
+		};
+		// Store the model inside the `Store`
+		this.create = function ( model ) {
+			if ( !model.get( 'id' ) )
+				model.set( 'id', Date.now() );
+			return this.update( model );
+		};
+		// Update a model by replacing its copy in `this.data`.
+		this.update = function( model ) {
+			this.data[ model.get( 'id' ) ] = model.getProperties(
+				'id', 'title', 'completed'
+			);
+			this.save();
+			return model;
+		};
+		// Retrieve a model from `this.data` by id.
+		this.find = function( model ) {
+			var todo = app.Todo.create( this.data[ model.get( 'id' ) ] );
+			todo.set( 'store', this );
+			return todo;
+		};
+		// Return the array of all models currently in storage.
+		this.findAll = function() {
+			var result = [],
+			key;
+			for ( key in this.data ) {
+				var todo = app.Todo.create( this.data[ key ] );
+				todo.set( 'store', this );
+				result.push( todo );
+			}
+			return result;
+		};
+		// Delete a model from `this.data`, returning it.
+		this.remove = function( model ) {
+			delete this.data[ model.get( 'id' ) ];
+			this.save();
+			return model;
+		};
+	};
+	app.Store = Store;
+})( window.Todos ); 
+
+<!--script src="js/controllers/entries.js"-->
+(function( app ) {
+	'use strict';
+	var Entries = Ember.ArrayProxy.extend({
+		store: new app.Store( app.storeNamespace ),
+		content: [],
+
+		createNew: function( value ) {
+			if ( !value.trim() )
+				return;
+			var todo = this.get( 'store' ).createFromTitle( value );
+			this.pushObject( todo );
+		},
+		pushObject: function( item, ignoreStorage) {
+			if ( !ignoreStorage )
+				this.get( 'store' ).create( item );
+			return this._super( item );
+		},
+		removeObject: function( item ) {
+			this.get( 'store' ).remove( item );
+			return this._super( item );
+		},
+		clearCompleted: function() {
+			this.filterProperty(
+				'completed', true
+			).forEach( this.removeObject, this );
+		},
+		total: function() {
+			return this.get( 'length' );
+		}.property( '@each.length' ),
+
+		remaining: function() {
+			return this.filterProperty( 'completed', false ).get( 'length' );
+		}.property( '@each.completed' ),
+
+		completed: function() {
+			return this.filterProperty( 'completed', true ).get( 'length' );
+		}.property( '@each.completed' ),
+
+		noneLeft: function() {
+			return this.get( 'total' ) === 0;
+		}.property( 'total' ),
+
+		allAreDone: function( key, value ) {
+			if ( value !== undefined ) {
+				this.setEach( 'completed', value );
+				return value;
+			} else {
+				return !!this.get( 'length' ) &&
+					this.everyProperty( 'completed', true );
+			}
+		}.property( '@each.completed' ),
+
+		init: function() {
+			this._super();
+			// Load items if any upon initialization
+			var items = this.get( 'store' ).findAll();
+			if ( items.get( 'length' ) ) {
+				this.set( '[]', items );
+			};
+		}
+	});
+	app.EntriesController = Entries;
+	app.entriesController = Entries.create();
+})( window.Todos ); 
+
+<!--script src="js/controllers/todos.js"-->
+(function( app ) {
+	'use strict';
+	var TodosController = Ember.Controller.extend({
+		entries: function() {
+			var filter = this.getPath( 'content.filterBy' );
+			if ( Ember.empty( filter ) ) {
+				return this.get( 'content' );
+			}
+			if ( !Ember.compare( filter, 'completed' ) ) {
+				return this.get( 'content' ).filterProperty( 'completed', true );
+			}
+			if ( !Ember.compare( filter, 'active' ) ) {
+				return this.get( 'content' ).filterProperty( 'completed', false );
+			}
+		}.property( 'content.remaining', 'content.filterBy' )
+	});
+	app.TodosController = TodosController;
+})( window.Todos ); 
+
+<!--script src="js/views/application.js"-->
+(function( app ) {
+	'use strict';
+	var ApplicationView = Ember.ContainerView.extend({
+		childViews: [ 'headerView', 'mainView', 'footerView' ],
+
+		headerView: Ember.ContainerView.create({
+			elementId: 'header',
+			tagName: 'header',
+
+			childViews: [ 'titleView', 'createTodoView' ],
+			titleView: Ember.View.create({
+				tagName: 'h1',
+				template: function() {
+					return 'todos';
+				}
+			}),
+			createTodoView: Ember.TextField.create({
+				entriesBinding: 'controller.namespace.entriesController',
+				placeholder: 'What needs to be done?',
+				elementId: 'new-todo',
+				insertNewline: function() {
+					var value = this.get( 'value' );
+					if ( value ) {
+						this.get( 'entries' ).createNew( value );
+						this.set( 'value', '' );
+					}
+				}
+			}),
+		}),
+
+		mainView: Em.ContainerView.create({
+			elementId: 'main',
+			tagName: 'section',
+			visibilityBinding: 'controller.namespace.entriesController.noneLeft',
+			classNameBindings: [ 'visibility:hidden' ],
+
+			childViews: [ 'outletView', 'markAllChkbox' ],
+			outletView: Ember.View.create({
+				template: Ember.Handlebars.compile( '{{outlet}}' ),
+			}),
+			markAllChkbox: Ember.Checkbox.create({
+				entriesBinding: 'controller.namespace.entriesController',
+				elementId: 'toggle-all',
+				checkedBinding: 'entries.allAreDone'
+			})
+		}),
+
+		footerView: Ember.ContainerView.create({
+			elementId: 'footer',
+			tagName: 'footer',
+			visibilityBinding: 'controller.namespace.entriesController.noneLeft',
+			classNameBindings: [ 'visibility:hidden' ],
+
+			childViews: [ 'statsView', 'filtersView', 'clearBtnView' ],
+			statsView: Ember.View.create({
+				entriesBinding: 'controller.namespace.entriesController',
+				elementId: 'todo-count',
+				tagName: 'span',
+				templateName: 'statsTemplate',
+				oneLeft: function() {
+					return this.getPath( 'entries.remaining' ) === 1;
+				}.property( 'entries.remaining' )
+			}),
+			filtersView: Ember.View.create({
+				templateName: 'filtersTemplate',
+				filterBinding: 'controller.namespace.entriesController.filterBy',
+				isAll: function() {
+					return Ember.empty( this.get('filter') );
+				}.property( 'filter' ),
+				isActive: function() {
+					return this.get('filter') === 'active';
+				}.property('filter'),
+				isCompleted: function() {
+					return this.get('filter') === 'completed';
+				}.property('filter')
+			}),
+			clearBtnView: Ember.View.create({
+				entriesBinding: 'controller.namespace.entriesController',
+				templateName: 'clearBtnTemplate',
+				elementId: 'clear-completed',
+				buttonClass: function () {
+					return !this.getPath( 'entries.completed' );
+				}.property( 'entries.completed' )
+			})
+		})
+	});
+	app.ApplicationView = ApplicationView;
+})( window.Todos); 
+
+<!--script src="js/views/todos.js"-->
+(function( app ) {
+	'use strict';
+	var TodosView = Ember.CollectionView.extend({
+		contentBinding: 'controller.entries',
+		tagName: 'ul',
+		elementId: 'todo-list',
+		itemViewClass: Ember.View.extend({
+			templateName: 'todosTemplate',
+			classNames: [ 'view' ],
+			classNameBindings: ['content.completed', 'content.editing'],
+			doubleClick: function() {
+				this.get( 'content' ).set( 'editing', true );
+			},
+			removeItem: function() {
+				this.getPath( 'controller.content' ).removeObject(
+					this.get( 'content' )
+				);
+			},
+			ItemEditorView: Ember.TextField.extend({
+				valueBinding: 'content.title',
+				classNames: [ 'edit' ],
+				change: function() {
+				if ( Ember.empty( this.getPath( 'content.title' ) ) ) {
+					this.getPath( 'controller.content' ).removeObject(
+						this.get( 'content' )
+					);
+				}else{
+					this.get('content').set('title', this.getPath('content.title').trim());
+				}
+			},
+			whenDone: function() {
+				this.get( 'content' ).set( 'editing', false );
+			},
+			focusOut: function() {
+				this.whenDone();
+			},
+			didInsertElement: function() {
+				this.$().focus();
+			},
+			insertNewline: function() {
+				this.whenDone();
+				}
+			})
+		})
+	});
+	app.TodosView = TodosView;
+})( window.Todos); 
+
+</script>

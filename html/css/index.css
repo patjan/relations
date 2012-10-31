@@ -1,0 +1,115 @@
+body {
+?/*    width: 1024px;*/
+	margin: 7px auto;
+	font-family: verdana,arial,sans-serif;
+    font-size: 10pt;
+}
+
+a {
+    text-decoration: underline;
+}
+img {
+    border: none;
+}
+input[type="button"] {
+	padding: 3px 15px;
+}
+
+label.valid {
+    width: 20px;
+    height: 20px;
+    background: url(img/valid.png) center center no-repeat;
+    display: inline-block;
+    text-indent: -9999px;
+}
+label.error {
+    font-weight: bold;
+    color: red;
+    padding-left: 8px;
+}
+.error	{
+	color: red;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+}
+
+#wrapper {
+    border: 1px solid #006325;
+    border-radius: 6px 6px 6px 6px;
+}
+#header {
+	clear: both;
+}
+#header-logo {
+    float: left;
+    margin: 5px;
+}
+#header-info {
+    float: right;
+    margin: 10px;
+}
+#navigation {
+	clear: both;
+    background-color: #006325;
+    height: 32px;
+}
+#navigation a {
+    color: white;
+    padding: 5px 10px 5px 10px;
+	line-height: 22px;
+    text-decoration: underline;
+}
+#navigation a.disabled  {
+	color: grey;
+}
+#footer{
+	clear: both;
+    background-color: #006325;
+    color: #FFFFFF;
+    border: 1px solid #006325;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    text-align: center;
+    font-size: 0.8em;
+}
+#footer ul {
+    margin-bottom: 5px;
+}
+#footer li {
+    display: inline;
+}
+#footer a {
+    color: white;
+    text-decoration: underline;
+    display: inline;
+}
+#body {
+	clear: both;
+	margin: 20px;
+}
+
+ .modal-backdrop, .modal-backdrop.fade.in { opacity:0.5; }
+ .modal-header  { background-color:#317082; color:#ffffff; }
+ .close         { color:#ffffff; opacity:1; text-decoration:none; }
+ .close:hover   { color: #7b8049; }
+
+#jky-message {
+    display: none;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    width: 340px;
+    z-index: 2000;
+}
+#jky-trace {
+    display: none;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 282px;
+    right: auto;
+    width: 340px;
+    z-index: 2000;
+}

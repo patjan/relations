@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<title>Ember.js Example Application</title>
+<link rel="stylesheet" href="css/master.css" type="text/css" charset="utf-8">
+<meta name="author" content="Joachim Haagen Skeie">
+    <script src="lib/jquery-1.7.1.js" 		type="text/javascript" charset="utf-8"></script>
+    <!--script src="lib/jquery.transit.js" 	type="text/javascript" charset="utf-8"></script-->
+    <script src="lib/ember-1.0.pre.js" 		type="text/javascript" charset="utf-8"></script>
+    <!--script src="lib/ember-touch.js" 		type="text/javascript" charset="utf-8"></script-->
+    <script src="app/app.js" 				type="text/javascript" charset="utf-8"></script>
+    <script src="app/main.js" 				type="text/javascript" charset="utf-8"></script>
+    <script src="app/fixtureData.js" 		type="text/javascript" charset="utf-8"></script>
+    <script src="app/stateManager.js" 		type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/x-handlebars" data-template-name="photo-view-list">
+        {{#each content}}
+            {{#view EME.ThumbnailPhotoView contentBinding="this" classNames="thumbnailItem"}}
+                <img {{bindAttr src="content.imageUrl"}} style="width: 100%; height: 100%;"/>
+            {{/view}}
+        {{/each}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="selected-photo">
+        {{#with content}}
+            {{#view EME.SelectedPhotoView contentBinding="this" classNames="selectedPhotoItem"}}
+                <img {{bindAttr src="content.imageUrl"}}/>
+            {{/view}}
+        {{/with}}
+    </script>
+	
+	<script type="text/x-handlebars" data-template-name="control-button-view">
+        {{#view Ember.Button target="EME.PhotoListController" action="startSlideshow"	}}Play{{/view}}
+        {{#view Ember.Button target="EME.PhotoListController" action="stopSlideshow"	}}Stop{{/view}}
+        {{#view Ember.Button target="EME.PhotoListController" action="prevPhoto"		}}Prev{{/view}}
+        {{#view Ember.Button target="EME.PhotoListController" action="nextPhoto"		}}Next{{/view}}
+    </script>
+</head>
+<body bgcolor="#555154">
+    <div id="mainArea">
+
+    </div>
+</body>
+</html>
