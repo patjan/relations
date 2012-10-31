@@ -8,8 +8,9 @@ jky-header
 	jky-forgot
 	jky-clock
 
-jky-company-logo	
-jky-event-name
+jky-icon
+	jky-company-logo	
+	jky-event-name
 
 jky-menus
 	jky-home
@@ -23,16 +24,16 @@ jky-menus
 jky-control	
 	jky-language
 	jky-admin
-	jky-tickets
+		jky-dictionary
+		jky-summary
+		jky-users
+		jky-groups
+		jky-organizations
+		jky-permissions
+		jky-settings
+		jky-controls
 	jky-templates
-	jky-dictionary
-	jky-summary
-	jky-users
-	jky-groups
-	jky-organizations
-	jky-permissions
-	jky-settings
-	jky-controls
+
 
 jky-content
 	jky-content-header
