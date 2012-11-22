@@ -1,52 +1,55 @@
 jky-header
 	jky-company-name
-	jky-user-name
-	jky-profile
-	jky-sign-up
-	jky-log-in
-	jky-log-out
+	jky-user-info
+		jky-user-name
+		jky-profile
+		jky-sign-up
+		jky-log-in
+		jky-log-out
 	jky-forgot
 	jky-clock
 
-jky-icon
+jky-icons
 	jky-company-logo	
 	jky-event-name
 
-jky-menus
-	jky-home
-	jky-help
-	jky-my-info
-	jky-news
-	jky-reports
-	jky-features
-	jky-my-account
+jky-buttons
+	jky-menus
+		jky-home
+		jky-help
+		jky-my-info
+		jky-news
+		jky-reports
+		jky-features
+		jky-my-account
 
-jky-control	
-	jky-language
-	jky-admin
-		jky-dictionary
-		jky-summary
-		jky-users
-		jky-groups
-		jky-organizations
-		jky-permissions
-		jky-settings
-		jky-controls
-	jky-templates
+	jky-control	
+		jky-language
+		jky-admin
+			jky-dictionary
+			jky-summary
+			jky-users
+			jky-groups
+			jky-templates
+			jky-organizations
+			jky-permissions
+			jky-settings
+			jky-controls
+		jky-tickets
 
 
-jky-content
-	jky-content-header
-		jky-content-icon
-		jky-content-name
-		jky-add-new
-		jky-export
-		jky-publish
-		jky-combine
-		jky-upload
-		jky-print
+jky-body
+	jky-body-header
+		jky-body-name
+		jky-body-buttons
+			jky-add-new
+			jky-export
+			jky-publish
+			jky-combine
+			jky-upload
+			jky-print
 
-	jky-content-filter
+	jky-body-filter
 		jky-filter
 		jky-select
 		jky-display
@@ -54,7 +57,7 @@ jky-content
 		jky-all-abc
 		jky-all-123
 
-	jky-content-table
+	jky-body-table
 		jky-table-header
 		jky-table-body
 		jky-table-footer
