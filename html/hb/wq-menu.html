@@ -1,0 +1,10 @@
+<ul id='order-types'>
+	{{#each order-type in content}}
+		<li {{bindAttr class="order-type.class"}}>
+			<a {{action loadNewType order-type.name target="CX.wqMenuView"}}>
+				{{order-type.name}}
+			</a>
+			&nbsp; {{order-type.count}}
+		</li>
+	{{/each}}
+</ul>

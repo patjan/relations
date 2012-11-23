@@ -1,0 +1,15 @@
+2012-09-29 12:23:34.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 12:24:14.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 17:43:20.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 17:50:52.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 18:23:18.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 18:23:43.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 18:24:10.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 21:00:15.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 21:02:28.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 21:02:59.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 21:03:09.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 21:03:18.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 21:04:27.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 21:04:41.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-09-29 21:04:51.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name

@@ -1,0 +1,2 @@
+2012-10-07 20:59:09.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name
+2012-10-07 21:00:21.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "Root" ORDER BY control_name

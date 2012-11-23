@@ -1,0 +1,1 @@
+2012-10-18 20:13:36.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "User Resources" ORDER BY control_name

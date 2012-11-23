@@ -1,0 +1,1369 @@
+
+
+2012-10-20 08:09:59.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 08:09:59
+user_role=visitor
+permissions=Array ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.18.10.1350744855
+__utmc=68050834
+
+2012-10-20 08:10:05.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 08:09:59
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.18.10.1350744855
+__utmc=68050834
+
+2012-10-20 08:10:15.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 08:09:59
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.19.10.1350744855
+__utmc=68050834
+
+2012-10-20 09:17:13.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:17:13
+user_role=visitor
+permissions=Array ###  *** 
+command=log-in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.32.10.1350744855
+__utmc=68050834
+
+2012-10-20 09:17:26.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:17:13
+user_role=visitor
+permissions=Array
+logdate=2012-10-20 ###  *** 
+command=log-in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.33.10.1350744855
+__utmc=68050834
+
+2012-10-20 09:21:33.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:17:13
+user_role=visitor
+permissions=Array
+logdate=2012-10-20 ###  *** 
+command=log-in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.34.10.1350744855
+__utmc=68050834
+
+2012-10-20 09:21:45.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:17:13
+user_role=visitor
+permissions=Array
+logdate=2012-10-20 ###  *** 
+command=log-in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.35.10.1350744855
+__utmc=68050834
+
+2012-10-20 09:22:23.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:17:13
+user_role=visitor
+permissions=Array
+logdate=2012-10-20 ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.36.10.1350744855
+__utmc=68050834
+
+2012-10-20 09:22:23.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:17:13
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350616413.1350744855.44
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.36.10.1350744855
+__utmc=68050834
+
+2012-10-20 09:58:38.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:58:38
+user_role=visitor
+permissions=Array ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350744855.1350752316.45
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.1.10.1350752316
+__utmc=68050834
+
+2012-10-20 09:58:38.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:58:38
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350744855.1350752316.45
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.1.10.1350752316
+__utmc=68050834
+
+2012-10-20 11:02:35.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:58:38
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350752316.1350756138.46
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.2.10.1350756138
+
+2012-10-20 11:02:35.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:58:38
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350752316.1350756138.46
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.2.10.1350756138
+
+2012-10-20 11:34:42.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 09:58:38
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350756138.1350758082.47
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.1.10.1350758082
+
+2012-10-20 15:22:03.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:22:03
+user_role=visitor
+permissions=Array ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350758082.1350770102.48
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.3.10.1350770102
+__utmc=68050834
+
+2012-10-20 15:22:03.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:22:03
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350758082.1350770102.48
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.3.10.1350770102
+__utmc=68050834
+
+2012-10-20 15:23:47.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:23:47
+user_role=visitor
+permissions=Array ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+
+2012-10-20 15:23:47.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:23:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+
+2012-10-20 15:26:32.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:23:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+
+2012-10-20 15:26:45.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:23:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_out
+
+2012-10-20 15:26:59.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:22:03
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_out
+__utma=68050834.849794763.1348373694.1350758082.1350770102.48
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmb=68050834.3.10.1350770102
+__utmc=68050834
+
+2012-10-20 15:55:47.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=visitor
+permissions=Array ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350770102.1350773742.49
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.1.10.1350773742
+
+2012-10-20 15:55:47.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350770102.1350773742.49
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.1.10.1350773742
+
+2012-10-20 15:55:51.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350770102.1350773742.49
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.2.10.1350773742
+
+2012-10-20 16:41:00.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350773742.1350776449.50
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.2.10.1350776449
+
+2012-10-20 16:41:00.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350773742.1350776449.50
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.2.10.1350776449
+
+2012-10-20 16:45:05.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350773742.1350776449.50
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.3.10.1350776449
+
+2012-10-20 16:45:05.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350773742.1350776449.50
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.3.10.1350776449
+
+2012-10-20 17:13:16.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350773742.1350776449.50
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.4.10.1350776449
+
+2012-10-20 17:13:29.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 15:55:47
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_out
+__utma=68050834.849794763.1348373694.1350773742.1350776449.50
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.5.10.1350776449
+
+2012-10-20 22:54:28.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=visitor
+permissions=Array ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.9.10.1350798157
+
+2012-10-20 22:54:29.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.9.10.1350798157
+
+2012-10-20 22:54:29.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.10.10.1350798157
+
+2012-10-20 22:54:33.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.11.10.1350798157
+
+2012-10-20 22:55:37.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.12.10.1350798157
+
+2012-10-20 22:55:37.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.12.10.1350798157
+
+2012-10-20 22:55:38.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.13.10.1350798157
+
+2012-10-20 22:57:45.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.14.10.1350798157
+
+2012-10-20 23:01:38.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.14.10.1350798157
+
+2012-10-20 23:01:39.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.15.10.1350798157
+
+2012-10-20 23:01:59.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.16.10.1350798157
+
+2012-10-20 23:02:58.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.16.10.1350798157
+
+2012-10-20 23:02:59.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.17.10.1350798157
+
+2012-10-20 23:03:10.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.18.10.1350798157
+
+2012-10-20 23:06:01.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.18.10.1350798157
+
+2012-10-20 23:06:02.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.19.10.1350798157
+
+2012-10-20 23:06:46.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.20.10.1350798157
+
+2012-10-20 23:07:19.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.20.10.1350798157
+
+2012-10-20 23:10:00.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.21.10.1350798157
+
+2012-10-20 23:10:12.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.22.10.1350798157
+
+2012-10-20 23:10:21.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.22.10.1350798157
+
+2012-10-20 23:11:01.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.23.10.1350798157
+
+2012-10-20 23:11:07.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.24.10.1350798157
+
+2012-10-20 23:11:07.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.24.10.1350798157
+
+2012-10-20 23:13:10.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.25.10.1350798157
+
+2012-10-20 23:13:16.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 22:54:28
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_out
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.25.10.1350798157
+
+2012-10-20 23:13:37.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 23:13:37
+user_role=visitor
+permissions=Array ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.25.10.1350798157
+
+2012-10-20 23:13:37.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 23:13:37
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.25.10.1350798157
+
+2012-10-20 23:16:20.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 23:13:37
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.26.10.1350798157
+
+2012-10-20 23:16:47.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 23:13:37
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.27.10.1350798157
+
+2012-10-20 23:17:09.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 23:13:37
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=log_in
+user_name=patjan
+encrypted=6e5fa4d9c48ca921c0a2ce1e64c9ae6f
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.28.10.1350798157
+
+2012-10-20 23:17:09.000000 Program=ajax		 IP=127.0.0.1 +++ 
+control_company=1000000001
+user_time=2012-10-20 23:13:37
+user_role=support
+permissions=Array
+logdate=2012-10-20
+user_id=1000000001
+user_name=patjan
+user_type=support
+first_name=Pat
+last_name=Jan
+full_name=Pat Jan
+start_page=home
+user_action=All ###  *** 
+command=get_index
+table=Controls
+filter=
+select=User Resources
+display=All
+order_by=control_name
+specific=
+__utma=68050834.849794763.1348373694.1350776449.1350798157.51
+__utmz=68050834.1348373694.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+__utmc=68050834
+__utmb=68050834.28.10.1350798157
