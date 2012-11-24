@@ -94,8 +94,8 @@
 #jky-contact-us		{float:right;}
 
 #jky-table-body		{border:1px solid white;}
-#jky-table-body	tr td	{line-height:12px;}
-.table tbody tr:hover	{background:#317082; color:#cfcfcf;}
+#jky-table-body tr td	{line-height:12px;}
+#jky-table-body tr:hover td	{background:#317082; color:#cfcfcf;}
 
 #sequence			{width:10%;}
 #control-name		{width:30%;}
