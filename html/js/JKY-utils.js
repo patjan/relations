@@ -4,11 +4,36 @@
  */
 
 /**
+ * initial setup
+ */
+$(function() {
+	$.ajaxSetup({
+		dataType: 'json',
+		error	: function(jqXHR, textStatus, errorThrown) {
+			JKY.hideLoading();
+			JKY.displayMessage('Error from backend server, please re-try later.');
+		}
+	});
+	$('body').append('<div id="jky-utils"></div>');
+	JKY.loadHtml('jky-utils', 'JKY-utils.html'	);
+});
+	
+/**
+ * define JKY namespace for all application
+ */
+window.JKY = Em.Application.create({rootElement:'body'});
+
+/**
  * define all constants
  */
-JKY.TRACE 	= true; 			//	on production, should be set to false, help developement to trace sequence flow
-JKY.AJAX_APP = '../';			//  relative to application directory
-JKY.AJAX_URL = '../remote/';		//  relative to remote directory
+JKY.TRACE		= true; 					//	on production, should be set to false, help developement to trace sequence flow
+JKY.AJAX_APP	= '../';					//  relative to application directory
+JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
+
+JKY.translations= [];
+JKY.sort_name	= '';
+JKY.sort_seq	=  1;
+
 
 /**
  * run when is template ready
@@ -23,6 +48,47 @@ JKY.runWhenIsTemplate = function(templateName, functionName) {
 	}else{
 		setTimeout( function() {JKY.runWhenIsTemplate(templateName, functionName);}, 100);
 	}
+}
+
+/**
+ * set translations table 
+ *
+ * @param	language
+ * @param	fileName
+ * @example JKY.setTranslations('portugues')
+ */
+JKY.setTranslations = function(language) {
+    JKY.translations = language;
+}
+
+/**
+ * translate 
+ *
+ * @param	text
+ * @return	translated text
+ * @example JKY.t('Home')
+ */
+JKY.t = function(text) {
+	if (text == '') {
+		return '';
+	}
+
+	var result = JKY.translations[text];
+	if (typeof result == 'undefined') {
+		result = '';
+		var names = text.split('<br>');
+		for(var i=0; i<names.length; i++ ) {
+			var name = names[i];
+			var translation = JKY.translations[name];
+			result += ( i == 0 ) ? '' : '<br>';
+			if (typeof translation == 'undefined') {
+				result += name;
+			}else{
+				result += translation;
+			}
+		}
+	}
+	return result;
 }
 
 /**
@@ -229,14 +295,6 @@ JKY.setActionApprove = function(paymentIssueFlag, appraisalId) {
 }
 
 /**
- * set action
- * to be defined ...
- */
-JKY.setAction = function(status){
-	return 'A C H';
-}
-
-/**
  * display message on right bottom corner
  * it will stay be displayed long enought to be read
  * @param	message
@@ -264,6 +322,29 @@ JKY.displayMessage = function(message){
 		$('#ihs-message-body').html('');
 	}, myTime * 1000);
 }
+JKY.display_message = function(message, refocus) {
+     if(  message == '' )
+          return;
+     if(  message.substr(0, 4) == '<br>' )
+          message = message.substr(4);
+     var  extra = '';
+     if(  typeof(refocus) != 'undefined' )
+          extra = 'JKY.set_focus("' + refocus + '");';
+
+     message = $('#jky-message-body').html() + '<br>' + message;
+
+     $('#jky-message-body').html(message);
+//   $('#jky-message').modal('show');
+     $('#jky-message').css('display', 'block');
+
+     var  time = Math.round(message.length / 15);
+     if(  time < 2.0 )
+          time = 2.0 ;
+//   setTimeout("$('#jky-message').modal('hide');$('.modal-backdrop').css('opacity', '0.8');", time * 1000);
+//   setTimeout("$('#jky-message').modal('hide');" + extra, time * 1000);
+     setTimeout("$('#jky-message').css('display', 'none');" + extra, time * 1000);
+}
+
 
 /**
  * display trace on left bottom corner
@@ -446,31 +527,6 @@ JKY.set_focus = function(name) {
           id.focus();
           id.select();
      }
-}
-
-//        JKY.display_message('any message')
-//        ----------------------------------------------------------------------
-JKY.display_message = function(message, refocus) {
-     if(  message == '' )
-          return;
-     if(  message.substr(0, 4) == '<br>' )
-          message = message.substr(4);
-     var  extra = '';
-     if(  typeof(refocus) != 'undefined' )
-          extra = 'JKY.set_focus("' + refocus + '");';
-
-     message = $('#jky-message-body').html() + '<br>' + message;
-
-     $('#jky-message-body').html(message);
-//   $('#jky-message').modal('show');
-     $('#jky-message').css('display', 'block');
-
-     var  time = Math.round(message.length / 15);
-     if(  time < 2.0 )
-          time = 2.0 ;
-//   setTimeout("$('#jky-message').modal('hide');$('.modal-backdrop').css('opacity', '0.8');", time * 1000);
-//   setTimeout("$('#jky-message').modal('hide');" + extra, time * 1000);
-     setTimeout("$('#jky-message').css('display', 'none');" + extra, time * 1000);
 }
 
 //        JKY.set_...

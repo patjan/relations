@@ -1,6 +1,7 @@
+/*
 @import url('bootstrap.css');
 @import url('bootstrap-responsive.css');
-
+*/
 @font-face { font-family:'arial rounded extraBold'; src:url('../fonts/arial-rounded-extrabold') format('woff'); font-style:normal; font-weight:bold;    }
 @font-face { font-family:'arial rounded bold'     ; src:url('../fonts/arial-rounded-bold'     ) format('woff'); font-style:normal; font-weight:bold;    }
 @font-face { font-family:'arial rounded light'    ; src:url('../fonts/arial-rounded-light'    ) format('woff'); font-style:normal; font-weight:normal;  }
@@ -12,7 +13,7 @@ body      {color:#333333; font-weight:normal; font-size:14px; line-height:20px;}
 
 form      { margin:0; }
 p         { margin:0; }
-select    { height:26px; padding:2px 2px 2px 0; }
+select    { margin-bottom:3px; height:26px; padding:2px 2px 2px 0; }
 input     { height:26px; margin:0; }
 textarea  { margin:0; }
 
@@ -154,3 +155,97 @@ input[ type='file'       ] { margin-left:0; }
 .ui-timepicker-div td { font-size: 90%; }
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 
+.clear{
+	clear: both;
+}
+.nav > li > a{
+	display: inline;
+}
+.nav{
+	margin-bottom: 0;
+}
+	border: 0;
+	margin-bottom: 0;
+}
+.table td{
+	border-top: 0;
+}
+.table td.center{
+	text-align: center;
+}
+.table td.right{
+	text-align: right;
+}
+.center{
+	text-align: center;
+}
+.table td{
+	padding: 6px 4px 4px 10px;
+	border: 1px solid #EEEEEE;
+	height: 12px;
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {opacity:0.5;}
+.modal-header	{background-color:#317082; color:#ffffff;}
+.modal-header h3	{color:#ffffff;}
+.close			{color:#ffffff; opacity:1; text-decoration:none;}
+.close:hover	{color: #7b8049;}
+
+.ui-widget-header {
+    background: #317082;
+}
+	
+#jky-loading{
+	position: fixed; 
+	top: 50%; 
+	left: 50%; 
+	margin-top: -50px; 
+	margin-left: -50px; 
+	z-index: 9999; 
+	overflow: auto; 
+	display: none;
+}
+#jky-message{
+	display: none;
+	position: absolute;
+	top: auto;
+	bottom: 0;
+	left: auto;
+	right: 0;
+	width: 340px;
+	z-index: 2000;
+}
+#jky-trace{
+	display: none;
+	position: absolute;
+	top: auto;
+	bottom: 0;
+	left: 280px;
+	right: 0;
+	width: 340px;
+	z-index: 2000;
+}
+#jky-confirm{
+	position: absolute; 
+	top: 50%; 
+	bottom: 0; 
+	left: 50%; 
+	right: 0; 
+	margin: -112px 0 0 -150px;
+	display: none; 
+	width: 300px; 
+	height: 224px; 
+	z-index: 2000;
+}
+#jky-confirm-request{
+	position: absolute; 
+	top: 50%; 
+	bottom: 0; 
+	left: 50%; 
+	right: 0; 
+	margin: -112px 0 0 -150px;
+	display: none; 
+	width: 300px; 
+	height: 224px; 
+	z-index: 2000;
+}

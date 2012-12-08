@@ -46,10 +46,12 @@ log_proxy( '' );
                foreach( $POST as $key => $value ) {
                     if(  $key != 'u' && $key != 'c' )
                          $value  = str_replace( '\\"', '"', $value );           //   (PJ 2011-06-11 ) needed on Linux
-                         $this->POSTVARS .= $key . "=" . $value . "&";
+                         $this->POSTVARS .= $key . "=" . str_replace(' ', '+', $value) . "&";
                }
                if( $this->POSTVARS )     $posted = 1;
           }
+
+$posted = 1;	// Pat test		  
 
           if(  count( $FILES )) {
                $filed = 1;
@@ -69,7 +71,7 @@ log_proxy( '' );
 
           foreach( $GET as $key =>$value ) {
                if(  $key != 'u' && $key != 'c' )  
-                    $this->POSTURL .= '&' . $key . '=' . $value;
+                    $this->POSTURL .= '&' . $key . '=' . str_replace(' ', '+', $value);
           }
 
           $this->PURL   = parse_url( $U );

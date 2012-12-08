@@ -94,10 +94,23 @@
 #jky-contact-us		{float:right;}
 
 #jky-table-body		{border:1px solid white;}
-#jky-table-body tr td	{line-height:12px;}
 #jky-table-body tr:hover td	{background:#317082; color:#cfcfcf;}
 
 #sequence			{width:10%;}
-#control-name		{width:30%;}
-#control-value		{width:40%;}
+#control-name		{width:25%;}
+#control-value		{width:50%;}
 #status				{width:10%;}
+#scroll-bar			{width:50px;}
+
+.sequence			{width:10%; text-align:center;}
+.control-name		{width:25%;}
+.control-value		{width:50%;}
+.status				{width:10%; text-align:center;}
+.scroll-bar			{width:50px;}
+
+.tablescroll_wrapper{
+	width:940px;
+	height: 300px;
+	min-height: 200px;
+}
+
