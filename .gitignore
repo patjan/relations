@@ -1,3 +1,4 @@
 /nbproject/private/
+.gitignore
 access.log
 error.log
