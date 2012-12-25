@@ -277,14 +277,14 @@ JKY.setButtons = function() {
 			,{ label: 'My Info'			, icon: 'user'			}
 			]
 		, admins	:
-			[{ label: 'Dictionary'		, icon: 'tasks'			}
-			,{ label: 'Summary'			, icon: 'tasks'			}
-			,{ label: 'Groups'			, icon: 'tasks'			}
-			,{ label: 'Templates'		, icon: 'tasks'			}
+			[{ label: 'Dictionary'		, icon: 'font'			}
+			,{ label: 'Summary'			, icon: 'plus-sign'		}
+			,{ label: 'Groups'			, icon: 'th-list'		}
+			,{ label: 'Templates'		, icon: 'film'			}
 			,{ label: 'Organizations'	, icon: 'tasks'			}
-			,{ label: 'Permissions'		, icon: 'tasks'			}
-			,{ label: 'Settings'		, icon: 'tasks'			}
-			,{ label: 'Controls'		, icon: 'tasks'			}
+			,{ label: 'Permissions'		, icon: 'road'			}
+			,{ label: 'Settings'		, icon: 'move'			}
+			,{ label: 'Controls'		, icon: 'off'			}
 			]
 		});
 }

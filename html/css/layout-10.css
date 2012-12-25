@@ -2,8 +2,8 @@
 .btn-large	{ padding:6px 16px; font-size:16px;}
 .btn-large [class^="icon-"], .btn-large [class*=" icon-"] {margin:3px 6px 0 0;}
 .ui-widget-header	{background:none; border:none;}
-.dropdown-menu		{background:#636363;}
-.dropdown-menu li > a	{padding:3px 12px;}
+.dropdown-menu		{background:#636363; margin:3px 0 0 5px; min-width:130px;}
+.dropdown-menu li > a	{padding:3px 7px;}
 
 #jky-wrapper		{clear:both; height:auto !important; min-height:100%; margin:0 auto -20px;}
 
