@@ -1,2 +1,0 @@
-2012-10-17 18:01:09.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "User Resources" ORDER BY control_name
-2012-10-17 18:01:22.000000 table Controls id get_index SELECT Controls.*  FROM Controls WHERE 1  AND       Controls.control_set   = "User Resources" ORDER BY control_name

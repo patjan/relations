@@ -86,16 +86,13 @@
 		<div id='jky-control'>
 			<a class='btn btn-large'><i class='icon-font icon-white'></i>Language</a>
 		{{#if view.admins}}
-                        <div class="btn-group">
-                        <a class='btn btn-large dropdown-toggle' data-toggle="dropdown" href="#"><i class='icon-tasks icon-white'></i>Admin</a>
-                            <ul class="dropdown-menu">
-
+			<div class='btn-group'>
+            <a class='btn btn-large dropdown-toggle' data-toggle='dropdown' href='#'><i class='icon-tasks icon-white'></i>Admin</a>
+				<ul class='dropdown-menu'>
 			{{#each admin in view.admins}}
-                                <li><a href="#">
-                                    <i class="icon-plus-sign icon-white"></i>
-                                    {{admin.label}}</a></li>
+					<li><a onclick='JKY.reDirect("{{unbound admin.label}}")'><i class='icon-{{unbound admin.icon}} icon-white'></i> {{admin.label}}</a></li>
 			{{/each}}
-                    </ul>
+				</ul>
 			</div>
 		{{/if}}
 			<a class='btn btn-large'><i class='icon-share icon-white'></i>Tickets</a>
