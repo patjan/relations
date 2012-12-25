@@ -52,7 +52,7 @@
 
 #jky-body-header	{clear:both; height:30px; margin-top:15px;}
 #jky-body-filter	{clear:both; height:40px; margin-top:15px; border-top:1px solid #D4D4D4; padding-top:10px;}
-#jky-body-table		{clear:both; }
+#jky-body-table		{clear:both; display:none;}
 #jky-body-footer	{clear:both; margin-top:15px;}
 
 #jky-body-name		{float:left; font-size:200%; font-weight:bold;}
@@ -100,17 +100,17 @@
 #control-name		{width:25%;}
 #control-value		{width:50%;}
 #status				{width:10%;}
-#scroll-bar			{width:50px;}
+#scroll-bar			{width: 5%;}
 
 .sequence			{width:10%; text-align:center;}
 .control-name		{width:25%;}
 .control-value		{width:50%;}
 .status				{width:10%; text-align:center;}
-.scroll-bar			{width:50px;}
+.scroll-bar			{width: 5%;}
 
 .tablescroll_wrapper{
-	width:940px;
-	height: 300px;
+	width:939px;
+	height: 200px;
 	min-height: 200px;
 }
 

@@ -82,13 +82,13 @@ JKY.controlsStart = function() {
  * wait until any order is loaded, to binding on scroll
  *
  * !!! important !!!
- * table scroll can be bond only once per load 
+ * table scroll can be bond only once per load
  */
 JKY.bindingOnScroll = function() {
 	if (JKY.rows.length > 0) {
 		$('.tablescroll_wrapper').scroll(function() {
 			if (JKY.isScrollAtEnd('tablescroll_wrapper')) {
-				JKY.loadMoreRows();
+//				JKY.loadMoreRows();
 			}
 		});
 	} else {
@@ -102,7 +102,7 @@ JKY.bindingOnScroll = function() {
  * wait until any order is loaded, to binding on scroll
  *
  * !!! important !!!
- * window resize can be bond only once per load 
+ * window resize can be bond only once per load
  */
 JKY.bindingOnResize = function() {
 	if (JKY.isBrowser('msie') && $.browser.version < 9) {
@@ -159,9 +159,6 @@ JKY.loadNewSet = function(controlSet) {
 			} else {
 				JKY.rows = response.rows;
 				JKY.displayByFilter();
-				JKY.setTableWidthHeight('jky-body-table', 940, 300, 350);
-				JKY.setTableWidthHeight('jky-body-table', 900, 300, 350);
-
 			}
 		}
 	});
@@ -232,8 +229,16 @@ JKY.displayByFilter = function() {
 			my_rows.push(my_row);
 		}
 	}
+	JKY.hideId('jky-body-table');
 	JKY.router.get('bodyController').connectOutlet('table', my_rows);
 	JKY.set_focus('jky-filter');
+	JKY.setTableWidthHeight('jky-body-table', 920, 200, 550);
+setTimeout(function() {
+	JKY.setTableWidthHeight('jky-body-table', 920, 200, 550);
+	JKY.showId('jky-body-table');
+	$('#scroll-bar').css('width', '0');
+}, 10);
+//	JKY.showClass('tablescroll');
 }
 
 /**

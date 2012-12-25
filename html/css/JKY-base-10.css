@@ -163,7 +163,6 @@ input[ type='file'       ] { margin-left:0; }
 }
 .nav{
 	margin-bottom: 0;
-}
 	border: 0;
 	margin-bottom: 0;
 }
@@ -184,6 +183,8 @@ input[ type='file'       ] { margin-left:0; }
 	border: 1px solid #EEEEEE;
 	height: 12px;
 }
+.tablescroll		{font-size:14px;}
+.tablescroll_head	{font-size:14px; width:940px;}
 
 .modal-backdrop, .modal-backdrop.fade.in {opacity:0.5;}
 .modal-header	{background-color:#317082; color:#ffffff;}
@@ -194,15 +195,15 @@ input[ type='file'       ] { margin-left:0; }
 .ui-widget-header {
     background: #317082;
 }
-	
+
 #jky-loading{
-	position: fixed; 
-	top: 50%; 
-	left: 50%; 
-	margin-top: -50px; 
-	margin-left: -50px; 
-	z-index: 9999; 
-	overflow: auto; 
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -50px;
+	margin-left: -50px;
+	z-index: 9999;
+	overflow: auto;
 	display: none;
 }
 #jky-message{
@@ -226,26 +227,26 @@ input[ type='file'       ] { margin-left:0; }
 	z-index: 2000;
 }
 #jky-confirm{
-	position: absolute; 
-	top: 50%; 
-	bottom: 0; 
-	left: 50%; 
-	right: 0; 
+	position: absolute;
+	top: 50%;
+	bottom: 0;
+	left: 50%;
+	right: 0;
 	margin: -112px 0 0 -150px;
-	display: none; 
-	width: 300px; 
-	height: 224px; 
+	display: none;
+	width: 300px;
+	height: 224px;
 	z-index: 2000;
 }
 #jky-confirm-request{
-	position: absolute; 
-	top: 50%; 
-	bottom: 0; 
-	left: 50%; 
-	right: 0; 
+	position: absolute;
+	top: 50%;
+	bottom: 0;
+	left: 50%;
+	right: 0;
 	margin: -112px 0 0 -150px;
-	display: none; 
-	width: 300px; 
-	height: 224px; 
+	display: none;
+	width: 300px;
+	height: 224px;
 	z-index: 2000;
 }
