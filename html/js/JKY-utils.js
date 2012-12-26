@@ -676,3 +676,6 @@ JKY.set_checks = function() {
      return checks;
 }
 
+    JKY.processContactUs=function(){
+        alert('processContactUs')
+    }

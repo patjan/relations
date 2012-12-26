@@ -4,6 +4,8 @@
 .ui-widget-header	{background:none; border:none;}
 .dropdown-menu		{background:#636363; margin:3px 0 0 5px; min-width:130px;}
 .dropdown-menu li > a	{padding:3px 7px;}
+#jky-control select {
+    width: 110px;}
 
 #jky-wrapper		{clear:both; height:auto !important; min-height:100%; margin:0 auto -20px;}
 

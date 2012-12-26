@@ -84,7 +84,14 @@
 		{{/each}}
 		</div>
 		<div id='jky-control'>
-			<a class='btn btn-large'><i class='icon-font icon-white'></i>Language</a>
+                        <span class="jky-label">Language:</span>
+                            <select>
+                              <option>English</option>
+                              <option>Chinese</option>
+                              <option>Taiwanese</option>
+                              <option>Portugues</option>
+                            </select>
+
 		{{#if view.admins}}
 			<div class='btn-group'>
 				<a class='btn btn-large dropdown-toggle' data-toggle='dropdown' href='#'><i class='icon-tasks icon-white'></i>Admin</a>

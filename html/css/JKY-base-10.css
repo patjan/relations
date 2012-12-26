@@ -13,7 +13,7 @@ body      {color:#333333; font-weight:normal; font-size:14px; line-height:20px;}
 
 form      { margin:0; }
 p         { margin:0; }
-select    { margin-bottom:3px; height:26px; padding:2px 2px 2px 0; }
+select    { margin-bottom:3px; height:26px; padding:3px 2px 2px 0; }
 input     { height:26px; margin:0; }
 textarea  { margin:0; }
 
