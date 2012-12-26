@@ -17,7 +17,7 @@ $(function() {
 	$('body').append('<div id="jky-utils"></div>');
 	JKY.loadHtml('jky-utils', 'JKY-utils.html'	);
 });
-	
+
 /**
  * define JKY namespace for all application
  */
@@ -36,6 +36,13 @@ JKY.sort_seq	=  1;
 
 
 /**
+ * re direct
+ */
+JKY.reDirect = function(program_name) {
+	alert('re direct to ' + program_name);
+}
+
+/**
  * run when is template ready
  * wait until the template is ready
  * @param	templateName
@@ -51,7 +58,7 @@ JKY.runWhenIsTemplate = function(templateName, functionName) {
 }
 
 /**
- * set translations table 
+ * set translations table
  *
  * @param	language
  * @param	fileName
@@ -62,7 +69,7 @@ JKY.setTranslations = function(language) {
 }
 
 /**
- * translate 
+ * translate
  *
  * @param	text
  * @return	translated text
@@ -174,7 +181,7 @@ JKY.fixBr = function(stringValue){
 	if (stringValue) {
 		if (typeof stringValue == 'string') {
 			return stringValue.replace(' ', '<br />');
-		}else{ 
+		}else{
 			return stringValue;
 		}
 	}else{
@@ -251,7 +258,7 @@ JKY.fixHeaderPositions = function(orderType, idName) {
 
 /**
  * set table width and height
- * adjust height minus offset height, but not less than minimum height 
+ * adjust height minus offset height, but not less than minimum height
  * @param	tableId
  * @param	width
  * @param	minHeight
@@ -272,9 +279,10 @@ JKY.setTableWidthHeight = function(tableId, width, minHeight, offHeight) {
 		myHeight = minHeight;
 	}
 	JKY.displayTrace('JKY.setTableWidthHeight, width: ' + width + ', height: ' + myHeight);
-	$('#' + tableId).tableScroll({width :width		});
-	$('#' + tableId).tableScroll({height:myHeight	});
-}	
+//	$('#' + tableId).tableScroll({width :width		});
+//	$('#' + tableId).tableScroll({height:myHeight	});
+	$('#' + tableId).tableScroll({width:700, height:263});
+}
 
 /**
  * set action approve
@@ -424,7 +432,7 @@ JKY.scrollToTop = function(className){
  * @param	browserName
  * @return  true | false
  *
- * @example 
+ * @example
  *			JKY.isBrowser('msie')
  *			JKY.isBrowser('firefox')
  *			JKY.isBrowser('chrome')
@@ -493,7 +501,7 @@ return text;
 JKY.show_layer = function(layer, field, z_index) {
      var   layer_name = layer + '-layer' ;
      var  shadow_name = layer + '-shadow';
-/*	 
+/*
      var  JKY.shadow = document.getElementById(shadow_name);
      if( !JKY.shadow ) {
           JKY.shadow = document.createElement('div');
@@ -576,7 +584,7 @@ JKY.is_date = function(date) {
           return true;
      else return false;
 }
-          
+
 //        JKY.str_replace
 //        ----------------------------------------------------------------------
 JKY.str_replace = function(search, replace, subject, count) {

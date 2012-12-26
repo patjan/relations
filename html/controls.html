@@ -87,7 +87,7 @@
 			<a class='btn btn-large'><i class='icon-font icon-white'></i>Language</a>
 		{{#if view.admins}}
 			<div class='btn-group'>
-            <a class='btn btn-large dropdown-toggle' data-toggle='dropdown' href='#'><i class='icon-tasks icon-white'></i>Admin</a>
+				<a class='btn btn-large dropdown-toggle' data-toggle='dropdown' href='#'><i class='icon-tasks icon-white'></i>Admin</a>
 				<ul class='dropdown-menu'>
 			{{#each admin in view.admins}}
 					<li><a onclick='JKY.reDirect("{{unbound admin.label}}")'><i class='icon-{{unbound admin.icon}} icon-white'></i> {{unbound admin.label}}</a></li>
@@ -95,7 +95,7 @@
 				</ul>
 			</div>
 		{{/if}}
-			<a class='btn btn-large'><i class='icon-share icon-white'></i>Tickets</a>
+			<a class='btn btn-large' onclick='JKY.reDirect("Tickets")'><i class='icon-share icon-white'></i>Tickets</a>
 		</div>
 	</div>
 </div>
@@ -152,6 +152,7 @@
 </script>
 
 <script type='text/x-handlebars' data-template-name='template-table'>
+<div class='tablescroll'>
 <table id='jky-body-table' class='table table-striped'>
 	<thead id='jky-table-header'>
 		<tr>
@@ -160,11 +161,10 @@
 			<th>{{JKY-replace-space-br header}}</th>
 		{{/each}}
 -->
-			<th class='sequence'		>Seq</th>
-			<th class='control-name'	>Control<br>Name</th>
-			<th class='control-value'	>Control<br>Value</th>
-			<th class='status'			>Status</th>
-			<th class='scroll-bar'		></th>
+			<td>Seq</td>
+			<td>Control<br>Name</td>
+			<td>Control<br>Value</td>
+			<td>Status</td>
 		</tr>
 	</thead>
 
@@ -172,10 +172,10 @@
 		{{#if content}}
 			{{#each row in content}}
 				<tr>
-					<td class='sequence'		>{{row.sequence			}}</td>
-					<td	class='control-name'	>{{row.control-name		}}</td>
-					<td	class='control-value'	>{{row.control-value	}}</td>
-					<td class='status'			>{{row.status			}}</td>
+					<td>{{row.sequence		}}</td>
+					<td>{{row.control-name	}}</td>
+					<td>{{row.control-value	}}</td>
+					<td>{{row.status		}}</td>
 				</tr>
 			{{/each}}
 		{{else}}
@@ -184,9 +184,15 @@
 	</tbody>
 
 	<tfoot id='jky-table-footer'>
-		<tr></tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>Counter:</td>
+			<td>13</td>
+		</tr>
 	</tfoot>
 </table>
+</div>
 </script>
 
 <div id='jky_layer' class='modal hide fade in'>
