@@ -187,7 +187,7 @@ input[ type='file'       ] { margin-left:0; }
 .tablescroll_head	{font-size:14px; width:940px;}
 
 .modal-backdrop, .modal-backdrop.fade.in {opacity:0.5;}
-.modal-header	{background-color:#317082; color:#ffffff;}
+.modal-header	{background-color:#317082; color:#ffffff; border-radius: 6px 6px 0 0;}
 .modal-header h3	{color:#ffffff;}
 .close			{color:#ffffff; opacity:1; text-decoration:none;}
 .close:hover	{color: #7b8049;}
