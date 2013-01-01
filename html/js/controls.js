@@ -25,7 +25,7 @@ JKY.Router = Em.Router.extend(
 		, index: Em.Route.extend(
 			{ route: '/'
 			, connectOutlets: function(router, context) {
-				JKY.displayTrace('JKY.Router.index');
+				JKY.display_trace('JKY.Router.index');
 				JKY.loadNewSet('Root');
 				}
 			})
@@ -39,7 +39,7 @@ JKY.Router = Em.Router.extend(
 				return {name: context}
 				}
 			, connectOutlets: function(router, controlSet) {
-				JKY.displayTrace('JKY.Router.newSet, newSet: ' + controlSet);
+				JKY.display_trace('JKY.Router.newSet, newSet: ' + controlSet);
 				JKY.loadNewSet(controlSet);
 				}
 			})
@@ -50,7 +50,7 @@ JKY.Router = Em.Router.extend(
  * main function
  */
 $(function() {
-	JKY.displayTrace('$(function() {})');
+	JKY.display_trace('$(function() {})');
 	JKY.controlsStart();
 });
 
@@ -60,7 +60,7 @@ $(function() {
  * initiate Ember Router and set bindings
  */
 JKY.controlsStart = function() {
-	JKY.displayTrace('JKY.controlsStart');
+	JKY.display_trace('JKY.controlsStart');
 	JKY.router.get('applicationController').connectOutlet('outlet-header'	, 'header'	);
 	JKY.router.get('applicationController').connectOutlet('outlet-footer'	, 'footer'	);
 	JKY.router.get('applicationController').connectOutlet('outlet-buttons'	, 'buttons'	);
@@ -110,7 +110,7 @@ JKY.bindingOnResize = function() {
 	}
 	if (JKY.rows.length > 0) {
 		$(window).bind('resize', function() {
-			JKY.setTableWidthHeight('jky-table', 850, 390, 350);
+			JKY.setTableWidthHeight('jky-body-table', 924, 378, 550);
 		});
 	} else {
 		setTimeout(function() {JKY.bindingOnResize();}, 100);
@@ -121,14 +121,14 @@ JKY.bindingOnResize = function() {
  * load control set
  */
 JKY.loadControlSet = function(controlSet) {
-	JKY.displayTrace('JKY.loadControlSet, controlSet: ' + controlSet);
+	JKY.display_trace('JKY.loadControlSet, controlSet: ' + controlSet);
 	var my_rows = [];
 
 	$.ajax({
 		url		: JKY.AJAX_URL + 'command=get_index&table=Controls&order_by=sequence,control_name&select=' + controlSet,
 		async	: false,
 		success	: function(response) {
-			JKY.displayTrace('JKY.setBody, ajax, success');
+			JKY.display_trace('JKY.setBody, ajax, success');
 			if (response.status != 'ok') {
 				JKY.displayMessage(response.message);
 			} else {
@@ -147,13 +147,13 @@ JKY.loadControlSet = function(controlSet) {
  * load new set
  */
 JKY.loadNewSet = function(controlSet) {
-	JKY.displayTrace('JKY.loadNewSet, controlSet: ' + controlSet);
+	JKY.display_trace('JKY.loadNewSet, controlSet: ' + controlSet);
 	JKY.showLoading();
 
 	$.ajax({
 		url		: JKY.AJAX_URL + 'command=get_index&table=Controls&order_by=sequence,control_name&select=' + controlSet,
 		success	: function(response) {
-			JKY.displayTrace('JKY.loadNewSet, ajax, success');
+			JKY.display_trace('JKY.loadNewSet, ajax, success');
 			if (response.status != 'ok') {
 				JKY.displayMessage(response.message);
 			} else {
@@ -211,7 +211,7 @@ JKY.sortByColumn = function(column_name) {
  * display by filter
  */
 JKY.displayByFilter = function() {
-	JKY.displayTrace('JKY.displayByFilter');
+	JKY.display_trace('JKY.displayByFilter');
 	var my_exp  = new RegExp(JKY.filter_value, 'i');
 	var my_rows = [];
 
@@ -232,9 +232,9 @@ JKY.displayByFilter = function() {
 	JKY.hideId('jky-body-table');
 	JKY.router.get('bodyController').connectOutlet('table', my_rows);
 	JKY.set_focus('jky-filter');
-	JKY.setTableWidthHeight('jky-body-table', 920, 200, 550);
+//	JKY.setTableWidthHeight('jky-body-table', 924, 378, 550);
 setTimeout(function() {
-	JKY.setTableWidthHeight('jky-body-table', 920, 200, 550);
+	JKY.setTableWidthHeight('jky-body-table', 924, 378, 550);
 	JKY.showId('jky-body-table');
 	$('#scroll-bar').css('width', '0');
 }, 10);
@@ -311,7 +311,7 @@ JKY.setBody = function() {
 				target_id		= event.target.id;
 				target_value	= event.target.value;
 				if (target_id == 'jky-filter') {
-					JKY.displayTrace('JKY.setBody: change, jky-filter: ' + target_value);
+					JKY.display_trace('JKY.setBody: change, jky-filter: ' + target_value);
 					JKY.filter_value = target_value;
 					JKY.displayByFilter();
 				}

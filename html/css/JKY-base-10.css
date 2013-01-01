@@ -61,7 +61,6 @@ input[ type='file'       ] { margin-left:0; }
 .ui-dialog-titlebar { margin-top:7px; }
 .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled { opacity: 1.0; }
 
-
 .odd           { background-color:#ffffff; cursor:pointer; }
 .odd:hover     { background-color:#dcf2da; cursor:pointer; }
 .even          { background-color:#cfcfcf; cursor:pointer; }
@@ -188,7 +187,7 @@ input[ type='file'       ] { margin-left:0; }
 
 .modal-backdrop, .modal-backdrop.fade.in {opacity:0.5;}
 .modal-header	{background-color:#317082; color:#ffffff; border-radius: 6px 6px 0 0;}
-.modal-header h3	{color:#ffffff;}
+.modal-header .label{background-color:inherit; line-height:30px; font-size:24px; font-weight:bold;}
 .close			{color:#ffffff; opacity:1; text-decoration:none;}
 .close:hover	{color: #7b8049;}
 

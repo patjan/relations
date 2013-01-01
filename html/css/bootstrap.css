@@ -1891,14 +1891,14 @@ table {
 
 .table {
   width: 100%;
-  margin-bottom: 20px;
+/*  margin-bottom: 20px;	*/	by Pat 2012-12-29
 }
 
 .table th,
 .table td {
   padding: 8px;
-  line-height: 20px;
-  text-align: left;
+/*  line-height: 20px;		*/	by Pat 2012-12-29
+/*  text-align: left;		*/	by Pat 2012-12-29
   vertical-align: top;
   border-top: 1px solid #dddddd;
 }

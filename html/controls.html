@@ -15,7 +15,7 @@
 
         <link href='css/normalize.css'				rel='stylesheet'>
         <link href='css/main.css'					rel='stylesheet'>
-        <link href='css/jquery-ui-1.9.0.custom.css' rel='stylesheet'>
+        <!--link href='css/jquery-ui-1.9.0.custom.css' rel='stylesheet'-->
         <link href='css/jquery.tablescroll.css' 	rel='stylesheet'>
         <link href='css/bootstrap.css' 				rel='stylesheet'>
         <link href='css/bootstrap-responsive.css'	rel='stylesheet'>
@@ -84,13 +84,15 @@
 		{{/each}}
 		</div>
 		<div id='jky-control'>
-                        <span class="jky-label">Language:</span>
-                            <select>
-                              <option>English</option>
-                              <option>Chinese</option>
-                              <option>Taiwanese</option>
-                              <option>Portugues</option>
-                            </select>
+			<span class='jky-label'>Language:</span>
+			<select>
+
+				<option>English		</option>
+				<option>Chinese		</option>
+				<option>Taiwanese	</option>
+				<option>Portugues	</option>
+
+			</select>
 
 		{{#if view.admins}}
 			<div class='btn-group'>
@@ -168,10 +170,11 @@
 			<th>{{JKY-replace-space-br header}}</th>
 		{{/each}}
 -->
-			<td>Seq</td>
-			<td>Control<br>Name</td>
-			<td>Control<br>Value</td>
-			<td>Status</td>
+			<td class='sequence'		>Seq				</td>
+			<td class='control-name'	>Control<br>Name	</td>
+			<td class='control-value'	>Control<br>Value	</td>
+			<td class='status'			>Status				</td>
+			<td id='scroll-bar'			>&nbsp;				</td>
 		</tr>
 	</thead>
 
@@ -179,25 +182,26 @@
 		{{#if content}}
 			{{#each row in content}}
 				<tr>
-					<td>{{row.sequence		}}</td>
-					<td>{{row.control-name	}}</td>
-					<td>{{row.control-value	}}</td>
-					<td>{{row.status		}}</td>
+					<td class='sequence'		>{{row.sequence		}}</td>
+					<td class='control-name'	>{{row.control-name	}}</td>
+					<td class='control-value'	>{{row.control-value}}</td>
+					<td class='status'			>{{row.status		}}</td>
 				</tr>
 			{{/each}}
 		{{else}}
 				<tr><td id='empty-table'>No record found</td></tr>
 		{{/if}}
 	</tbody>
-
+<!--
 	<tfoot id='jky-table-footer'>
 		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>Counter:</td>
-			<td>13</td>
+			<td class='sequence'		>&nbsp;</td>
+			<td class='control-name'	>&nbsp;</td>
+			<td class='control-value'	>Counter:</td>
+			<td class='status'			>13</td>
 		</tr>
 	</tfoot>
+-->
 </table>
 </div>
 </script>
@@ -228,7 +232,7 @@
 	<!-- excanvas.js is required on IE7 & IE8 to be able to render jqplot -->
 	<!--[if IE]><script src='lib/excanvas.js'></script><![endif]-->
 	<script src='lib/jquery-1.8.2.js'					></script>
-	<script src='lib/jquery-ui-1.9.0.custom.js'			></script>
+	<!--script src='lib/jquery-ui-1.9.0.custom.js'			></script-->
 	<script src='lib/jquery.tablescroll.js'				></script>
 	<script src='lib/bootstrap.min.js'					></script>
 	<script src='lib/handlebars-1.0.js'					></script>

@@ -49,7 +49,7 @@ JKY.reDirect = function(program_name) {
  * @param	functionName
  */
 JKY.runWhenIsTemplate = function(templateName, functionName) {
-	JKY.displayTrace('JKY.runWhenIsTemplate: ' + templateName);
+	JKY.display_trace('JKY.runWhenIsTemplate: ' + templateName);
 	if (Em.TEMPLATES[templateName]) {
 		functionName();
 	}else{
@@ -105,10 +105,10 @@ JKY.t = function(text) {
  * @param	fileName
  */
 JKY.loadHtml = function(idName, fileName) {
-	JKY.displayTrace('JKY.loadHtml: ' + idName);
+	JKY.display_trace('JKY.loadHtml: ' + idName);
 	if ($('#' + idName).length > 0) {
 		$('#' + idName).load('../hb/' + fileName);
-		JKY.displayTrace('JKY.loadHtml: ' + idName + ' DONE');
+		JKY.display_trace('JKY.loadHtml: ' + idName + ' DONE');
 	}else{
 		setTimeout(function() {JKY.loadHtml(idName, fileName);}, 100);
 	}
@@ -120,13 +120,13 @@ JKY.loadHtml = function(idName, fileName) {
  * @param	fileName
  */
 JKY.loadHb = function(templateName, fileName) {
-	JKY.displayTrace('JKY.loadHb: ' + templateName);
+	JKY.display_trace('JKY.loadHb: ' + templateName);
 	if ($('#ihs-hb').length > 0) {
 		$('#ihs-hb').load('../hb/' + fileName, function(src) {
 			Em.TEMPLATES[templateName] = Em.Handlebars.compile(src);
 			$('#ihs-hb').html('');
 		});
-		JKY.displayTrace('JKY.loadHb: ' + templateName + ' DONE');
+		JKY.display_trace('JKY.loadHb: ' + templateName + ' DONE');
 	}else{
 		setTimeout(function() {JKY.loadHb(templateName, fileName);}, 100);
 	}
@@ -140,10 +140,10 @@ JKY.loadHb = function(templateName, fileName) {
  * @return	(new)View
  */
 JKY.replaceIn = function(templateName, idName, viewObject) {
-	JKY.displayTrace('JKY.replaceIn: ' + templateName);
+	JKY.display_trace('JKY.replaceIn: ' + templateName);
 	if (Em.TEMPLATES[templateName] && $('#' + idName)) {
 		viewObject.replaceIn('#' + idName);
-		JKY.displayTrace('JKY.replaceIn: ' + templateName + ' DONE');
+		JKY.display_trace('JKY.replaceIn: ' + templateName + ' DONE');
 	}else{
 		setTimeout(function() {JKY.replaceIn(templateName, idName, viewObject)}, 100);
 	}
@@ -278,10 +278,14 @@ JKY.setTableWidthHeight = function(tableId, width, minHeight, offHeight) {
 	if (myHeight < minHeight) {
 		myHeight = minHeight;
 	}
-	JKY.displayTrace('JKY.setTableWidthHeight, width: ' + width + ', height: ' + myHeight);
+	JKY.display_trace('JKY.setTableWidthHeight, width: ' + width + ', height: ' + myHeight);
 //	$('#' + tableId).tableScroll({width :width		});
 //	$('#' + tableId).tableScroll({height:myHeight	});
-	$('#' + tableId).tableScroll({width:700, height:263});
+setTimeout(function() {
+//$('#' + tableId).tableScroll({width:width, height:270});
+$('#' + tableId).tableScroll({width:width, height:myHeight});
+$('#scroll-bar').css('width', '4px');
+}, 100);
 }
 
 /**
@@ -359,18 +363,18 @@ JKY.display_message = function(message, refocus) {
  * it will be displayed if JKY.TRACE = true
  * @param	message
  */
-JKY.displayTrace = function(message){
+JKY.display_trace = function(message){
 	if (!JKY.TRACE){		//	this control is set on [setup definition of constants] of [index.js]
 		return
 	}
-	var myDate = new Date();
-	var myMsec = (myDate.getMilliseconds() + 1000).toString().substr(1);
-	var myTime = myDate.getMinutes() + ':' + myDate.getSeconds() + '.' + myMsec;
-    var myHtml = myTime + ' ' + message + '<br />' + $('#ihs-trace-body').html();
-	console.log(myTime + ' ' + message);
+	var my_date = new Date();
+	var my_msec = (my_date.getMilliseconds() + 1000).toString().substr(1);
+	var my_time = my_date.getMinutes() + ':' + my_date.getSeconds() + '.' + my_msec;
+    var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
+	console.log(my_time + ' ' + message);
 
-//    $('#ihs-trace-body').html(myHtml);
-//    $('#ihs-trace').css('display', 'block');
+    $('#jky-trace-body').html(my_html);
+    $('#jky-trace').css('display', 'block');
 }
 
 /**
