@@ -1,5 +1,3 @@
-JKY.rows = [];
-
 JKY.ApplicationController	= Em.Controller.extend();
 JKY.HeaderController		= Em.Controller.extend();
 JKY.FooterController		= Em.Controller.extend();
@@ -64,16 +62,14 @@ JKY.set_all_events = function() {
 		$('#jky-contact-us'				).click (function() {JKY.display_contact_us		()		;});
 
 		$('#jky-select-language'		).change(function() {JKY.change_language		(this)	;});
-		$('#jky-button-tickets'			).click (function() {JKY.display_tickets		()		;});
 		
-		$('#jky-sign-up-user-name'		).change(function() {JKY.change_user_name		(this)	;});
+		$('#jky-sign-up-user-name'		).change(function() {JKY.change_sign_up_name	(this)	;});
 		$('#jky-sign-up-email-address'	).change(function() {JKY.change_email_address	(this)	;});
 		$('#jky-button-sign-up'			).click (function() {JKY.process_sign_up		()		;});
 
-		$('#jky-log-in-user-name'		).change(function() {JKY.change_user_name		(this)	;});
+		$('#jky-log-in-user-name'		).change(function() {JKY.change_log_in_name		(this)	;});
 		$('#jky-log-in-password'		).change(function() {JKY.change_password		(this)	;});
 		$('#jky-button-log-in'			).click (function() {JKY.process_log_in			()		;});
-
 
 		JKY.set_focus('jky-log-in-user-name');
 	} else {
@@ -84,72 +80,102 @@ JKY.set_all_events = function() {
 /** ------------------------------------------------------------------------ **/
 
 JKY.display_sign_up = function() {
-JKY.display_trace('display_sign_up');
+	JKY.display_trace('display_sign_up');
 }
 
 JKY.display_log_in = function() {
-JKY.display_trace('display_log_in');
+	JKY.display_trace('display_log_in');
 }
 
 JKY.display_profile = function() {
-JKY.display_trace('display_profile');
+	JKY.display_trace('display_profile');
 }
 
 JKY.display_log_out = function() {
-JKY.display_trace('display_log_out');
+	JKY.display_trace('display_log_out');
 }
 
 JKY.display_wordpress = function() {
-JKY.display_trace('display_wordpress');
+	JKY.display_trace('display_wordpress');
 }
 
 JKY.display_company = function(company_name) {
-JKY.display_trace('display_company: ' + company_name.text);
+	var my_company_name = $(company_name).text();
+	JKY.display_trace('display_company: ' + my_company_name);
 }
 
 JKY.display_event = function(event_name) {
-JKY.display_trace('display_event: ' + event_name.text);
+	var my_event_name = $(event_name).text();
+	JKY.display_trace('display_event: ' + my_event_name);
 }
 
 JKY.display_copyright = function() {
-JKY.display_trace('display_copyright');
+	JKY.display_trace('display_copyright');
 }
 
 JKY.display_contact_us = function() {
-JKY.display_trace('display_contact_us');
+	JKY.display_trace('display_contact_us');
 }
 
 JKY.change_language = function(language) {
 	var my_language = language.options[language.selectedIndex].value;
-JKY.display_trace('language: ' + my_language);
+	JKY.display_trace('language: ' + my_language);
 }
 
-JKY.display_tickets = function() {
-JKY.display_trace('display_tickets');
-}
+/** ------------------------------------------------------------------------ **/
 
-JKY.change_user_name= function(user_name) {
+JKY.change_sign_up_name= function(user_name) {
 	var my_user_name = user_name.value;
-	$('#jky-sign-up-user-name').val(my_user_name);
+	JKY.display_trace('change_sign_up_name: ' + my_user_name);
 	$('#jky-log-in-user-name' ).val(my_user_name);
+	JKY.set_button_sign_up();
 }
 
 JKY.change_email_address= function(email_address) {
 	var my_email_address = email_address.value;
-JKY.display_trace('email_address: ' + my_email_address);
+	JKY.display_trace('change_email_address: ' + my_email_address);
+	JKY.set_button_sign_up();
+}
+
+JKY.set_button_sign_up = function() {
+	var my_user_name 	= $('#jky-sign-up-user-name'	).val();
+	var my_email_address= $('#jky-sign-up-email-address').val();
+	if (my_user_name == '' || my_email_address == '') {
+		JKY.disabled_id('jky-button-sign-up');
+	}else{
+		JKY.enabled_id ('jky-button-sign-up');
+	}
+}
+
+JKY.process_sign_up = function() {
+	JKY.display_trace('process_sign_up');
+}
+
+JKY.change_log_in_name= function(user_name) {
+	var my_user_name = user_name.value;
+	JKY.display_trace('change_log_in_name: ' + my_user_name);
+	$('#jky-sign-up-user-name').val(my_user_name);
+	JKY.set_button_log_in();
 }
 
 JKY.change_password= function(password) {
 	var my_password = password.value;
-JKY.display_trace('password: ' + my_password);
+	JKY.display_trace('change_password: ' + my_password);
+	JKY.set_button_log_in();
 }
 
-JKY.process_sign_up = function() {
-JKY.display_trace('process_sign_up');
+JKY.set_button_log_in = function() {
+	var my_user_name 	= $('#jky-log-in-user-name'	).val();
+	var my_password		= $('#jky-log-in-password'	).val();
+	if (my_user_name == '' || my_password == '') {
+		JKY.disabled_id('jky-button-log-in');
+	}else{
+		JKY.enabled_id ('jky-button-log-in');
+	}
 }
 
 JKY.process_log_in = function() {
-JKY.display_trace('process_log_in');
+	JKY.display_trace('process_log_in');
 }
 
 /** ------------------------------------------------------------------------ **/
@@ -195,13 +221,12 @@ JKY.setButtons = function() {
 		});
 }
 
+JKY.setBody = function() {
 /**
  * set body
  */
-JKY.setBody = function() {
 	JKY.BodyView = Em.View.extend(
 		{ name		: 'Welcome to Advent Registration System'
 		, icon		: 'th'
 		});
 }
-

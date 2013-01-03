@@ -63,7 +63,7 @@ jky-body
 		jky-table-footer
 
 jky-footer
-	jky-copy-right
+	jky-copyright
 	jky-contact-us
 	jky-video-demo
 	jky-support

@@ -541,6 +541,9 @@ JKY.set_focus = function(name) {
      }
 }
 
+JKY.disabled_id	= function(id_name)	{$('#' + id_name).addClass	 ('disabled');}
+JKY.enabled_id 	= function(id_name)	{$('#' + id_name).removeClass('disabled');}
+
 //        JKY.set_...
 //        ----------------------------------------------------------------------
 JKY.set_is_zero          = function(name)              {return '<br>' + JKY.t( name ) + ' ' + JKY.t( 'is zero'        );}

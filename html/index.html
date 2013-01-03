@@ -1,89 +1,230 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>		<html class='no-js lt-ie9 lt-ie8 lt-ie7'> <![endif]-->
-<!--[if    IE 7]>		<html class='no-js lt-ie9 lt-ie8'		> <![endif]-->
-<!--[if    IE 8]>		<html class='no-js lt-ie9'				> <![endif]-->
-<!--[if gt IE 8]>		<html class='no-js'						> <![endif]-->
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-		<title>JKY Software Corp</title>
-		<meta name='description' 	content='Relations System'>
-		<meta name='author' 		content='pat jan'>
-        <meta name='viewport' 		content='width=device-width'>
+<!--[if lt	IE 7]>		<html class='no-js lt-ie9 lt-ie8 lt-ie7'> <![endif]-->
+<!--[if		IE 7]>		<html class='no-js lt-ie9 lt-ie8'		> <![endif]-->
+<!--[if		IE 8]>		<html class='no-js lt-ie9'				> <![endif]-->
+<!--[if gt	IE 8]><!-->	<html class='no-js'>				  <!--<![endif]-->
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+		<title>JKY Software - Layout</title>
+		<meta name='description' 	content='JKY Software - Relations'>
+		<meta name='author' 		content='http://www.jkysoftware.com'>
+		<meta name='viewport' 		content='width=device-width'>
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-		<link href='css/normalize.css'					rel='stylesheet'>
-		<link href='css/main.css'						rel='stylesheet'>
-		<link href='css/jquery-ui-1.8.18.custom.css'	rel='stylesheet'>
-		<link href='css/bootstrap.css' 					rel='stylesheet'>
-		<link href='css/bootstrap-responsive.css'		rel='stylesheet'>
-		<link href='css/application.css' 				rel='stylesheet'>
-		<link href='css/index.css' 						rel='stylesheet'>
-		<link href='css/login.css' 						rel='stylesheet'>
-		<link href='css/dashboard.css' 					rel='stylesheet'>
-		<link href='css/controls.css' 					rel='stylesheet'>
+		<!--link href='css/normalize.css'				rel='stylesheet'-->
+		<!--link href='css/main.css'					rel='stylesheet'-->
+		<link href='css/jquery.tablescroll.css' 	rel='stylesheet'>
+		<link href='css/bootstrap.css' 				rel='stylesheet'>
+		<link href='css/bootstrap-responsive.css'	rel='stylesheet'>
 
-		<!--script src='js/vendor/modernizr-2.6.1.min.js'></script-->
-    </head>
+		<link href='css/JKY-base-10.css' 			rel='stylesheet'>
+		<link href='css/layout-10.css'				rel='stylesheet'>
+	</head>
 
 	<body>
-		<!--script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
-		<script>window.jQuery || document.write('<script src='js/vendor/jquery-1.8.0.min.js'><\/script>')</script--> 
-<!--
-		<script src='lib/IHS.min.js'						></script>
--->
-		<!-- excanvas.js is required on IE7 & IE8 to be able to render jqplot -->
-		<!--[if IE]><script src='lib/excanvas.js'></script><![endif]-->
-		<script src='lib/jquery-1.7.1.js'					></script>
-		<script src='lib/jquery.md5.js'						></script>
-		<script src='lib/jquery.validate.min.js'			></script>
-		<script src='lib/bootstrap.min.js'					></script>
-		<script src='lib/handlebars.js'						></script>
-		<script src='lib/ember-1.0.pre.js'				    ></script>
-		<!--script src='lib/ember-routemanager.js'				></script-->
-		<!--script src='lib/ember-layout.js'					></script-->
-		<script src='lib/jquery.jqplot.min.js'				></script>
-		<script src='lib/jqplot.barRenderer.min.js'			></script>
-		<script src='lib/jqplot.categoryAxisRenderer.min.js'></script>
-		<script src='lib/jqplot.pointLabels.min.js'			></script>
-		<script src='lib/plugins.js'						></script>
-		<script src='lib/main.js'							></script>
-<!--
-		<script src='js/IHS.min.js'		></script>
--->
-		<script src='js/jky-util.js'	></script>
-		<script src='js/jky-core.js'	></script>
-		<script src='js/IHS-util.js'	></script>
-		<script src='js/index.js'		></script>
-		<script src='js/login.js'		></script>
-		<script src='js/logout.js'		></script>
-		<script src='js/dashboard.js'	></script>
-		<script src='js/controls.js'	></script>
 
-		<script src='obj/control.js'	></script>
-		<script src='obj/user.js'		></script>
+<script type='text/x-handlebars' data-template-name='template-wrapper'>
+	{{outlet outlet-header }}
+	{{outlet outlet-buttons}}
+	{{outlet outlet-body   }}
+	{{outlet outlet-footer }}
+</script>
 
-		<script>
-			$(function() {
-				$('#hb').load('hb/application.html'	, function(src) {Em.TEMPLATES['application'	] = Em.Handlebars.compile(src); $('#hb').html('');});
-				$('#hb').load('hb/login.html'		, function(src) {Em.TEMPLATES['login'		] = Em.Handlebars.compile(src); $('#hb').html('');});
-				$('#hb').load('hb/dashboard.html'	, function(src) {Em.TEMPLATES['dashboard'	] = Em.Handlebars.compile(src); $('#hb').html('');});
-				$('#hb').load('hb/controls.html'	, function(src) {Em.TEMPLATES['controls'	] = Em.Handlebars.compile(src); $('#hb').html('');});
-				JKY.index_start();
-			});
-		</script>
+<script type='text/x-handlebars' data-template-name='template-header'>
+{{#view JKY.HeaderView}}
+<div id='jky-header'>
+	<div class='container'>
+		<a id='jky-company-name'>{{view.company_name}}</a>
+		<div id='jky-user-info'>
+		{{#if view.user_name}}
+			Hello {{view.user_name}},
+			want to view <a id='jky-profile'>Your Profile</a>
+			or <a id='jky-log-out'>Log Out</a>
+		{{else}}
+			Welcome,
+			please <a id='jky-sign-up'>Sign Up</a>
+			or <a id='jky-log-in'>Log In</a>
+		{{/if}}
+		</div>
+	</div>
+</div>
 
-		<div id='hb' style='display:none;'></div>
+<div id='jky-icons'>
+	<div class='container'>
+		<a id='jky-company-logo'><img src='../img/{{unbound view.company_logo}}.png' /></a>
+		<a id='jky-event-name'>{{view.event_name}}</a>
+	</div>
+</div>
+{{/view}}
+</script>
 
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<!--
-		<script>
-			var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-			s.parentNode.insertBefore(g,s)}(document,'script'));
-		</script>
--->
+<script type='text/x-handlebars' data-template-name='template-footer'>
+{{#view JKY.FooterView}}
+<div id='jky-footer'>
+	<div class='container'>
+		<a id='jky-copyright' >{{view.copyright}} </a>
+		<a id='jky-contact-us'>{{view.contact_us}}</a>
+	</div>
+</div>
+{{/view}}
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-buttons'>
+{{#view JKY.ButtonsView}}
+<div id='jky-buttons'>
+	<div class='container'>
+		<div id='jky-menus'>
+		{{#each menu in view.menus}}
+			<a class='btn btn-large'>
+				<i class='icon-{{unbound menu.icon}} icon-white'></i>{{menu.label}}
+			</a>
+		{{/each}}
+		</div>
+		<div id='jky-control'>
+		{{#if view.languages}}
+			<span class='jky-label'>Language:</span>
+			<select id='jky-select-language'>
+			{{#each language in view.languages}}
+				<option>{{unbound language.label}}</option>
+			{{/each}}
+			</select>
+		{{/if}}
+
+		{{#if view.admins}}
+			<div class='btn-group'>
+				<a class='btn btn-large dropdown-toggle' data-toggle='dropdown' href='#'><i class='icon-tasks icon-white'></i>Admin</a>
+				<ul class='dropdown-menu'>
+			{{#each admin in view.admins}}
+					<li><a onclick='JKY.display_trace("{{unbound admin.label}}")'><i class='icon-{{unbound admin.icon}} icon-white'></i> {{unbound admin.label}}</a></li>
+			{{/each}}
+				</ul>
+			</div>
+			<a id='jky-button-tickets' class='btn btn-large'><i class='icon-share icon-white'></i>Tickets</a>
+		{{/if}}
+		</div>
+	</div>
+</div>
+{{/view}}
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-body'>
+{{#view JKY.BodyView}}
+<div id='jky-body'>
+	<div class='container'>
+		<div class='margin'>
+
+			<div id='jky-body-header'>
+				<div id='jky-body-name'><i class='icon-{{unbound view.icon}}'></i>{{view.name}}</div>
+				<div id='jky-body-buttons'>
+				{{#each button in view.buttons}}
+					<button onclick='JKY.display_trace("{{unbound button.on_click}}")' class='btn'><i class='icon-{{unbound button.icon}}'></i> {{button.label}}</button>
+				{{/each}}
+				</div>
+			</div>
+
+			<div id='jky-body-content'>
+
+<style>
+	p							{margin-left:63px;}
+	.modal-body					{background:white;}
+	#jky-body-name				{float:none; font-size:200%; font-weight:bold; text-align:center;}
+</style>
+
+<style>
+	#jky-sign-up-form			{float:left; margin:20px 63px;}
+	#jky-sign-up-user-name		{width:300px;}
+	#jky-sign-up-email-address	{width:300px;}
+</style>
+<div id='jky-sign-up-form'>
+	<div class='modal-header'>
+		<span class='label'>Sign Up</span> (for new user)
+	</div>
+	<div class='modal-body'>
+		 <label>    User Name</label><input type='text' id='jky-sign-up-user-name'		placeholder='Enter your user name' 		value='patjan'>
+		 <label>Email Address</label><input type='text' id='jky-sign-up-email-address'	placeholder='Enter your email address'	value='pat_jan@hotmail.com'>
+	</div>
+	<div class='modal-footer'>
+			<button id='jky-button-sign-up' class='btn btn-info'>Sign Up</a>
+	</div>
+	<div>
+		<br>Report any difficult, problem or comment to:
+		<br>Cynthia Kuan on cmcynthiak@gmail.com
+		<br>or Pat Jan on pat_jan@hotmail.com
+	</div>
+</div>
+
+<style>
+	#jky-log-in-form			{float:left; margin:20px 63px;}
+	#jky-log-in-user-name		{width:300px;}
+	#jky-log-in-password		{width:300px;}
+</style>
+<div id='jky-log-in-form'>
+	<div class='modal-header'>
+		 <span class='label'>Log In</span> (for registered users)
+	</div>
+	<div class='modal-body'>
+		 <label>User Name</label><input type='text'		id='jky-log-in-user-name' placeholder='Enter your user name' value='patjan'>
+		 <label> Password</label><input type='password'	id='jky-log-in-password'  placeholder='Enter your password'  value='brazil'>
+	</div>
+	<div class='modal-footer'>
+		 <button id='jky-button-log-in' class='btn btn-info'>Log In</button>
+	</div>
+	<div>
+		<br>This system was developed to speed up the
+		<br>registration process, any comment is welcome.
+	</div>
+</div>
+
+			</div>
+		</div>
+
+		<div id='jky-body-footer'></div>
+	</div>
+</div>
+{{/view}}
+
+<div id='jky-loaded'></div>
+
+</script>
+
 	</body>
+
+	<!--script src='js/vendor/modernizr-2.6.1.min.js'></script-->
+	<!--script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
+	<!-- excanvas.js is required on IE7 & IE8 to be able to render jqplot -->
+	<!--[if IE]><script src='lib/excanvas.js'></script><![endif]-->
+	<script src='lib/jquery-1.8.2.js'					></script>
+	<!--script src='lib/jquery-ui-1.9.0.custom.js'			></script-->
+	<script src='lib/jquery.tablescroll.js'				></script>
+	<script src='lib/bootstrap.min.js'					></script>
+	<script src='lib/handlebars-1.0.js'					></script>
+	<script src='lib/ember-1.0.0-pre.2.js'				></script>
+	<!--script src='lib/ember-routemanager.js'				></script-->
+	<!--script src='lib/ember-layout.js'					></script-->
+	<script src='lib/jquery.md5.js'						></script>
+<!--
+	<script src='lib/jquery.validate.min.js'			></script>
+	<script src='lib/jquery.jqplot.min.js'				></script>
+	<script src='lib/jqplot.barRenderer.min.js'			></script>
+	<script src='lib/jqplot.categoryAxisRenderer.min.js'></script>
+	<script src='lib/jqplot.pointLabels.min.js'			></script>
+	<script src='lib/plugins.js'						></script>
+	<script src='lib/main.js'							></script>
+	<script src='js/jky-util.js'	></script>
+	<script src='js/jky-core.js'	></script>
+	<script src='js/IHS-util.js'	></script>
+	<script src='js/index.js'		></script>
+	<script src='js/login.js'		></script>
+	<script src='js/logout.js'		></script>
+	<script src='js/dashboard.js'	></script>
+	<script src='js/controls.js'	></script>
+
+	<script src='obj/control.js'	></script>
+	<script src='obj/user.js'		></script>
+-->
+	<script src='js/JKY-utils.js'	></script>
+	<script src='js/JKY-helpers.js'	></script>
+	<script src='js/home.js'	></script>
 </html>
