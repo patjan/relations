@@ -6,15 +6,10 @@
 	<head>
 		<meta charset='utf-8'>
 		<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-		<title>JKY Software - Layout</title>
+		<title>JKY Software - Home</title>
 		<meta name='description' 	content='JKY Software - Relations'>
 		<meta name='author' 		content='http://www.jkysoftware.com'>
 		<meta name='viewport' 		content='width=device-width'>
-
-		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-		<!--link href='css/normalize.css'				rel='stylesheet'-->
-		<!--link href='css/main.css'					rel='stylesheet'-->
 		<link href='css/jquery.tablescroll.css' 	rel='stylesheet'>
 		<link href='css/bootstrap.css' 				rel='stylesheet'>
 		<link href='css/bootstrap-responsive.css'	rel='stylesheet'>
@@ -84,11 +79,7 @@
 		<div id='jky-control'>
 		{{#if view.languages}}
 			<span class='jky-label'>Language:</span>
-			<select id='jky-select-language'>
-			{{#each language in view.languages}}
-				<option>{{unbound language.label}}</option>
-			{{/each}}
-			</select>
+			{{view Ember.Select elementId='jky-select-language' contentBinding='view.languages' valueBinding='view.language'}}
 		{{/if}}
 
 		{{#if view.admins}}
@@ -141,8 +132,8 @@
 		<span class='label'>Sign Up</span> (for new user)
 	</div>
 	<div class='modal-body'>
-		 <label>    User Name</label><input type='text' id='jky-sign-up-user-name'		placeholder='Enter your user name' 		value='patjan'>
-		 <label>Email Address</label><input type='text' id='jky-sign-up-email-address'	placeholder='Enter your email address'	value='pat_jan@hotmail.com'>
+		 <label>    User Name</label><input type='text' id='jky-sign-up-user-name'		placeholder='Enter your user name' 		value=''>
+		 <label>Email Address</label><input type='text' id='jky-sign-up-email-address'	placeholder='Enter your email address'	value=''>
 	</div>
 	<div class='modal-footer'>
 			<button id='jky-button-sign-up' class='btn btn-info disabled'>Sign Up</button>
@@ -164,8 +155,8 @@
 		 <span class='label'>Log In</span> (for registered users)
 	</div>
 	<div class='modal-body'>
-		 <label>User Name</label><input type='text'		id='jky-log-in-user-name' placeholder='Enter your user name' value='patjan'>
-		 <label> Password</label><input type='password'	id='jky-log-in-password'  placeholder='Enter your password'  value='brazil'>
+		 <label>User Name</label><input type='text'		id='jky-log-in-user-name' placeholder='Enter your user name' value=''>
+		 <label> Password</label><input type='password'	id='jky-log-in-password'  placeholder='Enter your password'  value=''>
 	</div>
 	<div class='modal-footer'>
 		 <button id='jky-button-log-in' class='btn btn-info disabled'>Log In</button>
@@ -190,30 +181,18 @@
 
 	</body>
 
-	<!--script src='js/vendor/modernizr-2.6.1.min.js'></script-->
-	<!--script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
-	<!-- excanvas.js is required on IE7 & IE8 to be able to render jqplot -->
 	<!--[if IE]><script src='lib/excanvas.js'></script><![endif]-->
 	<script src='lib/jquery-1.8.2.js'					></script>
-	<!--script src='lib/jquery-ui-1.9.0.custom.js'			></script-->
 	<script src='lib/jquery.tablescroll.js'				></script>
 	<script src='lib/bootstrap.min.js'					></script>
 	<script src='lib/handlebars-1.0.js'					></script>
 	<script src='lib/ember-1.0.0-pre.2.js'				></script>
-	<!--script src='lib/ember-routemanager.js'				></script-->
-	<!--script src='lib/ember-layout.js'					></script-->
 	<script src='lib/jquery.md5.js'						></script>
-<!--
-	<script src='lib/jquery.validate.min.js'			></script>
 	<script src='lib/jquery.jqplot.min.js'				></script>
 	<script src='lib/jqplot.barRenderer.min.js'			></script>
 	<script src='lib/jqplot.categoryAxisRenderer.min.js'></script>
 	<script src='lib/jqplot.pointLabels.min.js'			></script>
-	<script src='lib/plugins.js'						></script>
-	<script src='lib/main.js'							></script>
-	<script src='js/jky-util.js'	></script>
-	<script src='js/jky-core.js'	></script>
-	<script src='js/IHS-util.js'	></script>
+<!--
 	<script src='js/index.js'		></script>
 	<script src='js/login.js'		></script>
 	<script src='js/logout.js'		></script>
