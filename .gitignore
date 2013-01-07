@@ -4,3 +4,5 @@
 /logsql/
 /proxy/
 .gitignore
+access.log
+error.log
