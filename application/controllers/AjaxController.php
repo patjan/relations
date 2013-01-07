@@ -35,10 +35,7 @@ public function init() {
 //		set_session('event_name', get_table_value('Events', 'event_name', get_session('event_id')));
 	}
 	if (!is_session('permissions'		))		set_permissions(get_session('user_role'));
-<<<<<<< HEAD
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 }
 
 public function indexAction() {
@@ -48,15 +45,10 @@ public function indexAction() {
 		$action		= $request->getActionName();
 		logger($controller);
 
-<<<<<<< HEAD
-		$command = get_request('command');
-		switch ($command) {
-=======
 		$data = json_decode(get_request('data'), true);
 //		$method = get_request('method');
 		$method = $data['method'];
 		switch ($method) {
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 			case 'set_language'		: $this->set_language	(); return;
 			case 'get_language'		: $this->get_language	(); return;
 			case 'set_session'		: $this->set_session	(); return;
@@ -81,11 +73,7 @@ public function indexAction() {
 //			case 'get_menus'		: $this->get_menus		(); return;
 
 			case 'check_session'	: $this->check_session	(); return;
-<<<<<<< HEAD
-			case 'log_in'			: $this->log_in			(); return;
-=======
 			case 'log_in'			: $this->log_in			($data); return;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 			case 'log_out'			: $this->log_out		(); return;
 			case 'log_help'			: $this->log_help		(); return;
 			case 'profile'			: $this->profile		(); return;
@@ -112,11 +100,7 @@ public function indexAction() {
 	}
 
 	if ($user_action != 'All') {
-<<<<<<< HEAD
-		switch ($command) {
-=======
 		switch ($method) {
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 /*
 			case 'get_names'	: $required = 'View Insert Update Delete Export'; break;
 			case 'get_id'		: $required = 'View Insert Update Delete Export'; break;
@@ -141,11 +125,7 @@ public function indexAction() {
 			case 'add_comment'	: $required = 'View'	; break;    //  ???? Update
 
 			case 'get_columns'	: $required = 'Export'	; break;
-<<<<<<< HEAD
-		    
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 			case 'insert'		: $required = 'Insert'	; break;
 			case 'update'		: $required = 'Update'	; break;
 			case 'delete'		: $required = 'Delete'	; break;
@@ -153,30 +133,18 @@ public function indexAction() {
 			case 'publish'		: $required = 'Publish'	; break;
 			case 'export'		: $required = 'Export'	; break;
 
-<<<<<<< HEAD
-			default				: $this->echo_error('command name [' . $command . '] is undefined'); return;
-=======
 			default				: $this->echo_error('method name [' . $method . '] is undefined'); return;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 		}
 
 	       //   for undefined user_action
 //               if(  strpos($required, $user_action) === false ) {
 	       if ($required != 'View' and strpos($user_action, $required) === false ) {
-<<<<<<< HEAD
-		   $this->echo_error('command name [' . $command . '] is denied, action: ' . $user_action . ', required: ' . $required);
-=======
 		   $this->echo_error('method name [' . $method . '] is denied, action: ' . $user_action . ', required: ' . $required);
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 		   return;
 	       }
 	  }
 
-<<<<<<< HEAD
-	switch( $command ) {
-=======
 	switch( $method ) {
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	    case 'get_names'    : $this->get_names      (); break;
 	    case 'get_id'       : $this->get_id         (); break;
 	    case 'get_count'    : $this->get_count      (); break;
@@ -198,20 +166,12 @@ public function indexAction() {
 	    case 'set_amount'   : $this->set_amount     (); break;
 	    case 'reset_amount' : $this->reset_amount   (); break;
 
-<<<<<<< HEAD
-	    default             : $this->echo_error( 'command name [' . $command . '] is undefined' ); return;
-=======
 	    default             : $this->echo_error( 'method name [' . $method . '] is undefined' ); return;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	}
 
 //        process insert duplicate
 //        process limit number of rows
-<<<<<<< HEAD
-     
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  return;
 
      } catch( Exception $exp ){
@@ -335,11 +295,7 @@ private function get_count() {
 	  . '  FROM ' . $table
 	  . $where
 	  ;
-<<<<<<< HEAD
-	  
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
      $db  = Zend_Registry::get( 'db' );
      $return = array();
      $return[ 'status'   ] = 'ok';
@@ -480,11 +436,7 @@ private function get_index() {
 	if ($specific != '' )
 		$where .= $this->set_specific( $table, $specific );
 
-<<<<<<< HEAD
-	if ($select != 'All' )     
-=======
 	if ($select != 'All' )
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 		$where .= $this->set_select( $table, $select );
 
 	if ($filter != '' ) {
@@ -577,11 +529,7 @@ private function set_new_fields( $table ) {
 						. ', Companies.company_name     AS  company_name';
 
 //   special code to append fields from Persons to Services table
-<<<<<<< HEAD
-     if(  get_request( 'command' ) == 'export' ) {
-=======
      if(  get_request( 'method' ) == 'export' ) {
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  if(  $table   == 'Services' ) {
 	       $sql  = 'SHOW COLUMNS FROM Persons WHERE Field != "id" AND Field != "created_by" AND Field != "created_at" AND Field != "updated_by" AND Field != "updated_at" AND Field != "status" AND Field != "completed"';
 	       $db   = Zend_Registry::get( 'db' );
@@ -626,11 +574,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'category' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Categories.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Categories.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Categories.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	       else
 	       if(  $name == 'parent_name' )
 		    if(  $value == '"%null%"' )
@@ -650,11 +594,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'country' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Companies.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Companies.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Companies.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	       else
 	       if(  $name == 'contact_name' )
 		    if(  $value == '"%null%"' )
@@ -669,11 +609,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'control_value' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Controls.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Controls.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Controls.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  }
 
 	  if(  $table == 'Events' ) {
@@ -692,11 +628,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'status' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Events.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Events.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Events.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  }
 
 	  if(  $table == 'Groups' ) {
@@ -710,11 +642,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'status' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Groups.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Groups.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Groups.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  }
 
 	  if(  $table == 'Permissions' ) {
@@ -724,11 +652,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'status' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Permissions.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Permissions.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Permissions.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  }
 
 	 if(  $table == 'Receives' ) {
@@ -786,11 +710,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'status' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Services.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Services.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Services.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	       else
 	       if(  $name == 'first_name' )
 		    if(  $value == '"%null%"' )
@@ -839,11 +759,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'status' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Templates.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Templates.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Templates.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	       else
 	       if(  $name == 'created_by' )
 		    if(  $value == '"%null%"' )
@@ -859,11 +775,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'status' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Tickets.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Tickets.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Tickets.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	       else
 	       if(  $name == 'opened_by' )
 		    if(  $value == '"%null%"' )
@@ -899,11 +811,7 @@ private function set_where( $table, $filter ) {
 	       or   $name == 'pastor_name' )
 		    if(  $value == '"%null%"' )
 			 return ' AND Persons.' . $name . ' IS NULL ';
-<<<<<<< HEAD
-		    else return ' AND Persons.' . $name . ' LIKE ' . $value;    
-=======
 		    else return ' AND Persons.' . $name . ' LIKE ' . $value;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	       else
 	       if(  $name == 'company_name' )
 		    if(  $value == '"%null%"' )
@@ -916,11 +824,7 @@ private function set_where( $table, $filter ) {
 		    else return ' AND   Support.full_name   LIKE ' . $value;
 	  }
      }
-<<<<<<< HEAD
-	 
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
      $filter = '"%' . $filter . '%"';
 
      if(  $table == 'Categories' ) {
@@ -1085,11 +989,7 @@ private function get_comments() {
 	  . '  FROM Comments'
 	  . ' WHERE parent_name = "' . $table . '"'
 	  . '   AND parent_id   =  ' . $id
-<<<<<<< HEAD
-	  . '   AND ( status IS NULL' 
-=======
 	  . '   AND ( status IS NULL'
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  . '    OR ( status = "private" AND created_by = ' . $user_id . ' )'
 	  . '    OR ( status = "staff"   AND ' . $staff . ' ) )'
 	  . ' ORDER BY created_at'
@@ -1145,11 +1045,7 @@ private function get_columns() {
      $extra = array();
      $col   = array();
 
-<<<<<<< HEAD
-     if(  $table == 'Categories'   )    { $col[ 'Field'  ] =   'parent_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col; 
-=======
      if(  $table == 'Categories'   )    { $col[ 'Field'  ] =   'parent_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 					  $col[ 'Field'  ] =      'children' ; $col[ 'Type' ] = 'int(11)'       ; $extra[] = $col; }
      if(  $table == 'Companies'    )    { $col[ 'Field'  ] =  'contact_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col; }
      if(  $table == 'Services'     )    { $col[ 'Field'  ] =     'full_name' ; $col[ 'Type' ] = 'varchar(255)'  ; $extra[] = $col;
@@ -1214,11 +1110,7 @@ private function insert() {
 	  $sets  = explode( ',', $set );
 	  $names = explode( '=', $sets[ 0 ]); $user_id  = $names[ 1 ];
 	  $names = explode( '=', $sets[ 1 ]); $event_id = $names[ 1 ];
-<<<<<<< HEAD
-     
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  $sql = 'SELECT next_number FROM Events WHERE id = ' . $event_id;
 	  $helper_number = $db->fetchOne( $sql );
 	  $sql = 'UPDATE Events SET next_number = next_number + 1 WHERE id = ' . $event_id;
@@ -1869,11 +1761,7 @@ private function get_contact_id() {
 	  $sql = 'INSERT INTO Persons'
 	       . '   SET          id= ' . $this->insert_user_jky()
 	       . '     , user_number= ' . $this->getUniqueNumber( 'Persons', 'user_number' )
-<<<<<<< HEAD
-	       . '     ,   full_name="' . $contact_name . '"' 
-=======
 	       . '     ,   full_name="' . $contact_name . '"'
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	       . '     ,   user_name="' . $contact_name . '"'
 	       ;
 	  $db  = Zend_Registry::get( 'db' );
@@ -2073,11 +1961,7 @@ private function get_users() {
 $this->log_sql( null, 'get_users', $sql );
 	  $db  = Zend_Registry::get( 'db' );
 	  $rows = $db->fetchAll( $sql );
-<<<<<<< HEAD
-     
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  foreach( $rows as $row ) {
 	       $selected = $row[ 'id' ] == $select ? ' selected="selected"' : '';
 	       $return .= '<option value="' . $row[ 'id' ] . '"' . $selected . '>' . $row[ 'full_name' ] . '</options>';
@@ -2111,11 +1995,7 @@ private function get_options() {
      if(  $sql != '' ) {
 	  $db  = Zend_Registry::get( 'db' );
 	  $rows = $db->fetchAll( $sql );
-<<<<<<< HEAD
-     
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	  foreach( $rows as $row ) {
 	       if(  $row[ 'control_value' ] == '' || $control_set == 'User Roles' )
 		    $row[ 'control_value' ] = $row[ 'control_name' ];
@@ -2260,11 +2140,7 @@ private function get_menus() {
 	   . '                 </li>'
 	   . '            </ul>'
 	   . '       </div id="header_control">'
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	   . '       <div class="clear"></div>'
 	   . '  </div>'
 	   ;
@@ -2349,24 +2225,6 @@ private function check_session($data) {
  *    message: x...x
  */
 
-<<<<<<< HEAD
-private function confirm() {
-     $error = '';
-     $user_id = db_get_id( 'JKY_Users', 'user_key = "' . get_request( 'user_key' ) . '"' );
-
-     if( !$user_id ) {
-	  $error .= BR . 'User Account already expired'; 
-     } else {
-	  if(  is_empty( meta_get_id( 'User', $user_id, 'unconfirmed_email' )))
-	       $error .= BR . 'Email Address already confirmed';
-     }
-
-     $return = array();
-     if(  is_empty( $error )) {
-	  meta_delete( 'User', $user_id, 'unconfirmed_email' );
-	  $this->set_user_session( $user_id );
-     }
-=======
 private function confirm($data) {
 	$error = '';
 	$user_id = db_get_id('JKY_Users', 'user_key = "' . $data['user_key'] . '"');
@@ -2378,7 +2236,6 @@ private function confirm($data) {
 			$error .= BR . 'Email Address already confirmed';
 		}
 	}
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 
 	$return = array();
 	if (is_empty($error)) {
@@ -2399,21 +2256,6 @@ private function confirm($data) {
  *   status: ok
  *  message: password reseted
  */
-<<<<<<< HEAD
-private function reset() {
-     $id  = get_session( 'user_id' );
-     $encrypted = get_request( 'encrypted' );
-
-     if(  $encrypted != '' ) {
-	  $sql = 'UPDATE JKY_Users'
-	       . '   SET password = "' . $encrypted . '"'
-	       . ' WHERE id = ' . $id
-	       ;
-	  $db  = Zend_Registry::get( 'db' );
-	  $db->query( $sql );
-	  $this->log_sql( 'reset', $id, $sql );
-     }
-=======
 private function reset($data) {
 	$user_id   = get_session('user_id');
 	$encrypted = $data['encrypted'];
@@ -2427,21 +2269,14 @@ private function reset($data) {
 		$db->query($sql);
 		$this->log_sql('reset', $user_id, $sql);
 	}
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 
 	$return = array();
 	$return['status' ] = 'ok';
 	$return['message'] = 'New Password reseted';
 
-<<<<<<< HEAD
-     $control = db_get_row( 'Controls', 'status = "active" AND control_set ="User Role" AND control_name= "' . get_session( 'user_role' ) . '"' );
-     $return[ 're_direct' ] = $control[ 'control_value' ];
-     $this->echo_json( $return );
-=======
 	$control = db_get_row( 'Controls', 'status = "active" AND control_set ="User Role" AND control_name= "' . get_session( 'user_role' ) . '"' );
 	$return['re_direct'] = $control['control_value'];
 	$this->echo_json($return);
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 }
 
 /*
@@ -2454,17 +2289,9 @@ private function reset($data) {
  *			user_role	: x...x
  *			start_page	: x...x
  */
-<<<<<<< HEAD
-private function log_in() {
-	$user_name  = get_request('user_name'  );
-	$encrypted      = get_request('encrypted'  );
-	$remember_me= get_request('remember_me');
-//$this->log_sql(null, 'log_in', $encrypted);
-=======
 private function log_in($data) {
 	$user_name  = $data['user_name'];
 	$encrypted  = $data['encrypted'];
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 
 	$error = '';
 	$user_id = db_get_id('JKY_Users', 'status = "active" AND user_name = "' . $user_name . '"');
@@ -2473,8 +2300,8 @@ private function log_in($data) {
 	}
 
 	if (is_empty($error)) {
-//              $password = MD5(get_session('user_time') . $this->get_password($user_id));
-//              $password = $this->get_password($user_id);
+//		$password = MD5(get_session('user_time') . $this->get_password($user_id));
+//		$password = $this->get_password($user_id);
 		$user = db_get_row('JKY_Users', 'id = ' . $user_id);
 		if ($user['password'] != $encrypted) {
 			$error .= set_is_invalid('Password');
@@ -2832,19 +2659,11 @@ private function log_sql( $table, $id, $sql ) {
      fclose( $logFile );
 }
 
-<<<<<<< HEAD
-    private function history_log($command, $table, $id, $new, $old) {
-	$history = '';
-	$first   = '';
-	foreach($new as $key=>$value) {
-	    if ($command == 'update') {
-=======
     private function history_log($method, $table, $id, $new, $old) {
 	$history = '';
 	$first   = '';
 	foreach($new as $key=>$value) {
 	    if ($method == 'update') {
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 		if ($key != 'updated_at' and $new[$key] != $old[$key]) {
 		    $history .= $first . $key . ':' . $old[$key] . '=>'. $value;
 		    $first = ', ';
@@ -2863,11 +2682,7 @@ private function log_sql( $table, $id, $sql ) {
 	    . '     , created_at    =  ' . 'NOW()'
 	    . '     , parent_name   = "' . $table . '"'
 	    . '     , parent_id     =  ' . $id
-<<<<<<< HEAD
-	    . '     , command       = "' . $command . '"'
-=======
 	    . '     , method       = "' . $method . '"'
->>>>>>> 1fd94b136ab69aa01298f2b15e8ef1b554c303bd
 	    . '     , history       = "' . $history . '"'
 	;
 //        $this->log_sql('History', null, $sql);

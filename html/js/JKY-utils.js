@@ -332,29 +332,6 @@ JKY.display_message = function(message, id_name) {
 		}
 	}, my_time * 1000);
 }
-JKY.display_message = function(message, refocus) {
-     if(  message == '' )
-          return;
-     if(  message.substr(0, 4) == '<br>' )
-          message = message.substr(4);
-     var  extra = '';
-     if(  typeof(refocus) != 'undefined' )
-          extra = 'JKY.set_focus("' + refocus + '");';
-
-     message = $('#jky-message-body').html() + '<br>' + message;
-
-     $('#jky-message-body').html(message);
-//   $('#jky-message').modal('show');
-     $('#jky-message').css('display', 'block');
-
-     var  time = Math.round(message.length / 15);
-     if(  time < 2.0 )
-          time = 2.0 ;
-//   setTimeout("$('#jky-message').modal('hide');$('.modal-backdrop').css('opacity', '0.8');", time * 1000);
-//   setTimeout("$('#jky-message').modal('hide');" + extra, time * 1000);
-     setTimeout("$('#jky-message').css('display', 'none');" + extra, time * 1000);
-}
-
 
 /**
  * display trace on left bottom corner
