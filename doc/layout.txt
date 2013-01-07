@@ -10,7 +10,7 @@ jky-header
 	jky-clock
 
 jky-icons
-	jky-company-logo	
+	jky-company-logo
 	jky-event-name
 
 jky-buttons
@@ -23,7 +23,7 @@ jky-buttons
 		jky-features
 		jky-my-account
 
-	jky-control	
+	jky-control
 		jky-language
 		jky-admin
 			jky-dictionary
@@ -89,7 +89,7 @@ jky-layer
 		jky-close
 		jky-cancel
 
-		
+
 jky-delete
 	jky-close
 	jky-no

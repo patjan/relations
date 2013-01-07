@@ -2,6 +2,10 @@
 .btn-large	{ padding:6px 16px; font-size:16px;}
 .btn-large [class^="icon-"], .btn-large [class*=" icon-"] {margin:3px 6px 0 0;}
 .ui-widget-header	{background:none; border:none;}
+.dropdown-menu		{background:#636363; margin:3px 0 0 5px; min-width:130px;}
+.dropdown-menu li > a	{padding:3px 7px;}
+
+#jky-control select	{width:110px;}
 
 #jky-wrapper		{clear:both; height:auto !important; min-height:100%; margin:0 auto -20px;}
 
@@ -52,7 +56,7 @@
 
 #jky-body-header	{clear:both; height:30px; margin-top:15px;}
 #jky-body-filter	{clear:both; height:40px; margin-top:15px; border-top:1px solid #D4D4D4; padding-top:10px;}
-#jky-body-table		{clear:both; }
+#jky-body-table		{clear:both; display:none;}
 #jky-body-footer	{clear:both; margin-top:15px;}
 
 #jky-body-name		{float:left; font-size:200%; font-weight:bold;}
@@ -61,27 +65,25 @@
 #jky-body-buttons	{float:right;}
 
 #jky-table-header	{
-	border:1px solid black;
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
 }
 
 #jky-table-footer	{
 }
 
-#Xjky-table-header tr, #Xjky-table-footer tr  {
-    background: #317082;
+#jky-table-header tr, #jky-table-footer tr  {
+/*
+	background: #317082;
 	color: white;
-    border: 1px solid #EEEEEE;
-	border-radius: 6px;
+	border:1px solid #317082;
+	border-radius:6px;
+*/	
 }
 
-#jky-table-header th, #jky-table-footer th  {
-    background: #317082;
+#jky-table-header td, #jky-table-footer td  {
+	background: #317082;
 	color: white;
-    border: 1px solid #EEEEEE;
-	border-radius: 6px;
-    padding: 5px 10px;
+	border: 1px solid #EEEEEE;
+	border-radius:6px;
 	text-align:center;
 }
 
@@ -94,10 +96,23 @@
 #jky-contact-us		{float:right;}
 
 #jky-table-body		{border:1px solid white;}
-#jky-table-body tr td	{line-height:12px;}
 #jky-table-body tr:hover td	{background:#317082; color:#cfcfcf;}
 
-#sequence			{width:10%;}
-#control-name		{width:30%;}
-#control-value		{width:40%;}
-#status				{width:10%;}
+#scroll-bar			{width:  4px;}
+
+.sequence			{width: 80px; text-align:center;}
+.control-name		{width:240px;}
+.control-value		{width:500px;}
+.status				{width: 80px; text-align:center;}
+.scroll-bar			{width: 10px;}
+
+.tablescroll_wrapper{
+	width:940px;
+	height: 378px;
+	min-height: 378px;
+}
+
+.table-striped tbody tr:nth-child(2n+1) td,
+.table-striped tbody tr:nth-child(2n+1) th {background-color: #DDE3E1;}
+.tablescroll_head td	{border:1px solid #CCCCCC; border-radius:6px;}
+.tablescroll thead td {border-bottom:1px solid #CCCCCC; border-right:1px solid #CCCCCC; border-radius:6px;}

@@ -4,11 +4,43 @@
  */
 
 /**
+ * initial setup
+ */
+$(function() {
+	$.ajaxSetup({
+		dataType: 'json',
+		error	: function(jqXHR, textStatus, errorThrown) {
+			JKY.hideLoading();
+			JKY.displayMessage('Error from backend server, please re-try later.');
+		}
+	});
+	$('body').append('<div id="jky-utils"></div>');
+	JKY.loadHtml('jky-utils', 'JKY-utils.html'	);
+});
+
+/**
+ * define JKY namespace for all application
+ */
+window.JKY = Em.Application.create({rootElement:'body'});
+
+/**
  * define all constants
  */
-JKY.TRACE 	= true; 			//	on production, should be set to false, help developement to trace sequence flow
-JKY.AJAX_APP = '../';			//  relative to application directory
-JKY.AJAX_URL = '../remote/';		//  relative to remote directory
+JKY.TRACE		= true; 					//	on production, should be set to false, help developement to trace sequence flow
+JKY.AJAX_APP	= '../';					//  relative to application directory
+JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
+
+JKY.translations= [];
+JKY.sort_name	= '';
+JKY.sort_seq	=  1;
+
+
+/**
+ * re direct
+ */
+JKY.reDirect = function(program_name) {
+	alert('re direct to ' + program_name);
+}
 
 /**
  * run when is template ready
@@ -17,12 +49,53 @@ JKY.AJAX_URL = '../remote/';		//  relative to remote directory
  * @param	functionName
  */
 JKY.runWhenIsTemplate = function(templateName, functionName) {
-	JKY.displayTrace('JKY.runWhenIsTemplate: ' + templateName);
+	JKY.display_trace('JKY.runWhenIsTemplate: ' + templateName);
 	if (Em.TEMPLATES[templateName]) {
 		functionName();
 	}else{
 		setTimeout( function() {JKY.runWhenIsTemplate(templateName, functionName);}, 100);
 	}
+}
+
+/**
+ * set translations table
+ *
+ * @param	language
+ * @param	fileName
+ * @example JKY.setTranslations('portugues')
+ */
+JKY.setTranslations = function(language) {
+    JKY.translations = language;
+}
+
+/**
+ * translate
+ *
+ * @param	text
+ * @return	translated text
+ * @example JKY.t('Home')
+ */
+JKY.t = function(text) {
+	if (text == '') {
+		return '';
+	}
+
+	var result = JKY.translations[text];
+	if (typeof result == 'undefined') {
+		result = '';
+		var names = text.split('<br>');
+		for(var i=0; i<names.length; i++ ) {
+			var name = names[i];
+			var translation = JKY.translations[name];
+			result += ( i == 0 ) ? '' : '<br>';
+			if (typeof translation == 'undefined') {
+				result += name;
+			}else{
+				result += translation;
+			}
+		}
+	}
+	return result;
 }
 
 /**
@@ -32,10 +105,10 @@ JKY.runWhenIsTemplate = function(templateName, functionName) {
  * @param	fileName
  */
 JKY.loadHtml = function(idName, fileName) {
-	JKY.displayTrace('JKY.loadHtml: ' + idName);
+	JKY.display_trace('JKY.loadHtml: ' + idName);
 	if ($('#' + idName).length > 0) {
 		$('#' + idName).load('../hb/' + fileName);
-		JKY.displayTrace('JKY.loadHtml: ' + idName + ' DONE');
+		JKY.display_trace('JKY.loadHtml: ' + idName + ' DONE');
 	}else{
 		setTimeout(function() {JKY.loadHtml(idName, fileName);}, 100);
 	}
@@ -47,13 +120,13 @@ JKY.loadHtml = function(idName, fileName) {
  * @param	fileName
  */
 JKY.loadHb = function(templateName, fileName) {
-	JKY.displayTrace('JKY.loadHb: ' + templateName);
+	JKY.display_trace('JKY.loadHb: ' + templateName);
 	if ($('#ihs-hb').length > 0) {
 		$('#ihs-hb').load('../hb/' + fileName, function(src) {
 			Em.TEMPLATES[templateName] = Em.Handlebars.compile(src);
 			$('#ihs-hb').html('');
 		});
-		JKY.displayTrace('JKY.loadHb: ' + templateName + ' DONE');
+		JKY.display_trace('JKY.loadHb: ' + templateName + ' DONE');
 	}else{
 		setTimeout(function() {JKY.loadHb(templateName, fileName);}, 100);
 	}
@@ -67,10 +140,10 @@ JKY.loadHb = function(templateName, fileName) {
  * @return	(new)View
  */
 JKY.replaceIn = function(templateName, idName, viewObject) {
-	JKY.displayTrace('JKY.replaceIn: ' + templateName);
+	JKY.display_trace('JKY.replaceIn: ' + templateName);
 	if (Em.TEMPLATES[templateName] && $('#' + idName)) {
 		viewObject.replaceIn('#' + idName);
-		JKY.displayTrace('JKY.replaceIn: ' + templateName + ' DONE');
+		JKY.display_trace('JKY.replaceIn: ' + templateName + ' DONE');
 	}else{
 		setTimeout(function() {JKY.replaceIn(templateName, idName, viewObject)}, 100);
 	}
@@ -108,7 +181,7 @@ JKY.fixBr = function(stringValue){
 	if (stringValue) {
 		if (typeof stringValue == 'string') {
 			return stringValue.replace(' ', '<br />');
-		}else{ 
+		}else{
 			return stringValue;
 		}
 	}else{
@@ -185,7 +258,7 @@ JKY.fixHeaderPositions = function(orderType, idName) {
 
 /**
  * set table width and height
- * adjust height minus offset height, but not less than minimum height 
+ * adjust height minus offset height, but not less than minimum height
  * @param	tableId
  * @param	width
  * @param	minHeight
@@ -205,10 +278,15 @@ JKY.setTableWidthHeight = function(tableId, width, minHeight, offHeight) {
 	if (myHeight < minHeight) {
 		myHeight = minHeight;
 	}
-	JKY.displayTrace('JKY.setTableWidthHeight, width: ' + width + ', height: ' + myHeight);
-	$('#' + tableId).tableScroll({width :width		});
-	$('#' + tableId).tableScroll({height:myHeight	});
-}	
+	JKY.display_trace('JKY.setTableWidthHeight, width: ' + width + ', height: ' + myHeight);
+//	$('#' + tableId).tableScroll({width :width		});
+//	$('#' + tableId).tableScroll({height:myHeight	});
+setTimeout(function() {
+//$('#' + tableId).tableScroll({width:width, height:270});
+$('#' + tableId).tableScroll({width:width, height:myHeight});
+$('#scroll-bar').css('width', '4px');
+}, 100);
+}
 
 /**
  * set action approve
@@ -226,14 +304,6 @@ JKY.setActionApprove = function(paymentIssueFlag, appraisalId) {
 		myHtml += '<img class="hand" src="../images/error.png" rel="tooltip" title="to hold"    onclick="JKY.approveOrderAction(   \'hold\',    \'On Hold\', \'8\', ' + appraisalId + ')" />';
 
 	return myHtml;
-}
-
-/**
- * set action
- * to be defined ...
- */
-JKY.setAction = function(status){
-	return 'A C H';
 }
 
 /**
@@ -264,24 +334,47 @@ JKY.displayMessage = function(message){
 		$('#ihs-message-body').html('');
 	}, myTime * 1000);
 }
+JKY.display_message = function(message, refocus) {
+     if(  message == '' )
+          return;
+     if(  message.substr(0, 4) == '<br>' )
+          message = message.substr(4);
+     var  extra = '';
+     if(  typeof(refocus) != 'undefined' )
+          extra = 'JKY.set_focus("' + refocus + '");';
+
+     message = $('#jky-message-body').html() + '<br>' + message;
+
+     $('#jky-message-body').html(message);
+//   $('#jky-message').modal('show');
+     $('#jky-message').css('display', 'block');
+
+     var  time = Math.round(message.length / 15);
+     if(  time < 2.0 )
+          time = 2.0 ;
+//   setTimeout("$('#jky-message').modal('hide');$('.modal-backdrop').css('opacity', '0.8');", time * 1000);
+//   setTimeout("$('#jky-message').modal('hide');" + extra, time * 1000);
+     setTimeout("$('#jky-message').css('display', 'none');" + extra, time * 1000);
+}
+
 
 /**
  * display trace on left bottom corner
  * it will be displayed if JKY.TRACE = true
  * @param	message
  */
-JKY.displayTrace = function(message){
+JKY.display_trace = function(message){
 	if (!JKY.TRACE){		//	this control is set on [setup definition of constants] of [index.js]
 		return
 	}
-	var myDate = new Date();
-	var myMsec = (myDate.getMilliseconds() + 1000).toString().substr(1);
-	var myTime = myDate.getMinutes() + ':' + myDate.getSeconds() + '.' + myMsec;
-    var myHtml = myTime + ' ' + message + '<br />' + $('#ihs-trace-body').html();
-	console.log(myTime + ' ' + message);
+	var my_date = new Date();
+	var my_msec = (my_date.getMilliseconds() + 1000).toString().substr(1);
+	var my_time = my_date.getMinutes() + ':' + my_date.getSeconds() + '.' + my_msec;
+    var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
+	console.log(my_time + ' ' + message);
 
-//    $('#ihs-trace-body').html(myHtml);
-//    $('#ihs-trace').css('display', 'block');
+    $('#jky-trace-body').html(my_html);
+    $('#jky-trace').css('display', 'block');
 }
 
 /**
@@ -343,7 +436,7 @@ JKY.scrollToTop = function(className){
  * @param	browserName
  * @return  true | false
  *
- * @example 
+ * @example
  *			JKY.isBrowser('msie')
  *			JKY.isBrowser('firefox')
  *			JKY.isBrowser('chrome')
@@ -412,7 +505,7 @@ return text;
 JKY.show_layer = function(layer, field, z_index) {
      var   layer_name = layer + '-layer' ;
      var  shadow_name = layer + '-shadow';
-/*	 
+/*
      var  JKY.shadow = document.getElementById(shadow_name);
      if( !JKY.shadow ) {
           JKY.shadow = document.createElement('div');
@@ -448,30 +541,8 @@ JKY.set_focus = function(name) {
      }
 }
 
-//        JKY.display_message('any message')
-//        ----------------------------------------------------------------------
-JKY.display_message = function(message, refocus) {
-     if(  message == '' )
-          return;
-     if(  message.substr(0, 4) == '<br>' )
-          message = message.substr(4);
-     var  extra = '';
-     if(  typeof(refocus) != 'undefined' )
-          extra = 'JKY.set_focus("' + refocus + '");';
-
-     message = $('#jky-message-body').html() + '<br>' + message;
-
-     $('#jky-message-body').html(message);
-//   $('#jky-message').modal('show');
-     $('#jky-message').css('display', 'block');
-
-     var  time = Math.round(message.length / 15);
-     if(  time < 2.0 )
-          time = 2.0 ;
-//   setTimeout("$('#jky-message').modal('hide');$('.modal-backdrop').css('opacity', '0.8');", time * 1000);
-//   setTimeout("$('#jky-message').modal('hide');" + extra, time * 1000);
-     setTimeout("$('#jky-message').css('display', 'none');" + extra, time * 1000);
-}
+JKY.disabled_id	= function(id_name)	{$('#' + id_name).addClass	 ('disabled');}
+JKY.enabled_id 	= function(id_name)	{$('#' + id_name).removeClass('disabled');}
 
 //        JKY.set_...
 //        ----------------------------------------------------------------------
@@ -520,7 +591,7 @@ JKY.is_date = function(date) {
           return true;
      else return false;
 }
-          
+
 //        JKY.str_replace
 //        ----------------------------------------------------------------------
 JKY.str_replace = function(search, replace, subject, count) {
@@ -612,3 +683,6 @@ JKY.set_checks = function() {
      return checks;
 }
 
+    JKY.processContactUs=function(){
+        alert('processContactUs')
+    }
