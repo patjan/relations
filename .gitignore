@@ -1,4 +1,8 @@
 /nbproject/private/
+/logbat/
+/logger/
+/logsql/
+/proxy/
 .gitignore
 access.log
 error.log
