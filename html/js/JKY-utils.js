@@ -7,15 +7,8 @@
  * initial setup
  */
 $(function() {
-	$.ajaxSetup({
-		dataType: 'json',
-		error	: function(jqXHR, textStatus, errorThrown) {
-			JKY.hideLoading();
-			JKY.displayMessage('Error from backend server, please re-try later.');
-		}
-	});
 	$('body').append('<div id="jky-utils"></div>');
-	JKY.loadHtml('jky-utils', 'JKY-utils.html'	);
+	JKY.load_html('jky-utils', 'JKY-utils.html'	);
 });
 
 /**
@@ -49,7 +42,7 @@ JKY.reDirect = function(program_name) {
  * @param	functionName
  */
 JKY.runWhenIsTemplate = function(templateName, functionName) {
-	JKY.display_trace('JKY.runWhenIsTemplate: ' + templateName);
+	JKY.display_trace('runWhenIsTemplate: ' + templateName);
 	if (Em.TEMPLATES[templateName]) {
 		functionName();
 	}else{
@@ -101,34 +94,34 @@ JKY.t = function(text) {
 /**
  * load html into specific id
  * wait until the id is rendered
- * @param	idName
- * @param	fileName
+ * @param	id_name
+ * @param	file_name
  */
-JKY.loadHtml = function(idName, fileName) {
-	JKY.display_trace('JKY.loadHtml: ' + idName);
-	if ($('#' + idName).length > 0) {
-		$('#' + idName).load('../hb/' + fileName);
-		JKY.display_trace('JKY.loadHtml: ' + idName + ' DONE');
+JKY.load_html = function(id_name, file_name) {
+	JKY.display_trace('load_html: ' + id_name);
+	if ($('#' + id_name).length > 0) {
+		$('#' + id_name).load('../hb/' + file_name);
+		JKY.display_trace('load_html: ' + id_name + ' DONE');
 	}else{
-		setTimeout(function() {JKY.loadHtml(idName, fileName);}, 100);
+		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
 	}
 }
 
 /**
  * load handlebar into specific template
- * @param	templateName
- * @param	fileName
+ * @param	template_name
+ * @param	file_name
  */
-JKY.loadHb = function(templateName, fileName) {
-	JKY.display_trace('JKY.loadHb: ' + templateName);
-	if ($('#ihs-hb').length > 0) {
-		$('#ihs-hb').load('../hb/' + fileName, function(src) {
-			Em.TEMPLATES[templateName] = Em.Handlebars.compile(src);
-			$('#ihs-hb').html('');
+JKY.load_hb = function(template_name, file_name) {
+	JKY.display_trace('load_hb: ' + template_name);
+	if ($('#jky-hb').length > 0) {
+		$('#jky-hb').load('../hb/' + file_name, function(src) {
+			Em.TEMPLATES[template_name] = Em.Handlebars.compile(src);
+			$('#jky-hb').html('');
 		});
-		JKY.display_trace('JKY.loadHb: ' + templateName + ' DONE');
+		JKY.display_trace('load_hb: ' + template_name + ' DONE');
 	}else{
-		setTimeout(function() {JKY.loadHb(templateName, fileName);}, 100);
+		setTimeout(function() {JKY.load_hb(template_name, file_name);}, 100);
 	}
 }
 
@@ -140,10 +133,10 @@ JKY.loadHb = function(templateName, fileName) {
  * @return	(new)View
  */
 JKY.replaceIn = function(templateName, idName, viewObject) {
-	JKY.display_trace('JKY.replaceIn: ' + templateName);
+	JKY.display_trace('replaceIn: ' + templateName);
 	if (Em.TEMPLATES[templateName] && $('#' + idName)) {
 		viewObject.replaceIn('#' + idName);
-		JKY.display_trace('JKY.replaceIn: ' + templateName + ' DONE');
+		JKY.display_trace('replaceIn: ' + templateName + ' DONE');
 	}else{
 		setTimeout(function() {JKY.replaceIn(templateName, idName, viewObject)}, 100);
 	}
@@ -278,7 +271,7 @@ JKY.setTableWidthHeight = function(tableId, width, minHeight, offHeight) {
 	if (myHeight < minHeight) {
 		myHeight = minHeight;
 	}
-	JKY.display_trace('JKY.setTableWidthHeight, width: ' + width + ', height: ' + myHeight);
+	JKY.display_trace('setTableWidthHeight, width: ' + width + ', height: ' + myHeight);
 //	$('#' + tableId).tableScroll({width :width		});
 //	$('#' + tableId).tableScroll({height:myHeight	});
 setTimeout(function() {
@@ -310,29 +303,34 @@ JKY.setActionApprove = function(paymentIssueFlag, appraisalId) {
  * display message on right bottom corner
  * it will stay be displayed long enought to be read
  * @param	message
+ * @param	id_name
  */
-JKY.displayMessage = function(message){
-    var myHtml = $('#ihs-message-body').html();
-	if (myHtml.length > 0) {
-		myHtml += '<br />' + message;
-	}else{
-		myHtml = message;
+JKY.display_message = function(message, id_name) {
+	if (message == '') {
+		return;
 	}
-
-    $('#ihs-message-body').html(myHtml);
-    $('#ihs-message').css('display', 'block');
-
-    var myTime = myHtml.length / 10;
-		 if (myTime <  2)		{myTime =  2;}
-    else if (myTime > 30)		{myTime = 30;}
-
-	if (JKY.lastTimeOut){
-		clearTimeout(JKY.lastTimeOut);
+	if (message.substr(0, 4) == '<br>') {
+		message = message.substr(4);
 	}
-	JKY.lastTimeOut = setTimeout(function(){
-		$('#ihs-message').css('display', 'none');
-		$('#ihs-message-body').html('');
-	}, myTime * 1000);
+	var my_message = $('#jky-message-body').html() + '<br>' + message;
+
+	$('#jky-message-body').html(my_message);
+	$('#jky-message').css('display', 'block');
+
+    var my_time = my_message.length / 10;
+		 if (my_time <  2)		{my_time =  2;}
+    else if (my_time > 30)		{my_time = 30;}
+
+	if (JKY.last_time_out){
+		clearTimeout(JKY.last_time_out);
+	}
+	JKY.last_time_out = setTimeout(function(){
+		$('#jky-message').css('display', 'none');
+		$('#jky-message-body').html('');
+		if (typeof(id_name) != 'undefined') {
+			JKY.set_focus(id_name);
+		}
+	}, my_time * 1000);
 }
 JKY.display_message = function(message, refocus) {
      if(  message == '' )
@@ -683,6 +681,38 @@ JKY.set_checks = function() {
      return checks;
 }
 
-    JKY.processContactUs=function(){
-        alert('processContactUs')
-    }
+/**
+ * process ajax
+ *
+ * @param	async	(true | false)
+ * @param	data	(array)
+ * @param	function_success
+ * @param	function_error
+ */
+JKY.ajax = function(async, data, function_success, function_error) {
+	var my_object = {};
+	my_object.data = JSON.stringify(data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: async
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					function_success(response.data);
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hideLoading();
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	)
+}

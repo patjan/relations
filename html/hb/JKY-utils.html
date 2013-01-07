@@ -1,0 +1,48 @@
+<div id='jky-loading'>
+	<img src='../images/loading.gif'>
+</div>
+
+<div id='jky-message' class='modal'>
+	<div class='modal-header'>
+		<a class='close' onclick='JKY.hideId("jky-message")'>x</a>
+		<h3>Message</h3>
+	</div>
+	<div class='modal-body'>
+		<div id='jky-message-body'></div>
+	</div>
+</div>
+
+<div id='jky-trace' class='modal'>
+	<div class='modal-header'>
+		<a class='close' onclick='JKY.hideId("jky-trace")'>x</a>
+		<h3>Trace</h3>
+	</div>
+	<div class='modal-body'>
+		<div id='jky-trace-body'></div>
+	</div>
+</div>
+
+<div id='jky-confirm' class='modal hide fade in'>
+	<div class='modal-header'>
+		<a class='close' onclick='JKY.hideConfirm()'>x</a>
+		<h3>Confirm</h3>
+	</div>
+	<div class='modal-body'>
+		<div>
+			Confirm to <b><span class='action-name'></span></b>
+			the order #<span class='appraisal-id'></span>,
+		</div>
+		<div>
+			after this request is <b>confirmed</b>,
+		</div>
+		<div>
+			it will be moved into <b><span class='moved-into'></span></b> queue.
+		</div>
+		<br>
+		<div>Are you sure ?</div>
+	</div>
+	<div class='modal-footer'>
+		<a class='btn'           onclick='JKY.clickConfirm("No")'>No</a>
+		<a class='btn btn-info'  onclick='JKY.clickConfirm("Yes")'>Yes</a>
+	</div>
+</div>
