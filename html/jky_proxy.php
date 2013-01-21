@@ -27,7 +27,8 @@ class jky_proxy {
 
      public function query( $U, $POST, $GET, $FILES, $COOKIE='' ) {
           function log_proxy( $message ) {
-               $date = date( 'Y-m-d' );
+                date_default_timezone_set('America/Los_Angeles');
+                $date = date( 'Y-m-d' );
                $time = date( 'H:i:s' );
                $logFile = fopen( '../proxy//' . $date . '.txt', 'a' ) or die( 'cannot open proxy file' );
                fwrite( $logFile, $time . ' ' . $message . "\n" );

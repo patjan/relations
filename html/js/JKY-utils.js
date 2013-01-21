@@ -19,9 +19,10 @@ window.JKY = Em.Application.create({rootElement:'body'});
 /**
  * define all constants
  */
-JKY.TRACE		= true; 					//	on production, should be set to false, help developement to trace sequence flow
+JKY.TRACE	= true; 					//	on production, should be set to false, help developement to trace sequence flow
 JKY.AJAX_APP	= '../';					//  relative to application directory
-JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
+//JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
+JKY.AJAX_URL	= '../index.php/ajax?';		//  relative to remote directory
 
 JKY.translations= [];
 JKY.sort_name	= '';
