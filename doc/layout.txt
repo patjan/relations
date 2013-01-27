@@ -1,77 +1,91 @@
 jky-header
-	jky-company-name
-	jky-user-info
-		jky-user-name
-		jky-profile
-		jky-sign-up
-		jky-log-in
-		jky-log-out
-	jky-forgot
-	jky-clock
+	container
+		jky-company-name
+		jky-user-info
+			jky-user-unkown
+				jky-sign-up
+				jky-log-in
+			jky-user-logged
+				jky-full-name
+				jky-profile
+				jky-log-out
+		jky-forgot
+		jky-clock
 
 jky-icons
-	jky-company-logo
-	jky-event-name
+	container
+		jky-company-logo
+		jky-event-name
 
 jky-buttons
-	jky-menus
-		jky-home
-		jky-help
-		jky-my-info
-		jky-news
-		jky-reports
-		jky-features
-		jky-my-account
+	container
+		jky-menus
+			jky-home
+			jky-help
+			jky-my-info
+			jky-news
+			jky-reports
+			jky-features
+			jky-my-account
 
-	jky-control
-		jky-language
-		jky-admin
-			jky-dictionary
-			jky-summary
-			jky-users
-			jky-groups
-			jky-templates
-			jky-organizations
-			jky-permissions
-			jky-settings
-			jky-controls
-		jky-tickets
-
+		jky-control
+			jky-control-language
+			jky-control-admin
+				jky-dictionary
+				jky-summary
+				jky-users
+				jky-groups
+				jky-templates
+				jky-organizations
+				jky-permissions
+				jky-settings
+				jky-controls
+			jky-control-tickets
 
 jky-body
-	jky-body-header
-		jky-body-name
-		jky-body-buttons
-			jky-add-new
-			jky-export
-			jky-publish
-			jky-combine
-			jky-upload
-			jky-print
+	container
+		jky-body-header
+			jky-body-name
+			jky-body-buttons
+				jky-add-new
+				jky-export
+				jky-publish
+				jky-combine
+				jky-upload
+				jky-print
 
-	jky-body-filters
-		jky-filter
-		jky-select
-		jky-display
-		jky-counter
-		jky-all-abc
-		jky-all-123
+		jky-body-body-filters
+			left
+				jky-body-filter
+			right
+				jky-body-select
+				jky-body-display
+				jky-body-counter
+				jky-all-abc
+				jky-all-123
 
-	jky-body-table
-		jky-table-header
-		jky-table-body
-		jky-table-footer
+		jky-body-table
+			jky-table-header
+			jky-table-body
+			jky-table-footer
+
+		jky-body-footer
+		
+		jky-body-loaded
 
 jky-footer
-	jky-copyright
-	jky-contact-us
-	jky-video-demo
-	jky-support
-	jky-terms
-	jky-policy
-	jky-site-map
-	jky-questions
-	jky-blog
+	container
+		jky-copyright
+		jky-contact-us
+		jky-video-demo
+		jky-support
+		jky-terms
+		jky-policy
+		jky-site-map
+		jky-questions
+		jky-blog
+
+jky-loaded
 
 jky-layer
 	jky-layer-header

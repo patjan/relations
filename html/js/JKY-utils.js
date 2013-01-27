@@ -735,7 +735,7 @@ JKY.set_buttons_control = function(admins, language, languages) {
 	var my_html = '';
 	if (languages.length > 0) {
 		my_html += '<span class="jky-label">Language:</span>';
-		my_html += '<select>';
+		my_html += '<select id="jky-control-language">';
 		for(var i=0; i<languages.length; i++) {
 			var my_language = languages[i];
 			var my_selected = (my_language == language) ? ' selected="selected"' : '';
@@ -747,7 +747,7 @@ JKY.set_buttons_control = function(admins, language, languages) {
 	if (admins.length > 0) {
 		my_html += '<div class="btn-group">'
 				+  '<a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-tasks icon-white"></i>Admin</a>'
-				+  '<ul class="dropdown-menu">'
+				+  '<ul id="jky-control-admin" class="dropdown-menu">'
 				;
 		for(var i=0; i<admins.length; i++) {
 			var my_admin = admins[i];
@@ -755,7 +755,7 @@ JKY.set_buttons_control = function(admins, language, languages) {
 		}
 		my_html += '</ul></div>';
 	}
-	my_html += '<a id="jky-button-tickets" class="btn btn-large"><i class="icon-share icon-white"></i>Tickets</a>';
+	my_html += '<a id="jky-control-tickets" class="btn btn-large"><i class="icon-share icon-white"></i>Tickets</a>';
 	JKY.set_html('jky-control', my_html);
 }
 

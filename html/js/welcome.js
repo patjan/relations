@@ -121,6 +121,6 @@ JKY.process_log_in_success = function(response) {
 	JKY.display_message( 'Last Name: ' + my_data. last_name);
 	JKY.display_message( 'User Role: ' + my_data. user_role);
 	JKY.display_message('Start Page: ' + my_data.start_page);
-	JKY.set_user_info(my_data.full_name);
+	JKY.set_user_info (my_data.full_name );
 	JKY.process_action(my_data.start_page);
 }
