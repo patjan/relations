@@ -14,7 +14,7 @@ $(function() {
 /**
  * define JKY namespace for all application
  */
-window.JKY = Em.Application.create({rootElement:'body'});
+var JKY = JKY || {};
 
 /**
  * define all constants
@@ -99,13 +99,24 @@ JKY.t = function(text) {
  * @param	file_name
  */
 JKY.load_html = function(id_name, file_name) {
-	JKY.display_trace('load_html: ' + id_name);
+//	JKY.display_trace('load_html: ' + id_name);
 	if ($('#' + id_name).length > 0) {
-		$('#' + id_name).load('../hb/' + file_name);
-		JKY.display_trace('load_html: ' + id_name + ' DONE');
+		$('#' + id_name).load('../' + file_name);
+//		JKY.display_trace('load_html: ' + id_name + ' DONE');
 	}else{
 		setTimeout(function() {JKY.load_html(id_name, file_name);}, 100);
 	}
+}
+
+/**
+ * process action
+ * @param	action
+ */
+JKY.process_action = function(action) {
+	JKY.load_html('jky-body-content', action + '.html');
+	$.getScript(JKY.AJAX_APP + 'js/' + action + '.js', function() {
+		JKY.start_program();
+	});
 }
 
 /**
@@ -357,7 +368,15 @@ JKY.display_trace = function(message){
  * show specific id name
  * @param	idName
  */
-JKY.showId = function(idName){
+JKY.set_html = function(idName, html){
+	$('#' + idName).html(html);
+}
+
+/**
+ * show specific id name
+ * @param	idName
+ */
+JKY.show = function(idName){
 	$('#' + idName).css('display', 'block');
 }
 
@@ -365,7 +384,7 @@ JKY.showId = function(idName){
  * hide specific id name
  * @param	idName
  */
-JKY.hideId = function(idName){
+JKY.hide = function(idName){
 	$('#' + idName).css('display', 'none');
 }
 
@@ -660,6 +679,161 @@ JKY.set_checks = function() {
 }
 
 /**
+ * set company name
+ */
+JKY.set_company_name = function(company_name) {
+	JKY.set_html('jky-company-name', company_name);
+}
+
+/**
+ * set user info
+ */
+JKY.set_user_info = function(full_name) {
+	if (typeof full_name == 'undefined') {
+		JKY.hide('jky-user-logged');
+		JKY.show('jky-user-unkown');
+	}else{
+		JKY.set_html('jky-full-name', full_name);
+		JKY.hide('jky-user-unkown')
+		JKY.show('jky-user-logged');
+	}
+}
+
+/**
+ * set company logo
+ */
+JKY.set_company_logo = function(company_logo) {
+	JKY.set_html('jky-company-logo', '<img src="../img/' + company_logo + '.png" />');
+}
+
+/**
+ * set event name
+ */
+JKY.set_event_name = function(event_name) {
+	JKY.set_html('jky-event-name', event_name);
+}
+
+/**
+ * set buttons menus
+ */
+JKY.set_buttons_menus = function(menus) {
+	var my_html = '';
+	for(var i=0; i<menus.length; i++) {
+		var my_menu = menus[i];
+		my_html += '<a class="btn btn-large">'
+				+  '<i class="icon-' + my_menu.icon + ' icon-white"></i>' + my_menu.label
+				+  '</a>'
+				;
+	}
+	JKY.set_html('jky-menus', my_html);
+}
+
+/**
+ * set buttons control
+ */
+JKY.set_buttons_control = function(admins, language, languages) {
+	var my_html = '';
+	if (languages.length > 0) {
+		my_html += '<span class="jky-label">Language:</span>';
+		my_html += '<select>';
+		for(var i=0; i<languages.length; i++) {
+			var my_language = languages[i];
+			var my_selected = (my_language == language) ? ' selected="selected"' : '';
+			my_html += '<option value="' + my_language + '"' + my_selected + '>' + my_language + '</option>';
+		}
+		my_html += '</select>';
+	}
+
+	if (admins.length > 0) {
+		my_html += '<div class="btn-group">'
+				+  '<a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-tasks icon-white"></i>Admin</a>'
+				+  '<ul class="dropdown-menu">'
+				;
+		for(var i=0; i<admins.length; i++) {
+			var my_admin = admins[i];
+			my_html += '<li><a onclick="JKY.display_trace(\'' + my_admin.label + '\')"><i class="icon-' + my_admin.icon + ' icon-white"></i>' + my_admin.label + '</a></li>';
+		}
+		my_html += '</ul></div>';
+	}
+	my_html += '<a id="jky-button-tickets" class="btn btn-large"><i class="icon-share icon-white"></i>Tickets</a>';
+	JKY.set_html('jky-control', my_html);
+}
+
+/**
+ * set body header
+ */
+JKY.set_body_header = function(name, buttons) {
+	JKY.set_html('jky-body-name', '<i class="icon-th"></i>' + name);
+	var my_html = '';
+	for(var i=0; i<buttons.length; i++) {
+		var my_button = buttons[i];
+		my_html += '<button onclick="JKY.display_trace(\'' + my_button.on_click + '\')" class="btn"><i class="icon-' + my_button.icon + '"></i> ' + my_button.label + '</button>';
+	}
+	JKY.set_html('jky-body-buttons', my_html);
+}
+
+/**
+ * set copyright
+ */
+JKY.set_copyright = function(copyright) {
+	JKY.set_html('jky-copyright', copyright);
+}
+
+/**
+ * set copyright
+ */
+JKY.set_contact_us = function(contact_us) {
+	JKY.set_html('jky-contact-us', contact_us);
+}
+/**
+ * set control set
+ */
+JKY.set_control_set = function(selected, control_set) {
+	JKY.display_trace('set_control_set: ' + control_set);
+	var my_html = '';
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'Controls'
+		, order_by	: 'sequence,control_name'
+		, select	: control_set
+		};
+	var my_object = {};
+	my_object.data = JSON.stringify(my_data);
+	$.ajax(
+		{ url		: JKY.AJAX_URL
+		, data		: my_object
+		, type		: 'post'
+		, dataType	: 'json'
+		, async		: false
+		, success	: function(response) {
+				if (response.status == 'ok') {
+					my_html = '';
+					if (selected == 'All') {
+						my_html += '<option value="All" selected="selected">All</option>';
+					}
+					for(var i=0; i<response.rows.length; i+=1) {
+						var my_control_name = response.rows[i]['control_name'];
+						var my_selected = (my_control_name == selected) ? ' selected="selected"' : '';
+						my_html += '<option value="' + my_control_name + '"' + my_selected + '>' + my_control_name + '</option>';
+					}
+				}else{
+					JKY.display_message(response.message);
+				}
+			}
+		, error		: function(jqXHR, text_status, error_thrown) {
+				if (typeof function_error != 'undefined') {
+					function_error(jqXHR, text_status, error_thrown);
+				}else{
+					JKY.hideLoading();
+					JKY.display_message('Error from backend server, please re-try later.');
+				}
+			}
+		}
+	)
+	return my_html;
+}
+
+/**
  * process ajax
  *
  * @param	async	(true | false)
@@ -678,7 +852,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 		, async		: async
 		, success	: function(response) {
 				if (response.status == 'ok') {
-					function_success(response.data);
+					function_success(response);
 				}else{
 					JKY.display_message(response.message);
 				}
@@ -694,3 +868,4 @@ JKY.ajax = function(async, data, function_success, function_error) {
 		}
 	)
 }
+

@@ -2266,6 +2266,14 @@ function get_request( $name ) {
      return trim( $value );
 }
 
+function get_data($data, $name ) {
+	if( !isset($data[$name])) {
+		return '';
+	 }else{
+		return trim($data[$name]);
+	 }
+}
+
 function is_browser( $type ) {
      return get_session( 'browser' ) == $type;
 }

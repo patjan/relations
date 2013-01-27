@@ -192,6 +192,9 @@ input[ type='file'		]	{margin-left:0;}
 #jky-company-logo	{float:left;}
 #jky-event-name		{float:right; padding:26px 5px 0; font-size:200%; font-weight:bold; font-style:italic;}
 
+#jky-user-logged	{display:none;}
+#jky-user-unkown	{display:none;}
+
 #jky-menus										{float:left; display:inline;}
 #jky-menus .ui-widget-header					{border:none; margin-top:7px;}
 #jky-menus .ui-tabs-nav							{background:#ffffff; padding:0;}
@@ -223,8 +226,8 @@ input[ type='file'		]	{margin-left:0;}
 #jky-admin span     {}
 
 #jky-body-header	{clear:both; height:30px; margin-top:15px;}
-#jky-body-filter	{clear:both; height:40px; margin-top:15px; border-top:1px solid #D4D4D4; padding-top:10px;}
-#jky-body-table		{clear:both; display:none;}
+#jky-body-filters	{clear:both; height:40px; margin-top:15px; border-top:1px solid #D4D4D4; padding-top:10px;}
+#jky-body-table		{clear:both;}
 #jky-body-footer	{clear:both; margin-top:15px;}
 
 #jky-body-name		{float:left; font-size:200%; font-weight:bold;}
@@ -246,10 +249,11 @@ input[ type='file'		]	{margin-left:0;}
 	text-align:center;
 }
 
-#jky-filter			{width:300px;}
-#jky-select			{width:140px;}
-#jky-display		{width: 70px;}
-#jky-counter		{width: 35px; text-align:right;}
+#jky-body-filter	{width:300px;}
+#jky-body-select	{width:140px;}
+#jky-body-display	{width: 70px;}
+#jky-body-loaded	{width: 35px; text-align:right;}
+#jky-body-total		{width: 35px; text-align:right;}
 
 #jky-copyright		{float:left; }
 #jky-contact-us		{float:right;}

@@ -49,7 +49,7 @@ jky-body
 			jky-upload
 			jky-print
 
-	jky-body-filter
+	jky-body-filters
 		jky-filter
 		jky-select
 		jky-display

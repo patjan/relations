@@ -151,7 +151,7 @@ public function indexAction() {
 	    case 'get_value'    : $this->get_value      (); break;
 	    case 'get_row'      : $this->get_row        (); break;
 	    case 'get_rows'     : $this->get_rows       (); break;
-	    case 'get_index'    : $this->get_index      (); break;
+	    case 'get_index'    : $this->get_index      ($data); break;
 	    case 'get_comments' : $this->get_comments   (); break;
 	    case 'add_comment'  : $this->add_comment    (); break;
 	    case 'get_columns'  : $this->get_columns    (); break;
@@ -419,17 +419,17 @@ if(  $table == 'Categories' ) {
  *           ,{ x...x: y...y, ... }
  *           ]
  */
-private function get_index() {
+private function get_index($data) {
 //     if(  get_session('user_action') != 'All' ) {
 //          return;
 //     }
 
-	$table    = get_request( 'table'        );
-	$filter   = get_request( 'filter'       );
-	$select   = get_request( 'select'       );
-	$display  = get_request( 'display'      );
-	$order_by = get_request( 'order_by'     );
-	$specific = get_request( 'specific'     );
+	$table    = get_data($data, 'table'		);
+	$filter   = get_data($data, 'filter'	);
+	$select   = get_data($data, 'select'	);
+	$display  = get_data($data, 'display'	);
+	$order_by = get_data($data, 'order_by'	);
+	$specific = get_data($data, 'specific'	);
 
 	$where = '';
 
@@ -2185,10 +2185,11 @@ private function set_user_session( $user_id ) {
 private function get_user_data() {
 	$control = db_get_row('Controls', 'status = "active" AND control_set ="User Roles" AND control_name= "' . get_session('user_role') . '"') ;
 	$data = array();
-	$data['first_name'] = get_session('first_name');
-	$data['last_name' ] = get_session('last_name' );
-	$data['user_role' ] = get_session('user_role' );
-	$data['start_page'] = $control['control_value'];
+	$data['first_name'	] = get_session('first_name');
+	$data['last_name'	] = get_session('last_name' );
+	$data['full_name'	] = get_session('full_name'	);
+	$data['user_role'	] = get_session('user_role' );
+	$data['start_page'	] = $control['control_value'];
 	return $data;
 }
 

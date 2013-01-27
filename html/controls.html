@@ -1,175 +1,18 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class='no-js lt-ie9 lt-ie8 lt-ie7'> <![endif]-->
-<!--[if IE 7]>         <html class='no-js lt-ie9 lt-ie8'> <![endif]-->
-<!--[if IE 8]>         <html class='no-js lt-ie9'> <![endif]-->
-<!--[if gt IE 8]><!--> <html class='no-js'> <!--<![endif]-->
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-        <title>JKY Software - Layout</title>
-        <meta name='description' 	content='JKY Software - Relations'>
-        <meta name='author' 		content='http://www.jkysoftware.com'>
-        <meta name='viewport' 		content='width=device-width'>
-
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link href='css/normalize.css'				rel='stylesheet'>
-        <link href='css/main.css'					rel='stylesheet'>
-        <!--link href='css/jquery-ui-1.9.0.custom.css' rel='stylesheet'-->
-        <link href='css/jquery.tablescroll.css' 	rel='stylesheet'>
-        <link href='css/bootstrap.css' 				rel='stylesheet'>
-        <link href='css/bootstrap-responsive.css'	rel='stylesheet'>
-
-        <link href='css/JKY-base-10.css' 			rel='stylesheet'>
-        <link href='css/layout-10.css'				rel='stylesheet'>
-    </head>
-
-    <body>
-
-<script type='text/x-handlebars' data-template-name='template-wrapper'>
-	{{outlet outlet-header }}
-	{{outlet outlet-buttons}}
-	{{outlet outlet-body   }}
-	{{outlet outlet-footer }}
-</script>
-
-<script type='text/x-handlebars' data-template-name='template-header'>
-{{#view JKY.HeaderView}}
-<div id='jky-header'>
-	<div class='container'>
-		<div id='jky-company-name'>{{view.company_name}}</div>
-		<div id='jky-user-info'>
-		{{#if view.user_name}}
-			Hello <span id='jky-user-name'>{{view.user_name}}</span>,
-			want to view <span id='jky-profile'><a>Your Profile</a></span>
-			or <span id='jky-log-out'><a>Log Out</a></span>
-		{{else}}
-			Welcome,
-			please <span id='jky-sign-up'><a>Sign Up</a></span>
-			or <span id='jky-log-in' ><a>Log In</a></span>
-		{{/if}}
-		</div>
+<div id='jky-body-filters'>
+	<div class='left'>
+		<input id='jky-body-filter' type='text' placeholder='filter' value='' />
+		<img src='img/magnifier.png' />
+	</div>
+	<div class='right'>
+		<span class='jky-label'>Control Set:</span><select id='jky-body-select' ></select>
+		<span class='jky-label'>Display:	</span><select id='jky-body-display'></select>
+		<span class='jky-label'>Loaded:		</span><span id='jky-body-loaded'></span> of <span id='jky-body-total' ></span>
 	</div>
 </div>
 
-<div id='jky-icons'>
-	<div class='container'>
-		<div id='jky-company-logo'><img src="../img/{{unbound view.company_logo}}.png" /></div>
-		<div id='jky-event-name'>{{view.event_name}}</div>
-	</div>
-</div>
-{{/view}}
-</script>
-
-<script type='text/x-handlebars' data-template-name='template-footer'>
-{{#view JKY.FooterView}}
-<div id='jky-footer'>
-	<div class='container'>
-		<div id='jky-copyright' ><a>{{view.copyright }}</a></div>
-		<div id='jky-contact-us'><a>{{view.contact_us}}</a></div>
-	</div>
-</div>
-{{/view}}
-</script>
-
-<script type='text/x-handlebars' data-template-name='template-buttons'>
-{{#view JKY.ButtonsView}}
-<div id='jky-buttons'>
-	<div class='container'>
-		<div id='jky-menus'>
-		{{#each menu in view.menus}}
-			<a class='btn btn-large'>
-				<i class='icon-{{unbound menu.icon}} icon-white'></i>{{menu.label}}
-			</a>
-		{{/each}}
-		</div>
-		<div id='jky-control'>
-			<span class='jky-label'>Language:</span>
-			<select>
-
-				<option>English		</option>
-				<option>Chinese		</option>
-				<option>Taiwanese	</option>
-				<option>Portugues	</option>
-
-			</select>
-
-		{{#if view.admins}}
-			<div class='btn-group'>
-				<a class='btn btn-large dropdown-toggle' data-toggle='dropdown' href='#'><i class='icon-tasks icon-white'></i>Admin</a>
-				<ul class='dropdown-menu'>
-			{{#each admin in view.admins}}
-					<li><a onclick='JKY.reDirect("{{unbound admin.label}}")'><i class='icon-{{unbound admin.icon}} icon-white'></i> {{unbound admin.label}}</a></li>
-			{{/each}}
-				</ul>
-			</div>
-		{{/if}}
-			<a class='btn btn-large' onclick='JKY.reDirect("Tickets")'><i class='icon-share icon-white'></i>Tickets</a>
-		</div>
-	</div>
-</div>
-{{/view}}
-</script>
-
-<script type='text/x-handlebars' data-template-name='template-body'>
-{{#view JKY.BodyView}}
-<div id='jky-body'>
-	<div class='container'>
-		<div id='jky-body-header'>
-			<div id='jky-body-name'><i class='icon-{{unbound view.icon}}'></i>{{view.name}}</div>
-			<div id='jky-body-buttons'>
-			{{#each button in view.buttons}}
-				<button onclick="{{unbound button.on_click}}" class='btn'><i class="icon-{{unbound button.icon}}"></i> {{button.label}}</button>
-			{{/each}}
-			</div>
-		</div>
-
-		<div id='jky-body-filter'>
-			<div class='left'>
-				<input id='jky-filter' type='text' placeholder='filter' value='{{unbound view.filter}}' />
-				<img src='img/magnifier.png' />
-			</div>
-			<div class='right'>
-				<span class='jky-label'>Control Set:</span>
-				{{view Em.Select
-					elementId		= 'jky-select'
-					contentBinding	= 'JKY.control_set.content'
-					valueBinding	= 'JKY.control_set.selected'
-				}}
-<!--
-					prompt 			= 'Please, select a set'
-					selectionBinding= 'JKY.selection'
--->
-				<span class='jky-label'>Display:</span>
-				{{view Em.Select
-					elementId		= 'jky-display'
-					contentBinding	= 'JKY.display_rows.content'
-					valueBinding	= 'JKY.display_rows.selected'
-					prompt 			= 'All'
-				}}
-				<span class='jky-label'>Loaded:</span>
-				<span id='jky-counter'>{{view.loaded}} of {{view.counter}}</span>
-			</div>
-		</div>
-
-		{{outlet outlet-table}}
-
-		<div id='jky-body-footer'></div>
-	</div>
-</div>
-{{/view}}
-</script>
-
-<script type='text/x-handlebars' data-template-name='template-table'>
-<div class='tablescroll'>
 <table id='jky-body-table' class='table table-striped'>
 	<thead id='jky-table-header'>
 		<tr>
-<!--
-		{{#each header in view.table_header}}
-			<th>{{JKY-replace-space-br header}}</th>
-		{{/each}}
--->
 			<td class='sequence'		>Seq				</td>
 			<td class='control-name'	>Control<br>Name	</td>
 			<td class='control-value'	>Control<br>Value	</td>
@@ -179,32 +22,15 @@
 	</thead>
 
 	<tbody id='jky-table-body'>
-		{{#if content}}
-			{{#each row in content}}
 				<tr>
 					<td class='sequence'		>{{row.sequence		}}</td>
 					<td class='control-name'	>{{row.control-name	}}</td>
 					<td class='control-value'	>{{row.control-value}}</td>
 					<td class='status'			>{{row.status		}}</td>
 				</tr>
-			{{/each}}
-		{{else}}
 				<tr><td id='empty-table'>No record found</td></tr>
-		{{/if}}
 	</tbody>
-<!--
-	<tfoot id='jky-table-footer'>
-		<tr>
-			<td class='sequence'		>&nbsp;</td>
-			<td class='control-name'	>&nbsp;</td>
-			<td class='control-value'	>Counter:</td>
-			<td class='status'			>13</td>
-		</tr>
-	</tfoot>
--->
 </table>
-</div>
-</script>
 
 <div id='jky_layer' class='modal hide fade in'>
     <div class='modal-header'></div>
@@ -222,45 +48,4 @@
     <div class='modal-footer'></div>
 </div>
 
-	</body>
-
-	<!--script src='js/vendor/modernizr-2.6.1.min.js'></script-->
-
-	<!--script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
-	<script>window.jQuery || document.write('<script src='js/vendor/jquery-1.8.0.min.js'><\/script>')</script-->
-
-	<!-- excanvas.js is required on IE7 & IE8 to be able to render jqplot -->
-	<!--[if IE]><script src='lib/excanvas.js'></script><![endif]-->
-	<script src='lib/jquery-1.8.2.js'					></script>
-	<!--script src='lib/jquery-ui-1.9.0.custom.js'			></script-->
-	<script src='lib/jquery.tablescroll.js'				></script>
-	<script src='lib/bootstrap.min.js'					></script>
-	<script src='lib/handlebars-1.0.js'					></script>
-	<script src='lib/ember-1.0.0-pre.2.js'				></script>
-	<!--script src='lib/ember-routemanager.js'				></script-->
-	<!--script src='lib/ember-layout.js'					></script-->
-<!--
-	<script src='lib/jquery.md5.js'						></script>
-	<script src='lib/jquery.validate.min.js'			></script>
-	<script src='lib/jquery.jqplot.min.js'				></script>
-	<script src='lib/jqplot.barRenderer.min.js'			></script>
-	<script src='lib/jqplot.categoryAxisRenderer.min.js'></script>
-	<script src='lib/jqplot.pointLabels.min.js'			></script>
-	<script src='lib/plugins.js'						></script>
-	<script src='lib/main.js'							></script>
-	<script src='js/jky-util.js'	></script>
-	<script src='js/jky-core.js'	></script>
-	<script src='js/IHS-util.js'	></script>
-	<script src='js/index.js'		></script>
-	<script src='js/login.js'		></script>
-	<script src='js/logout.js'		></script>
-	<script src='js/dashboard.js'	></script>
-	<script src='js/controls.js'	></script>
-
-	<script src='obj/control.js'	></script>
-	<script src='obj/user.js'		></script>
--->
-	<script src='js/JKY-utils.js'	></script>
-	<script src='js/JKY-helpers.js'	></script>
-	<script src='js/controls.js'	></script>
-</html>
+<div id='jky-body-loaded'></div>

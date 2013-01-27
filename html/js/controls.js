@@ -1,167 +1,112 @@
+/**
+ * controls.html
+ */
 JKY.rows = [];
 
 
-JKY.ApplicationController	= Em.Controller.extend();
-JKY.HeaderController		= Em.Controller.extend();
-JKY.FooterController		= Em.Controller.extend();
-JKY.ButtonsController		= Em.Controller.extend();
-JKY.BodyController			= Em.Controller.extend();
-JKY.TableController			= Em.Controller.extend();
-
-JKY.ApplicationView	= Em.View.extend({templateName:'template-wrapper'	});
-JKY.	 HeaderView	= Em.View.extend({templateName:'template-header'	});
-JKY.	 FooterView	= Em.View.extend({templateName:'template-footer'	});
-JKY.	ButtonsView	= Em.View.extend({templateName:'template-buttons'	});
-JKY.	   BodyView	= Em.View.extend({templateName:'template-body'		});
-JKY.	  TableView	= Em.View.extend({templateName:'template-table'		});
-
-//JKY.tableView = JKY.TableView.create();
-
-JKY.Router = Em.Router.extend(
-	{ enableLogging: true
-	, root: Em.Route.extend(
-		{ loadNewSet: Em.Route.transitionTo('newSet')
-
-		, index: Em.Route.extend(
-			{ route: '/'
-			, connectOutlets: function(router, context) {
-				JKY.display_trace('JKY.Router.index');
-				JKY.loadNewSet('Root');
-				}
-			})
-
-		, newSet: Em.Route.extend(
-			{ route: '/newSet/:name'
-			, deserialize	: function(router, context) {
-				return (context.name)
-				}
-			, serialize		: function(router, context) {
-				return {name: context}
-				}
-			, connectOutlets: function(router, controlSet) {
-				JKY.display_trace('JKY.Router.newSet, newSet: ' + controlSet);
-				JKY.loadNewSet(controlSet);
-				}
-			})
-		})
-	});
-
 /**
- * main function
+ * start program
  */
-$(function() {
-	JKY.display_trace('$(function() {})');
-	JKY.controlsStart();
-});
+JKY.start_program = function() {
+	JKY.display_trace('start_program');
 
-/**
- * JKY.controlsStart
- *
- * initiate Ember Router and set bindings
- */
-JKY.controlsStart = function() {
-	JKY.display_trace('JKY.controlsStart');
-	JKY.router.get('applicationController').connectOutlet('outlet-header'	, 'header'	);
-	JKY.router.get('applicationController').connectOutlet('outlet-footer'	, 'footer'	);
-	JKY.router.get('applicationController').connectOutlet('outlet-buttons'	, 'buttons'	);
-	JKY.router.get('applicationController').connectOutlet('outlet-body'		, 'body'	);
-	JKY.router.get(       'bodyController').connectOutlet('outlet-table'	, 'table'	);
-	JKY.setHeader	();
-	JKY.setFooter	();
-	JKY.setButtons	();
-	JKY.setBody		();
-	JKY.filter_value = '';
-	JKY.control_set  = Em.Object.create({selected: 'Root', content: JKY.loadControlSet('Root'			)});
-	JKY.display_rows = Em.Object.create({selected: 'All' , content: JKY.loadControlSet('Display+Rows'	)});
-	JKY.bindingOnScroll();	//	table scroll  can be bond only once
-	JKY.bindingOnResize();	//	window resize can be bond only once
+	var menus =
+		[{ label: 'Home'			, icon: 'home'			}
+		,{ label: 'Help'			, icon: 'question-sign'	}
+		,{ label: 'My Info'			, icon: 'user'			}
+		];
+	JKY.set_buttons_menus(menus);
+
+	var admins =
+		[{ label: 'Dictionary'		, icon: 'font'			}
+		,{ label: 'Summary'			, icon: 'plus-sign'		}
+		,{ label: 'Groups'			, icon: 'th-list'		}
+		,{ label: 'Templates'		, icon: 'film'			}
+		,{ label: 'Organizations'	, icon: 'tasks'			}
+		,{ label: 'Permissions'		, icon: 'road'			}
+		,{ label: 'Settings'		, icon: 'move'			}
+		,{ label: 'Controls'		, icon: 'off'			}
+		];
+	JKY.set_buttons_control(admins, JKY.session['language'], JKY.session['languages']);
+
+	var name	= 'Controls Dashboard';
+	var buttons = 
+		[{ label: 'Publish'	, icon: 'tasks', on_click: 'JKY.process_publish	()'}
+		,{ label: 'Export'	, icon: 'tasks', on_click: 'JKY.process_export	()'}
+		,{ label: 'Add New'	, icon: 'tasks', on_click: 'JKY.process_add_new	()'}
+//		,{ label: 'Combine'	, icon: 'tasks', on_click: 'JKY.process_combine	()'}
+//		,{ label: 'Upload'	, icon: 'tasks', on_click: 'JKY.process_upload	()'}
+//		,{ label: 'Print'	, icon: 'tasks', on_click: 'JKY.process_print	()'}
+		];
+	JKY.set_body_header(name, buttons);
+	JKY.set_body_filter();
+	JKY.set_body_events();
+	JKY.load_new_set('Root');
+//	JKY.setBody		();
+};
+
+JKY.set_body_filter = function() {
+	JKY.display_trace('set_body_filter');
+	if ($('#jky-body-loaded').length > 0) {
+		JKY.set_html('jky-body-select'	, JKY.set_control_set('Root', 'Root'));
+		JKY.set_html('jky-body-display'	, JKY.set_control_set('All' , 'Display Rows'));
+		JKY.set_html('jky-body-loaded'	, '123');
+		JKY.set_html('jky-body-total'	, '123');
+	} else {
+		setTimeout(function() {JKY.set_body_filter();}, 100);
+	}
 };
 
 /**
- * binding on scroll
- * wait until any order is loaded, to binding on scroll
- *
- * !!! important !!!
- * table scroll can be bond only once per load
+ *	set body events (run only once per load)
  */
-JKY.bindingOnScroll = function() {
-	if (JKY.rows.length > 0) {
-		$('.tablescroll_wrapper').scroll(function() {
-			if (JKY.isScrollAtEnd('tablescroll_wrapper')) {
-//				JKY.loadMoreRows();
-			}
-		});
+JKY.set_body_events = function() {
+	JKY.display_trace('set_body_events');
+	if ($('#jky-body-loaded').length > 0) {
+		$('#jky-body-filter'	).change(function() {JKY.change_body_filter	(this);});
+		$('#jky-body-select'	).change(function() {JKY.change_body_select	(this);});
+		$('#jky-body-display'	).change(function() {JKY.chnage_body_display(this);});
 	} else {
-		setTimeout(function() {JKY.bindingOnScroll();}, 100);
+		setTimeout(function() {JKY.set_body_events();}, 100);
 	}
 }
 
-/**
- * binding on resize
- * not to bind on IE < 9, it will cause infinite loops
- * wait until any order is loaded, to binding on scroll
- *
- * !!! important !!!
- * window resize can be bond only once per load
+/**	
+ * change body filter
  */
-JKY.bindingOnResize = function() {
-	if (JKY.isBrowser('msie') && $.browser.version < 9) {
-		return;
-	}
-	if (JKY.rows.length > 0) {
-		$(window).bind('resize', function() {
-			JKY.setTableWidthHeight('jky-body-table', 924, 378, 550);
-		});
-	} else {
-		setTimeout(function() {JKY.bindingOnResize();}, 100);
-	}
+JKY.change_body_filter = function(event) {
+	var my_filter = event.value;
+	JKY.display_trace('change_body_filter: ' + my_filter);
+//	JKY.display_by_filter(my_filter);
 }
-
-/**
- * load control set
+/**	
+ * change body select
  */
-JKY.loadControlSet = function(controlSet) {
-	JKY.display_trace('JKY.loadControlSet, controlSet: ' + controlSet);
-	var my_rows = [];
-
-	$.ajax({
-		url		: JKY.AJAX_URL + 'command=get_index&table=Controls&order_by=sequence,control_name&select=' + controlSet,
-		async	: false,
-		success	: function(response) {
-			JKY.display_trace('JKY.setBody, ajax, success');
-			if (response.status != 'ok') {
-				JKY.displayMessage(response.message);
-			} else {
-				for(var i=0; i<response.rows.length; i+=1) {
-					var my_row = [];
-					my_name = response.rows[i]['control_name'];
-					my_rows.push(my_name);
-				}
-			}
-		}
-	})
-	return my_rows;
+JKY.change_body_select = function(event) {
+	var my_select = event.value;
+	JKY.display_trace('change_body_select: ' + my_select);
+	JKY.load_new_set(my_select);
 }
 
 /**
  * load new set
  */
-JKY.loadNewSet = function(controlSet) {
-	JKY.display_trace('JKY.loadNewSet, controlSet: ' + controlSet);
+JKY.load_new_set = function(control_set) {
+	JKY.display_trace('load_new_set: ' + control_set);
 	JKY.showLoading();
 
-	$.ajax({
-		url		: JKY.AJAX_URL + 'command=get_index&table=Controls&order_by=sequence,control_name&select=' + controlSet,
-		success	: function(response) {
-			JKY.display_trace('JKY.loadNewSet, ajax, success');
-			if (response.status != 'ok') {
-				JKY.displayMessage(response.message);
-			} else {
-				JKY.rows = response.rows;
-				JKY.displayByFilter();
-			}
-		}
-	});
+	var my_data =
+		{ method	: 'get_index'
+		, table		: 'Controls'
+		, order_by	: 'sequence,control_name'
+		, select	: control_set
+		};
+	JKY.ajax(false, my_data, JKY.load_new_set_success);
+}
+
+JKY.load_new_set_success = function(response) {
+	JKY.rows = response.rows;
+	JKY.display_by_filter(JKY.rows);
 }
 
 /**
@@ -210,60 +155,27 @@ JKY.sortByColumn = function(column_name) {
 /**
  * display by filter
  */
-JKY.displayByFilter = function() {
-	JKY.display_trace('JKY.displayByFilter');
-	var my_exp  = new RegExp(JKY.filter_value, 'i');
-	var my_rows = [];
+JKY.display_by_filter = function(rows) {
+	JKY.display_trace('display_by_filter');
+	var my_html ='';
+	var my_exp  = new RegExp($('#jky-body-filter').val(), 'i');
 
-	for(var i=0; i<JKY.rows.length; i+=1) {
-		var the_row = JKY.rows[i];
-		if (the_row['sequence'		].search(my_exp) > -1
-		||  the_row['control_name'	].search(my_exp) > -1
-		||  the_row['control_value'	].search(my_exp) > -1
-		||  the_row['status'		].search(my_exp) > -1) {
-			var my_row = [];
-			my_row['sequence'		] = the_row['sequence'		];
-			my_row['control-name'	] = the_row['control_name'	];
-			my_row['control-value'	] = the_row['control_value'	];
-			my_row['status'			] = the_row['status'		];
-			my_rows.push(my_row);
+	for(var i=0; i<rows.length; i+=1) {
+		var my_row = rows[i];
+		if (my_row['sequence'		].search(my_exp) > -1
+		||  my_row['control_name'	].search(my_exp) > -1
+		||  my_row['control_value'	].search(my_exp) > -1
+		||  my_row['status'			].search(my_exp) > -1) {
+			my_html += '<tr>'
+					+  '<td class="sequence"		>' + my_row['sequence'		] + '</td>'
+					+  '<td class="control-name"	>' + my_row['control_name'	] + '</td>'
+					+  '<td class="control-value">' + my_row['control_value'	] + '</td>'
+					+  '<td class="status"		>' + my_row['status'		] + '</td>'
+					+  '</tr>'
+					;
 		}
 	}
-	JKY.hideId('jky-body-table');
-	JKY.router.get('bodyController').connectOutlet('table', my_rows);
-	JKY.set_focus('jky-filter');
-//	JKY.setTableWidthHeight('jky-body-table', 924, 378, 550);
-setTimeout(function() {
-	JKY.setTableWidthHeight('jky-body-table', 924, 378, 550);
-	JKY.showId('jky-body-table');
-	$('#scroll-bar').css('width', '0');
-}, 10);
-//	JKY.showClass('tablescroll');
-}
-
-/**
- * set header
- */
-JKY.setHeader = function() {
-	JKY.HeaderView = Em.View.extend(
-		{ company_name	: 'JKY Software Corp'
-		, company_logo	: 'relations'
-		, user_name		: 'Pat Jan'
-		, event_name	: '2012 Annual Event'
-
-		, setUserName	: function(user_name)	{this.user_name = user_name;}
-		, getUserName	: function()			{return this.user_name;		}
-		});
-}
-
-/**
- * set footer
- */
-JKY.setFooter = function() {
-	JKY.FooterView = Em.View.extend(
-		{ copyright		: '© 2013 JKY Software Corp'
-		, contact_us	: 'Contact Us'
-		});
+	$('#jky-table-body').html(my_html);
 }
 
 /**
@@ -293,42 +205,6 @@ JKY.setButtons = function() {
  * set body
  */
 JKY.setBody = function() {
-	JKY.BodyView = Em.View.extend(
-		{ name		: 'Controls'
-		, icon		: 'tasks'
-		, buttons	:
-			[{ label: 'Publish'	, icon: 'tasks', on_click: 'JKY.processPublish	()'}
-			,{ label: 'Export'	, icon: 'tasks', on_click: 'JKY.processExport	()'}
-			,{ label: 'Add New'	, icon: 'tasks', on_click: 'JKY.processAddNew	()'}
-//			,{ label: 'Combine'	, icon: 'tasks', on_click: 'JKY.processAddNew	()'}
-//			,{ label: 'Upload'	, icon: 'tasks', on_click: 'JKY.processAddNew	()'}
-//			,{ label: 'Print'	, icon: 'tasks', on_click: 'JKY.processAddNew	()'}
-			]
-		, filter	: 'filter...'
-		, loaded	: 123
-//		, click		: function(event) {alert('click')}
-		, change	: function(event) {
-				target_id		= event.target.id;
-				target_value	= event.target.value;
-				if (target_id == 'jky-filter') {
-					JKY.display_trace('JKY.setBody: change, jky-filter: ' + target_value);
-					JKY.filter_value = target_value;
-					JKY.displayByFilter();
-				}
-				if (target_id == 'jky-select') {
-					JKY.loadNewSet(target_value);
-				}
-			}
-		, counter	: 1234
-/*
-		, table_header	:
-			[{ id: 'sequence'		, label: 'Seq'				}
-			,{ id: 'control-name'	, label: 'Control Name'		}
-			,{ id: 'control-value'	, label: 'Control Value'	}
-			,{ id: 'status'			, label: 'Status'			}
-			]
-*/
-		});
 /*
 	JKY.control_set = Em.Object.create(
 		{ selected: 'Root'
