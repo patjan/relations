@@ -19,11 +19,12 @@ var JKY = JKY || {};
 /**
  * define all constants
  */
-JKY.TRACE	= true; 					//	on production, should be set to false, help developement to trace sequence flow
+JKY.TRACE		= true;						//	on production, should be set to false, help developement to trace sequence flow
 JKY.AJAX_APP	= '../';					//  relative to application directory
 //JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
 JKY.AJAX_URL	= '../index.php/ajax?';		//  relative to remote directory
 
+JKY.session		= [];
 JKY.translations= [];
 JKY.sort_name	= '';
 JKY.sort_seq	=  1;
@@ -70,19 +71,19 @@ JKY.setTranslations = function(language) {
  * @example JKY.t('Home')
  */
 JKY.t = function(text) {
-	if (text == '') {
+	if (text === '') {
 		return '';
 	}
 
 	var result = JKY.translations[text];
-	if (typeof result == 'undefined') {
+	if (typeof result === undefined) {
 		result = '';
 		var names = text.split('<br>');
 		for(var i=0; i<names.length; i++ ) {
 			var name = names[i];
 			var translation = JKY.translations[name];
-			result += ( i == 0 ) ? '' : '<br>';
-			if (typeof translation == 'undefined') {
+			result += ( i === 0 ) ? '' : '<br>';
+			if (typeof translation === undefined) {
 				result += name;
 			}else{
 				result += translation;
@@ -165,7 +166,7 @@ JKY.replaceIn = function(templateName, idName, viewObject) {
  */
 JKY.fixFlag = function(flagValue, trueValue, falseValue){
 	if (flagValue) {
-		if (flagValue == 't') {
+		if (flagValue === 't') {
 			return trueValue;
 		}else{
 			return falseValue;
@@ -184,7 +185,7 @@ JKY.fixFlag = function(flagValue, trueValue, falseValue){
  */
 JKY.fixBr = function(stringValue){
 	if (stringValue) {
-		if (typeof stringValue == 'string') {
+		if (typeof stringValue === 'string') {
 			return stringValue.replace(' ', '<br />');
 		}else{
 			return stringValue;
@@ -318,10 +319,10 @@ JKY.setActionApprove = function(paymentIssueFlag, appraisalId) {
  * @param	id_name
  */
 JKY.display_message = function(message, id_name) {
-	if (message == '') {
+	if (message === '') {
 		return;
 	}
-	if (message.substr(0, 4) == '<br>') {
+	if (message.substr(0, 4) === '<br>') {
 		message = message.substr(4);
 	}
 	var my_message = $('#jky-message-body').html() + '<br>' + message;
@@ -360,16 +361,26 @@ JKY.display_trace = function(message){
     var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
 	console.log(my_time + ' ' + message);
 
-    $('#jky-trace-body').html(my_html);
-    $('#jky-trace').css('display', 'block');
+//    $('#jky-trace-body').html(my_html);
+//    $('#jky-trace').css('display', 'block');
 }
 
 /**
- * show specific id name
+ * set specific id with html content
  * @param	idName
+ * @param	html
  */
 JKY.set_html = function(idName, html){
 	$('#' + idName).html(html);
+}
+
+/**
+ * set specific id with value
+ * @param	idName
+ * @param	value
+ */
+JKY.set_val = function(idName, value){
+	$('#' + idName).val(value);
 }
 
 /**
@@ -474,18 +485,18 @@ JKY.set_translations = function(array) {
 //        ----------------------------------------------------------------------
 JKY.t = function(text) {
 return text;
-     if( text == '' )
+     if( text === '' )
          return '';
 
      var result = translations[text];
-     if( typeof result == 'undefined' ) {
+     if( typeof result === undefined) {
          result = '';
          var names = text.split('<br>');
          for( var i=0; i<names.length; i++ ) {
              name = names[i];
              translation = translations[name];
-             result += ( i == 0 ) ? '' : '<br>';
-             if( typeof translation == 'undefined' ) {
+             result += ( i === 0 ) ? '' : '<br>';
+             if( typeof translation === undefined) {
                  result += name;
              } else {
                  result += translation;
@@ -554,7 +565,7 @@ JKY.set_value_is_above   = function(name, value)       {return '<br>' + JKY.t( n
 //   Set Languages -------------------------------------------------------------
 JKY.set_languages = function() {
      var  options = $('#en-speaking').html();
-     if(  options == '' ) {
+     if(  options === '' ) {
           setTimeout('JKY.set_languages()', 100);
      } else {
           $('#en-reading' ).html(options);
@@ -582,7 +593,7 @@ JKY.is_date = function(date) {
      var  dd   = parseInt(dates[1], 10);
      var  yyyy = parseInt(dates[2], 10);
      var  new_date = new Date(yyyy, mm-1, dd);
-     if(( new_date.getFullYear() == yyyy ) && ( new_date.getMonth() == mm-1 ) && ( new_date.getDate() == dd ))
+     if(( new_date.getFullYear() === yyyy ) && ( new_date.getMonth() === mm-1 ) && ( new_date.getDate() === dd ))
           return true;
      else return false;
 }
@@ -644,7 +655,7 @@ JKY.set_options = function() {
 
      for( var i=1; i<arguments.length; i++ ) {
           value = arguments[i];
-          selected = (value == set_value) ? ' selected="selected"' : '';
+          selected = (value === set_value) ? ' selected="selected"' : '';
           options += '<option value="' + value + '"' + selected + '>' + value + '</option>';
      }
      return options;
@@ -659,7 +670,7 @@ JKY.set_radios = function() {
 
      for( var i=2; i<arguments.length; i++ ) {
           value = arguments[i];
-          checked = (value == set_value) ? ' checked="checked"' : '';
+          checked = (value === set_value) ? ' checked="checked"' : '';
           radios += '<input type="radio" id="' + set_id + '" name="' + set_id + '" value="' + value + '" ' + checked + '/>&nbsp;' + value + ' &nbsp; ';
      }
      return radios;
@@ -689,7 +700,7 @@ JKY.set_company_name = function(company_name) {
  * set user info
  */
 JKY.set_user_info = function(full_name) {
-	if (typeof full_name == 'undefined') {
+	if (typeof full_name === undefined) {
 		JKY.hide('jky-user-logged');
 		JKY.show('jky-user-unkown');
 	}else{
@@ -720,7 +731,7 @@ JKY.set_buttons_menus = function(menus) {
 	var my_html = '';
 	for(var i=0; i<menus.length; i++) {
 		var my_menu = menus[i];
-		my_html += '<a class="btn btn-large">'
+		my_html += '<a id="' + my_menu.id + '" class="btn btn-large">'
 				+  '<i class="icon-' + my_menu.icon + ' icon-white"></i>' + my_menu.label
 				+  '</a>'
 				;
@@ -738,7 +749,7 @@ JKY.set_buttons_control = function(admins, language, languages) {
 		my_html += '<select id="jky-control-language">';
 		for(var i=0; i<languages.length; i++) {
 			var my_language = languages[i];
-			var my_selected = (my_language == language) ? ' selected="selected"' : '';
+			var my_selected = (my_language === language) ? ' selected="selected"' : '';
 			my_html += '<option value="' + my_language + '"' + my_selected + '>' + my_language + '</option>';
 		}
 		my_html += '</select>';
@@ -751,7 +762,7 @@ JKY.set_buttons_control = function(admins, language, languages) {
 				;
 		for(var i=0; i<admins.length; i++) {
 			var my_admin = admins[i];
-			my_html += '<li><a onclick="JKY.display_trace(\'' + my_admin.label + '\')"><i class="icon-' + my_admin.icon + ' icon-white"></i>' + my_admin.label + '</a></li>';
+			my_html += '<li><a onclick="JKY.display_trace(\'' + my_admin.label + '\')"><i class="icon-' + my_admin.icon + ' icon-white"></i> &nbsp;' + my_admin.label + '</a></li>';
 		}
 		my_html += '</ul></div>';
 	}
@@ -806,14 +817,14 @@ JKY.set_control_set = function(selected, control_set) {
 		, dataType	: 'json'
 		, async		: false
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					my_html = '';
-					if (selected == 'All') {
+					if (selected === 'All') {
 						my_html += '<option value="All" selected="selected">All</option>';
 					}
 					for(var i=0; i<response.rows.length; i+=1) {
 						var my_control_name = response.rows[i]['control_name'];
-						var my_selected = (my_control_name == selected) ? ' selected="selected"' : '';
+						var my_selected = (my_control_name === selected) ? ' selected="selected"' : '';
 						my_html += '<option value="' + my_control_name + '"' + my_selected + '>' + my_control_name + '</option>';
 					}
 				}else{
@@ -851,7 +862,7 @@ JKY.ajax = function(async, data, function_success, function_error) {
 		, dataType	: 'json'
 		, async		: async
 		, success	: function(response) {
-				if (response.status == 'ok') {
+				if (response.status === 'ok') {
 					function_success(response);
 				}else{
 					JKY.display_message(response.message);

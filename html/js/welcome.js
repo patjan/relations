@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * welcome.html
  */
@@ -12,6 +14,7 @@ JKY.start_program = function() {
 	JKY.set_body_header(name, buttons);
 	JKY.set_body_content();
 	JKY.set_body_events();
+	JKY.set_buttons_event();
 }
 
 /**
@@ -64,7 +67,7 @@ JKY.set_button_sign_up = function() {
 	JKY.display_trace('set_button_sign_up');
 	var my_user_name 	= $('#jky-sign-up-user-name'	).val();
 	var my_email_address= $('#jky-sign-up-email-address').val();
-	if (my_user_name == '' || my_email_address == '') {
+	if (my_user_name === '' || my_email_address === '') {
 		JKY.disabled_id('jky-button-sign-up');
 	}else{
 		JKY.enabled_id ('jky-button-sign-up');
@@ -92,7 +95,7 @@ JKY.set_button_log_in = function() {
 	JKY.display_trace('set_button_log_in');
 	var my_user_name 	= $('#jky-log-in-user-name'	).val();
 	var my_password		= $('#jky-log-in-password'	).val();
-	if (my_user_name == '' || my_password == '') {
+	if (my_user_name === '' || my_password === '') {
 		JKY.disabled_id('jky-button-log-in');
 	}else{
 		JKY.enabled_id ('jky-button-log-in');

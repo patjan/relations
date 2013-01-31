@@ -34,7 +34,7 @@ JKY.saveOrders = function(orders, orderType){
 	JKY.activeOrderType = orderType;
 
 	for(var i=0; i<JKY.orderTypes.length; i+=1){  
-		if (JKY.orderTypes[i]['Order Type'] == orderType){
+		if (JKY.orderTypes[i]['Order Type'] === orderType){
 			JKY.activeOrderCount = JKY.orderTypes[i]['Order Count'];
 			break;
 		}
@@ -58,7 +58,7 @@ JKY.appendOrders = function(orders){
  */
 JKY.deleteOrder = function(appraisalId){
 	for(var i=0; i<JKY.orders.length; i+=1){
-		if (JKY.orders[i]['appraisal_id'] == appraisalId){
+		if (JKY.orders[i]['appraisal_id'] === appraisalId){
 			JKY.orders.splice(i, 1);
 			JKY.activeOrderCount -= 1;
 			break;

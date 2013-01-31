@@ -176,14 +176,14 @@ CX.loadOrderTypesWithCounter = function() {
 					myOrderType['name'	] = CX.orderTypes[i]['Order Type' ];
 					myOrderType['count'	] = CX.orderTypes[i]['Order Count'];
 
-					if (CX.activeOrderType == '' && myOrderType['count'] > 0) {
+					if (CX.activeOrderType === '' && myOrderType['count'] > 0) {
 //						first load of specific type with orders
 						CX.loadSpecificType(myOrderType['name']);
 //						need to adjust table width on header
 						CX.delayFirstDisplay();
 					}
 					myOrderType['class'] = 'enable';
-					if (CX.activeOrderType == myOrderType['name']) {
+					if (CX.activeOrderType === myOrderType['name']) {
 						myOrderType['class'] = 'active';
 					}
 					myOrderTypes.push(myOrderType);
@@ -200,7 +200,7 @@ CX.loadOrderTypesWithCounter = function() {
  */
 CX.delayFirstDisplay = function() {
 	CX.displayTrace('CX.delayFirstDisplay');
-	if ($('#empty-table').length == 0) {
+	if ($('#empty-table').length === 0) {
 		CX.showId('wq-data');
 		CX.showClass('tablescroll');
 		CX.setTableWidthHeight('wq-table', 866, 390, 350);
@@ -336,7 +336,7 @@ CX.processOrdersBody = function() {
 CX.processOrdersBody = function() {
 	CX.displayTrace('CX.processOrdersBody');
 	var myHtml = '';
-	if (CX.orders.length == 0) {
+	if (CX.orders.length === 0) {
 		myHtml = '<tr><td>No order found</td></tr>';
 	}
 	for (var i=0; i<CX.orders.length; i+=1) {

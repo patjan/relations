@@ -85,7 +85,7 @@ JKY.login_submit = function(){
 //	var password = $('#password' ).val().trim();
 	var userName = $('.user-name').val();
 	var password = $('.password' ).val();
-	if (userName == '' || password == ''){
+	if (userName === '' || password === ''){
 		set_message('log-in', 'Missing required field(s).');
 		return false;
 	}

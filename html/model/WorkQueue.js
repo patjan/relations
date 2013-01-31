@@ -56,7 +56,7 @@ CX.saveOrders = function(orders, orderType) {
 	}
 
 	for(var i=0; i<CX.orderTypes.length; i+=1) {  
-		if (CX.orderTypes[i]['Order Type'] == orderType) {
+		if (CX.orderTypes[i]['Order Type'] === orderType) {
 			CX.activeOrderCount = CX.orderTypes[i]['Order Count'];
 			break;
 		}
@@ -80,7 +80,7 @@ CX.appendOrders = function(orders) {
  */
 CX.deleteOrder = function(appraisalId) {
 	for(var i=0; i<CX.orders.length; i+=1) {
-		if (CX.orders[i]['appraisal_id'] == appraisalId) {
+		if (CX.orders[i]['appraisal_id'] === appraisalId) {
 			CX.orders.splice(i, 1);
 			CX.activeOrderCount -= 1;
 			break;
@@ -95,7 +95,7 @@ CX.deleteOrder = function(appraisalId) {
  */
 CX.deleteRequest = function(requestId) {
 	for(var i=0; i<CX.orders.length; i+=1) {
-		if (CX.orders[i]['product_fee_change_request_id'] == requestId) {
+		if (CX.orders[i]['product_fee_change_request_id'] === requestId) {
 			CX.orders.splice(i, 1);
 			CX.activeOrderCount -= 1;
 			break;

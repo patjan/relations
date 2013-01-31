@@ -1,17 +1,20 @@
+"use strict";
+
 /**
  * main function
  */
 $(function() {
 	JKY.display_trace('$(function() {})');
-	JKY.get_session();
-	JKY.set_company_name( JKY.session['company_name'	]);
-	JKY.set_user_info	( JKY.session['full_name'		]);
-	JKY.set_company_logo( JKY.session['company_logo'	]);
-	JKY.set_event_name	( JKY.session['event_name'		]);
-	JKY.set_copyright	( JKY.session['copyright'		]);
-	JKY.set_contact_us	( JKY.session['contact_us'		]);
+//	JKY.get_session();
+	JKY.Session.read_values();
+	JKY.set_company_name( JKY.Session.get_value('company_name'	));
+	JKY.set_user_info	( JKY.Session.get_value('full_name'		));
+	JKY.set_company_logo( JKY.Session.get_value('company_logo'	));
+	JKY.set_event_name	( JKY.Session.get_value('event_name'	));
+	JKY.set_copyright	( JKY.Session.get_value('copyright'		));
+	JKY.set_contact_us	( JKY.Session.get_value('contact_us'	));
 	JKY.set_buttons_menus([]);
-	JKY.set_buttons_control([], JKY.session['language'], JKY.session['languages']);
+	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
 	JKY.set_events();
 	JKY.process_action('welcome');
 //	JKY.process_action('controls');
@@ -51,12 +54,26 @@ JKY.set_events = function() {
 		$('#jky-copyright'				).click (function() {JKY.display_copyright		()		;});
 		$('#jky-contact-us'				).click (function() {JKY.display_contact_us		()		;});
 
-		$('#jky-select-language'		).change(function() {JKY.change_language		(this)	;});
 	} else {
 		setTimeout(function() {JKY.set_events();}, 100);
 	}
 }
 
+/**
+ *	set buttons event
+ */
+JKY.set_buttons_event = function() {
+	JKY.display_trace('set_events');
+	if ($('#jky-loaded').length > 0) {
+		$('#jky-home'					).click (function() {JKY.process_home			()		;});
+		$('#jky-help'					).click (function() {JKY.process_help			()		;});
+		$('#jky-my-info'				).click (function() {JKY.process_my_info		()		;});
+		$('#jky-control-language'		).change(function() {JKY.change_language		(this)	;});
+	} else {
+		setTimeout(function() {JKY.set_events();}, 100);
+	}
+}
+		
 /** ------------------------------------------------------------------------ **/
 
 JKY.display_sign_up = function() {
@@ -102,3 +119,17 @@ JKY.change_language = function(language) {
 	JKY.display_trace('language: ' + my_language);
 }
 
+/** ------------------------------------------------------------------------ **/
+
+JKY.process_home = function() {
+	JKY.display_trace('process_home');
+	JKY.process_action('welcome');
+}
+
+JKY.process_help = function() {
+	JKY.display_trace('process_help');
+}
+
+JKY.process_my_info = function() {
+	JKY.display_trace('process_my_info');
+}

@@ -205,7 +205,7 @@ input[ type='file'		]	{margin-left:0;}
 #jky-menus.ui-widget-content .ui-state-default	{background:#a2a2a2; border:1px solid #636363;}
 #jky-menus.ui-widget-content .ui-state-active	{background:#ffffff; border:1px solid #aaaaaa;}
 #jky-menus li									{margin-right:5px;}
-#jky-menus a									{color:#ffffff; background:#317082; cursor:pointer;}
+#jky-menus a									{color:#ffffff; background:#317082; cursor:pointer; margin-right:5px;}
 #jky-menus a:hover								{color:#cfcfcf;}
 
 #jky-control									{float:right;}
@@ -216,7 +216,7 @@ input[ type='file'		]	{margin-left:0;}
 #jky-control.ui-widget-content .ui-state-default{background:#a2a2a2; border:1px solid #636363;}
 #jky-control.ui-widget-content .ui-state-active	{background:#ffffff; border:1px solid #aaaaaa;}
 #jky-control li									{margin-left:5px;}
-#jky-control a									{color:#ffffff; background:#636363; cursor:pointer;}
+#jky-control a									{color:#ffffff; background:#636363; cursor:pointer; margin-left:5px;}
 #jky-control a:hover							{color:#cfcfcf;}
 #jky-control select								{width:110px;}
 
@@ -226,6 +226,7 @@ input[ type='file'		]	{margin-left:0;}
 #jky-admin span     {}
 
 #jky-body-header	{clear:both; height:30px; margin-top:15px;}
+#jky-body-buttons button	{margin-left:5px;}
 #jky-body-filters	{clear:both; height:40px; margin-top:15px; border-top:1px solid #D4D4D4; padding-top:10px;}
 #jky-body-table		{clear:both;}
 #jky-body-footer	{clear:both; margin-top:15px;}

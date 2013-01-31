@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * controls.html
  */
@@ -11,9 +13,9 @@ JKY.start_program = function() {
 	JKY.display_trace('start_program');
 
 	var menus =
-		[{ label: 'Home'			, icon: 'home'			}
-		,{ label: 'Help'			, icon: 'question-sign'	}
-		,{ label: 'My Info'			, icon: 'user'			}
+		[{ id:'jky-home'	, label:'Home'		, icon:'home'			}
+		,{ id:'jky-help'	, label:'Help'		, icon:'question-sign'	}
+		,{ id:'jky-my-info'	, label:'My Info'	, icon:'user'			}
 		];
 	JKY.set_buttons_menus(menus);
 
@@ -41,6 +43,7 @@ JKY.start_program = function() {
 	JKY.set_body_header(name, buttons);
 	JKY.set_body_filter();
 	JKY.set_body_events();
+	JKY.set_buttons_event();
 	JKY.load_new_set('Root');
 //	JKY.setBody		();
 };
@@ -114,10 +117,10 @@ JKY.load_new_set_success = function(response) {
  */
 JKY.sortByColumn = function(column_name) {
 	if (typeof(column_name) != 'undefined') {
-		if (JKY.sort_name == column_name) {
-			JKY.sort_seq   = JKY.sort_seq * -1;
+		if (JKY.sort_name === column_name) {
+			JKY.sort_seq  = JKY.sort_seq * -1;
 		}else{
-			JKY.sort_name  = column_name;
+			JKY.sort_name = column_name;
 		}
 	}
 

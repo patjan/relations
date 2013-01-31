@@ -35,7 +35,7 @@ CX.hideConfirm = function() {
 CX.clickConfirm = function(action) {
 	CX.displayTrace('CX.clickConfirm');	
 	CX.hideConfirm();
-	if (action == 'Yes') {
+	if (action === 'Yes') {
 
 		CX.showLoading();
 		$.ajax({
@@ -87,7 +87,7 @@ CX.hideConfirmRequest = function() {
 CX.clickConfirmRequest = function(action) {
 	CX.displayTrace('CX.clickConfirmRequest');	
 	CX.hideConfirmRequest();
-	if (action == 'Yes') {
+	if (action === 'Yes') {
 
 		CX.showLoading();
 		$.ajax({
