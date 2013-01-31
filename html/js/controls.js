@@ -29,7 +29,7 @@ JKY.start_program = function() {
 		,{ label: 'Settings'		, icon: 'move'			}
 		,{ label: 'Controls'		, icon: 'off'			}
 		];
-	JKY.set_buttons_control(admins, JKY.session['language'], JKY.session['languages']);
+	JKY.set_buttons_control(admins, JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
 
 	var name	= 'Controls Dashboard';
 	var buttons = 
