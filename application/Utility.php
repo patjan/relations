@@ -2266,6 +2266,17 @@ function get_request( $name ) {
      return trim( $value );
 }
 
+<<<<<<< HEAD
+=======
+function get_data($data, $name ) {
+	if( !isset($data[$name])) {
+		return '';
+	 }else{
+		return trim($data[$name]);
+	 }
+}
+
+>>>>>>> 03e960310e87d7fc48a83fd72b3ff2bca4db03ad
 function is_browser( $type ) {
      return get_session( 'browser' ) == $type;
 }

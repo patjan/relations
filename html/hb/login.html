@@ -1,0 +1,35 @@
+<div id='signup-form'>
+	<h2>Sign Up</h2>
+	<form class='signup-form'>
+	<fieldset>
+		<br>
+		<label>User Name:</label>
+		<input type='text' id='signup-name' name='signup-name' class='required' placeholder='Enter your user name' value='gooduser'>
+		<br><br>
+		<label>Email Address:</label>
+		<input type='text' id='email-address' name='email-address' class='required' placeholder='Enter your email address' value='anymail@email.com'>
+		<br><br>
+		<input type='submit' value='Sign Up' onclick='JKY.signup_submit()'>
+		<span id='sign-up-message' class='error'></span>
+	</fieldset>
+	</form>
+	<a href='/tandem/reset-password/'>Forgot your password?</a>
+</div>
+
+<div id='login-form'>
+	<h2>Log In</h2>
+	<form class='login-form'>
+	<fieldset>
+		<br>
+		<label>User Name:</label>
+		<input type='text' class='user-name required' placeholder='Enter your user name' value='patjan'>
+		<br><br>
+		<label>Password:</label>
+		<input type='password' class='password required' placeholder='Enter your password' value='brazil'>
+		<br><br>
+		<input type='button' value='Log in' onclick='JKY.login_submit()'>
+		<span id='log-in-message' class='error'></span>
+	</fieldset>
+	</form>
+	<a href='/tandem/reset-password/'>Forgot your password?</a>
+</div>

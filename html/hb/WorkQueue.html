@@ -1,0 +1,78 @@
+<script type='text/x-handlebars' data-template-name='template-main'>
+	<div id='wq-menu'>
+		{{outlet outlet-menu}}
+	</div>
+	<div id='wq-data'>
+		<table id='wq-table' class='table table-striped'>
+			{{outlet outlet-head}}
+			{{outlet outlet-body}}
+			{{outlet outlet-foot}}
+		</table>
+	</div>
+	<div class='clear'></div>
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-menu'>
+	<ul id='order-types'>
+		{{#each order-type in content}}
+			<li {{bindAttr class="order-type.class"}}>
+				<a {{action loadNewType order-type.name target="CX.wqMenuView"}}>
+					{{order-type.name}}
+				</a>
+				&nbsp; {{order-type.count}}
+			</li>
+		{{/each}}
+	</ul>
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-head'>
+	<thead id='table-header'>
+		<tr>
+		{{#each header in content}}
+			<td {{CX-set-header-align header}}>
+				{{CX-fix-header-label header}}
+			</td>
+		{{/each}}
+			<td class='scroll-bar'></td>
+		</tr>
+	</thead>
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-body'>
+	<tbody id='table-body'>
+		<tr><td id='empty-table'>No order found</td></tr>
+	<!-- 
+		{{#if content}}
+			{{#each row in content}}
+				<tr>
+				{{#each col in row}}
+					{{CX-fix-order-value col}}
+				{{/each}}
+				</tr>
+			{{/each}}
+		{{else}}
+			<tr><td id='empty-table'>No order found</td></tr>
+		{{/if}}
+	-->
+	</tbody>
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-foot'>
+	<tfoot id='table-footer'>
+		<tr>
+		{{#each footer in content}}
+			<td id='active-order-type'>Order Type: {{footer.order-type}}</td>
+			<td id='active-order-count'>
+				<span id='order-counters'>Loaded: {{footer.loaded-count}} of {{footer.total-count}}</span>
+				<span id='more-action'>
+				{{#if footer.has-more-orders}}
+					<input id='load-more-orders' type='button' {{action loadMoreOrders footer.order-type href=true}} value='Load More Orders' />
+				{{else}}
+					<span id='all-orders-loaded'>All Orders Loaded</span>
+				{{/if}}
+				</span>
+			</td>
+		{{/each}}
+		</tr>
+	</tfoot>
+</script>

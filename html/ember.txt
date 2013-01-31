@@ -1,0 +1,234 @@
+model
+view
+controller
+state
+
+handlebars
+
+
+MVC
+AJAX
+REST
+JSON
+
+bindings
+computed properties
+auto-updating templates
+
+
+{{person.name}} is {{person.age}}.
+
+MyApp.president = Ember.Object.create({
+  name: "Barack Obama"
+});
+MyApp.country = Ember.Object.create({
+  // Ending a property with 'Binding' tells Ember to
+  // create a binding to the presidentName property.
+  presidentNameBinding: 'MyApp.president.name'
+});
+// Later, after Ember has resolved bindings...
+MyApp.country.get('presidentName');
+// "Barack Obama"
+
+
+MyApp.president = Ember.Object.create({
+  firstName: "Barack",
+  lastName: "Obama",
+  fullName: function() {
+    return this.get('firstName') + ' ' + this.get('lastName');
+  // Call this flag to mark the function as a property
+  }.property()
+});
+MyApp.president.get('fullName');
+// "Barack Obama"
+
+MyApp.president = Ember.Object.create({
+  firstName: "Barack",
+  lastName: "Obama",
+  fullName: function() {
+    return this.get('firstName') + ' ' + this.get('lastName');
+  // Tell Ember that this computed property depends on firstName
+  // and lastName
+  }.property('firstName', 'lastName')
+});
+
+
+<script type="text/x-handlebars">
+  The President of the United States is {{MyApp.president.fullName}}.
+</script>
+
+
+Person = Ember.Object.extend({
+	say: function(thing) {
+		alert(thing);
+	}
+});
+
+var person = Person.create();
+person.say("Hello") // alerts "Hello"
+
+var tom = Person.create({
+	name: "Tom Dale",
+	helloWorld: function() {
+		this.say("Hi my name is " + this.get('name'));
+	}
+});
+tom.helloWorld() // alerts "Hi my name is Tom Dale"
+
+var LoudPerson = Person.extend({
+	say: function(thing) {
+		this._super(thing.toUpperCase());
+	}
+});
+
+Person.reopen({
+	isPerson: true
+});
+Person.create().get('isPerson') // true
+
+Person.reopen({
+	// override `say` to add an ! at the end
+	say: function(thing) {
+		this._super(thing + "!");
+	}
+});
+
+Person.reopenClass({
+	createMan: function() {
+		return Person.create({isMan: true})
+	}
+});
+Person.createMan().get('isMan') // true
+
+Person = Ember.Object.extend({
+	// these will be supplied by `create`
+	firstName: null,
+	lastName: null,
+	fullName: function() {
+		var firstName = this.get('firstName');
+		var lastName = this.get('lastName');
+		return firstName + ' ' + lastName;
+	}.property('firstName', 'lastName')
+});
+var tom = Person.create({
+	firstName: "Tom",
+	lastName: "Dale"
+});
+tom.get('fullName') // "Tom Dale"
+
+Person = Ember.Object.extend({
+	// these will be supplied by `create`
+	firstName: null,
+	lastName: null,
+	fullName: function(key, value) {
+		// getter
+		if (arguments.length === 1) {
+			var firstName = this.get('firstName');
+			var lastName  = this.get('lastName' );
+			return firstName + ' ' + lastName;
+		// setter
+		} else {
+			var name = value.split(" ");
+			this.set('firstName', name[0]);
+			this.set('lastName' , name[1]);
+			return value;
+		}
+	}.property('firstName', 'lastName')
+});
+var person = Person.create();
+person.set('fullName', "Peter Wagenet");
+person.get('firstName') // Peter
+person.get('lastName') // Wagenet
+
+
+Person = Ember.Object.extend({
+  // these will be supplied by `create`
+  firstName: null,
+  lastName: null,
+  fullName: function() {
+    var firstName = this.get('firstName');
+    var lastName = this.get('lastName');
+    return firstName + ' ' + lastName;
+  }.property('firstName', 'lastName')
+});
+var person = Person.create({
+  firstName: "Yehuda",
+  lastName: "Katz"
+});
+person.addObserver('fullName', function() {
+  // deal with the change
+});
+person.set('firstName', "Brohuda"); // observer will fire
+
+
+Person.reopen({
+  fullNameChanged: function() {
+    // this is an inline version of .addObserver
+  }.observes('fullName')
+});
+
+
+Person.reopen({
+  fullNameChanged: Ember.observer(function() {
+    // this is an inline version of .addObserver
+  }, 'fullName')
+});
+
+
+App.todosController = Ember.Object.create({
+  todos: [
+    Ember.Object.create({ isDone: false })
+  ],
+  remaining: function() {
+    var todos = this.get('todos');
+    return todos.filterProperty('isDone', false).get('length');
+  }.property('todos.@each.isDone')
+});
+
+App.todosController.get('remaining');
+// 1
+
+var todos = App.todosController.get('todos');
+var todo = todos.objectAt(0);
+todo.set('isDone', true);
+App.todosController.get('remaining');
+// 0
+todo = Ember.Object.create({ isDone: false });
+todos.pushObject(todo);
+App.todosController.get('remaining');
+// 1
+
+
+App.wife = Ember.Object.create({
+  householdIncome: 80000
+});
+App.husband = Ember.Object.create({
+  householdIncomeBinding: 'App.wife.householdIncome'
+});
+App.husband.get('householdIncome'); // 80000
+// Someone gets raise.
+App.husband.set('householdIncome', 90000);
+App.wife.get('householdIncome'); // 90000
+
+
+App.user = Ember.Object.create({
+  fullName: "Kara Gates"
+});
+App.userView = Ember.View.create({
+  userNameBinding: Ember.Binding.oneWay('App.user.fullName')
+});
+// Changing the name of the user object changes
+// the value on the view.
+App.user.set('fullName', "Krang Gates");
+// App.userView.userName will become "Krang Gates"
+// ...but changes to the view don't make it back to
+// the object.
+App.userView.set('userName', "Truckasaurus Gates");
+App.user.get('fullName'); // "Krang Gates"
+
+
+App = Ember.Application.create();
+
+App = Ember.Application.create({
+  rootElement: '#sidebar'
+});

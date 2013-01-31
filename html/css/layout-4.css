@@ -1,0 +1,68 @@
+.container {width:940px; margin:0 auto;}
+.btn-large	{ padding:6px 16px; font-size:16px;}
+.btn-large [class^="icon-"], .btn-large [class*=" icon-"] {margin:3px 6px 0 0;}
+.ui-widget-header{background:none; border:none;}
+
+#jky-wrapper		{clear:both; height:auto !important; min-height:100%; margin:0 auto -20px;}
+
+#jky-header			{clear:both; height:20px; background: #DDE3E1; border-bottom: 1px solid #D4D4D4; padding-top:2px; }
+#jky-icons			{clear:both; height:44px; margin-top:15px;}
+#jky-buttons		{clear:both; height:34px; margin-top:15px;}
+#jky-body			{clear:both; height:auto; background:#DDE3E1;}
+#jky-footer			{clear:both; height:20px; margin-top:5px; font-size:90%;}
+
+#jky-company-name	{float:left;}
+#jky-user-info		{float:right;}
+#jky-user-name		{}
+
+#jky-company-logo	{float:left; }
+#jky-event-name		{float:right; padding:26px 5px 0; font-size:200%; font-weight:bold; font-style:italic;}
+
+#jky-menus			{float:left; display:inline;}
+#jky-control		{float:right;}
+
+#jky-menus        { float:left; }
+#jky-menus .ui-widget-header { border:none; margin-top:7px;}
+#jky-menus .ui-tabs-nav { background: #ffffff; padding:0; }
+#jky-menus.ui-tabs{ padding: 0 5px 0 0; }
+#jky-menus.ui-tabs .ui-state-default { background:#a2a2a2; border:1px solid #636363; }
+#jky-menus.ui-tabs .ui-state-active  { background:#ffffff; border:1px solid #aaaaaa; }
+#jky-menus.ui-widget-content { background: #ffffff; border:0; }
+#jky-menus.ui-widget-content .ui-state-default { background:#a2a2a2; border:1px solid #636363; }
+#jky-menus.ui-widget-content .ui-state-active  { background:#ffffff; border:1px solid #aaaaaa; }
+#jky-menus li {margin:0 5px 0 0;}
+#jky-menus a      { color:#ffffff; background:#317082; cursor:pointer; }
+#jky-menus a:hover{ color:#cfcfcf; }
+
+#jky-control      { float:right; }
+#jky-control .ui-widget-header { border:none; margin-top:8px; font-size:110%; }
+#jky-control .ui-tabs-nav   {background: #ffffff; padding:0; }
+#jky-control.ui-tabs        {padding:0 0 0 5px;}
+#jky-control.ui-widget-content { background: #ffffff; border:0; }
+#jky-control.ui-widget-content .ui-state-default { background:#a2a2a2; border:1px solid #636363; }
+#jky-control.ui-widget-content .ui-state-active  { background:#ffffff; border:1px solid #aaaaaa; }
+#jky-control li {margin:0 0 0 5px;}
+#jky-control a         { color:#ffffff; background:#636363; cursor:pointer; }
+#jky-control a:hover   { color:#cfcfcf; }
+
+#jky-admin          { visibility:hidden; display:block; position:absolute; top:40px; left:10px; z-index:9999; }
+#jky-admin li       { height:34px; padding-top:1px; }
+#jky-admin li a     { color: #fff; width:130px; text-align:left; }
+#jky-admin span     { }
+
+#jky-body-header	{clear:both; height:30px; margin-top:15px;}
+#jky-body-filter	{clear:both; height:40px; margin-top:15px; border-top:1px solid gray; padding-top:10px;}
+#jky-body-table		{clear:both; }
+
+#jky-body-name		{float:left; font-size:220%; font-weight:bold;}
+#jky-body-name i	{margin:12px 10px 0 0;}
+
+#jky-body-buttons	{float:right;}
+
+#jky-filter			{width:300px;}
+#jky-select			{width:140px;}
+#jky-display		{width: 70px;}
+#jky-counter		{width: 35px; text-align:right;}
+
+#jky-copyright           { float:left; }
+#jky-contact-us          { float:right; }

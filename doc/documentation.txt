@@ -1,0 +1,84 @@
+Documentation
+
+- Smart & Sex Application (SSA)
+- Easy to use
+- Intuit to operate
+- Fast response
+
+
+- PC
+- Windows
+- Linux
+- VMware
+- Github
+- Netbeans
+- Photoshop
+- BeyondCompare
+- DDS
+- FreeMind
+- putty
+
+- TeamViewer
+- Skype
+
+
+- backend
+	- Apache	| Nginx
+	- MySQL		| PostgreSQL
+	- PHP		| ROR
+	- Zend		| CodeIgniter
+	- plupload
+	
+- Browsers (last 2 versions)
+	IE	8 & 9 
+	Firebox
+	Chrome
+	Safari
+
+- frontend
+	- html 5
+	- css 3
+		bootstrap
+		bootstrap-response
+	- js
+		ember
+		handlebars
+		ajax
+		jquery
+		jquery.md5
+		jquery.tablescroll
+		jquery.jqplot
+		excanvas
+
+
+- functionalities:
+	- fast response	- ajax
+	- drag & drop	- jquery
+	- table scroll	- jquery.tablescroll
+	- security		- jquery.md5
+	- graphics		- jquery.jqplot | excanvas
+	- new layer		- bootstrap modal
+	- tab			- bootstrap tab
+	- tabbable		- bootstrap tab
+	- tab dropdown	- bootstrap dropdown
+	- tooltip		- bootstrap tooltip 
+	- progress bar	- bootstrap progress bar
+
+
+	- upload		- plupload
+	- download		- php
+	- export		- php excel
+	- import		- php cvs
+	- email			- smtp (blacklist)
+
+- need to do:
+	1.	define frontend X backend protocol (ajax json)
+	2.	define basic layouts
+		- set-up
+		- log-in
+		- log-help
+		- log-out
+		- contact_us
+		- your_profile
+	3.	
+		

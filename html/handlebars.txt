@@ -1,0 +1,510 @@
+<html>
+  <body>
+    <script type="text/x-handlebars">
+      Hello, <b>{{MyApp.name}}</b>
+    </script>
+  </body>
+</html>
+
+<html>
+  <head>
+    <script type="text/x-handlebars" data-template-name="say-hello">
+      Hello, <b>{{MyApp.name}}</b>
+    </script>
+  </head>
+</html>
+
+<html>
+  <head>
+    <script type="text/x-handlebars" data-template-name="say-hello">
+      Hello, <b>{{name}}</b>
+    </script>
+  </head>
+</html>
+
+var view = Ember.View.create({
+  templateName: 'say-hello',
+  name: "Bob"
+});
+
+view.appendTo('#container');
+
+view.append();
+
+view.remove();
+
+
+My new car is {{color}}.
+
+App.CarView = Ember.View.extend({
+  color: 'blue'
+});
+
+My new car is blue.
+
+My new car is {{App.carController.color}}.
+
+My new car is
+<script id="metamorph-0-start" type="text/x-placeholder"></script>
+blue
+<script id="metamorph-0-end" type="text/x-placeholder"></script>.
+
+
+<!-- Don't do it! -->
+<div {{#if isUrgent}}class="urgent"{{/if}}>
+
+My new car is {{unbound color}}.
+
+My new car is blue.
+
+
+App.SayHelloView = Ember.View.extend({
+  person: Ember.Object.create({
+    firstName: "Joy",
+    lastName: "Clojure"
+  })
+});
+
+{{#if person}}
+  Welcome back, <b>{{person.firstName}} {{person.lastName}}</b>!
+{{/if}}
+
+{{#if person}}
+  Welcome back, <b>{{person.firstName}} {{person.lastName}}</b>!
+{{else}}
+  Please log in.
+{{/if}}
+
+{{#unless hasPaid}}
+  You owe: ${{total}}
+{{/unless}}
+
+{{#with person}}
+  Welcome back, <b>{{firstName}} {{lastName}}</b>!
+{{/with}}
+
+
+App.LogoView = Ember.View.extend({
+  logoUrl: 'http://www.mycorp.com/images/logo.png'
+});
+
+<div id="logo">
+  <img {{bindAttr src="logoUrl"}} alt="Logo">
+</div>
+
+<div id="logo">
+  <img src="http://www.mycorp.com/images/logo.png" alt="Logo">
+</div>
+
+App.InputView = Ember.View.extend({
+  isDisabled: true
+});
+
+<input type="checkbox" {{bindAttr disabled="isDisabled"}}>
+
+<input type="checkbox" disabled>
+
+
+App.AlertView = Ember.View.extend({
+  priority: "p4",
+  isUrgent: true
+});
+
+<div {{bindAttr class="priority"}}>
+  Warning!
+</div>
+
+<div class="p4">
+  Warning!
+</div>
+
+<div {{bindAttr class="isUrgent"}}>
+  Warning!
+</div>
+
+<div class="is-urgent">
+  Warning!
+</div>
+
+<div {{bindAttr class="isUrgent priority"}}>
+  Warning!
+</div>
+
+<div {{bindAttr class="isUrgent:urgent"}}>
+  Warning!
+</div>
+
+<div {{bindAttr class="isEnabled:enabled:disabled"}}>
+  Warning!
+</div>
+
+<div {{bindAttr class="isEnabled::disabled"}}>
+  Warning!
+</div>
+
+
+<a href="#" {{action "edit" on="click"}}>Edit</a>
+
+<a href="#" {{action "edit"}}>Edit</a>
+
+<a href="#" {{action "edit" target="parentView"}}>Edit</a>
+
+App.ListingView = Ember.View.extend({
+  templateName: 'listing',
+  edit: function(event) {
+    event.view.set('isEditing', true);
+  }
+});
+
+<a href="#" data-ember-action="3">Edit</a>
+
+
+// Define parent view
+App.UserView = Ember.View.extend({
+  templateName: 'user',
+  firstName: "Albert",
+  lastName: "Hofmann"
+});
+// Define child view
+App.InfoView = Ember.View.extend({
+  templateName: 'info',
+  posts: 25,
+  hobbies: "Riding bicycles"
+});
+
+User: {{firstName}} {{lastName}}
+{{view App.InfoView}}
+
+<b>Posts:</b> {{view.posts}}
+<br>
+<b>Hobbies:</b> {{view.hobbies}}
+
+User: Albert Hofmann
+<div>
+  <b>Posts:</b> 25
+  <br>
+  <b>Hobbies:</b> Riding bicycles
+</div>
+
+
+App.UserView = Ember.View.extend({
+  templateName: 'user',
+  firstName: "Albert",
+  lastName: "Hofmann",
+  infoView: Ember.View.extend({
+    templateName: 'info',
+    posts: 25,
+    hobbies: "Riding bicycles"
+  })
+});
+
+User: {{firstName}} {{lastName}}
+{{view infoView}}
+
+
+App.UserView = Ember.View.extend({
+  templateName: 'user',
+  firstName: "Albert",
+  lastName: "Hofmann"
+});
+App.InfoView = Ember.View.extend({
+  posts: 25,
+  hobbies: "Riding bicycles"
+});
+
+User: {{firstName}} {{lastName}}
+{{#view App.InfoView}}
+  <b>Posts:</b> {{view.posts}}
+  <br>
+  <b>Hobbies:</b> {{view.hobbies}}
+{{/view}}
+
+
+App.userController = Ember.Object.create({
+  content: Ember.Object.create({
+    firstName: "Albert",
+    lastName: "Hofmann",
+    posts: 25,
+    hobbies: "Riding bicycles"
+  })
+});
+
+App.UserView = Ember.View.extend({
+  templateName: 'user',
+  firstNameBinding: 'App.userController.content.firstName',
+  lastNameBinding: 'App.userController.content.lastName'
+});
+
+User: {{firstName}} {{lastName}}
+{{#view App.UserView postsBinding="App.userController.content.posts"
+        hobbiesBinding="App.userController.content.hobbies"}}
+  <b>Posts:</b> {{view.posts}}
+  <br>
+  <b>Hobbies:</b> {{view.hobbies}}
+{{/view}}
+
+
+{{view App.InfoView tagName="span"}}
+
+{{view App.InfoView id="info-view"}}
+
+/** Give the view a red background. **/
+  #info-view {
+    background-color: red;
+  }
+  
+{{view App.InfoView class="info urgent"}}
+
+App.AlertView = Ember.View.extend({
+  priority: "p4",
+  isUrgent: true
+});
+
+{{view App.AlertView classBinding="isUrgent priority"}}
+
+<div id="sc420" class="sc-view is-urgent p4"></div>
+
+
+App.PeopleView = Ember.View.extend({
+  people: [ { name: 'Yehuda' },
+            { name: 'Tom' } ]
+});
+
+<ul>
+  {{#each people}}
+    <li>Hello, {{name}}!</li>
+  {{/each}}
+</ul>
+
+<ul>
+  <li>Hello, Yehuda!</li>
+  <li>Hello, Tom!</li>
+</ul>
+
+{{#each App.peopleController}}
+  {{#view App.PersonView}}
+    {{firstName}} {{lastName}}
+  {{/view}}
+{{/each}}
+
+
+Handlebars.registerHelper('highlight', function(property, options) {
+  var value = Ember.Handlebars.getPath(this, property, options);
+  return new Handlebars.SafeString('<span class="highlight">'+value+'</span>');
+});
+
+{{highlight name}}
+
+<span class="highlight">Peter</span>
+
+
+<label>
+      {{view Ember.Checkbox checkedBinding="content.isDone"}}
+      {{content.title}}
+</label>
+	
+App.MyText = Ember.TextField.extend({
+	formBlurredBinding: 'App.adminController.formBlurred',
+	change: function(evt) {
+	  this.set('formBlurred', true);
+	}
+});	
+	
+{{view Ember.Select viewName="select"
+	contentBinding="App.peopleController"
+	optionLabelPath="content.fullName"
+	optionValuePath="content.id"
+	prompt="Pick a person:"
+	selectionBinding="App.selectedPersonController.person"
+}}
+						  
+var textArea = Ember.TextArea.create({
+	valueBinding: 'TestObject.value'
+});	
+
+App.MyText = Ember.TextField.extend({
+    formBlurredBinding: 'App.adminController.formBlurred',
+    change: function(evt) {
+      this.set('formBlurred', true);
+    }
+});
+					  
+<script id="formDetail" data-template-name='formDetail' type="text/x-handlebars">
+    <form>
+        <fieldset>
+           <legend>Info:</legend>                 
+                   {{view App.MyText name="Name" id="Name"  valueBinding="myObj.Name"}} 
+                   <label for="Name">Name</label><br/>
+                   {{#if formBlurred}}
+                    <a href="#" {{action "syncData" on="click"}}>Save</a>
+                    {{/if}}
+        </fieldset>
+    </form>
+</script>
+
+
+{{#view App.ClickableView}}
+This is a clickable area!
+{{/view}}
+
+App.ClickableView = Ember.View.extend({
+  click: function(evt) {
+    alert("ClickableView was clicked!");
+  }
+});
+
+
+var container = Ember.ContainerView.create();
+container.append();
+var coolView = App.CoolView.create(),
+    childViews = container.get('childViews');
+childViews.pushObject(coolView);
+
+var container = Ember.ContainerView.create({
+  childViews: ['firstView', 'secondView'],
+  firstView: App.FirstView,
+  secondView: App.SecondView
+});
+
+
+App.CoolView = Ember.View.create({
+  render: function(buffer) {
+    buffer.push("<b>This view is so cool!</b>");
+  }
+});
+
+App.MyView = Ember.View.extend({
+  tagName: 'span'
+});
+
+App.MyView = Ember.View.extend({
+  classNames: ['my-view']
+});
+
+App.MyView = Ember.View.extend({
+  classNameBindings: ['isUrgent'],
+  isUrgent: true
+});
+
+<div class="ember-view is-urgent">
+
+App.MyView = Ember.View.extend({
+  classNameBindings: ['isUrgent:urgent'],
+  isUrgent: true
+});
+
+<div class="ember-view urgent">
+
+App.MyView = Ember.View.extend({
+  classNameBindings: ['isEnabled:enabled:disabled'],
+  isEnabled: false
+});
+
+<div class="ember-view disabled">
+
+App.MyView = Ember.View.extend({
+  classNameBindings: ['isEnabled::disabled'],
+  isEnabled: false
+});
+
+<div class="ember-view disabled">
+
+<div class="ember-view">
+
+
+App.MyView = Ember.View.extend({
+  classNameBindings: ['priority'],
+  priority: 'highestPriority'
+});
+
+<div class="ember-view highestPriority">
+
+
+App.MyView = Ember.View.extend({
+  tagName: 'a',
+  attributeBindings: ['href'],
+  href: "http://emberjs.com"
+});
+
+[1,2,3].forEach(function(item) {
+  console.log(item);
+});
+
+var array = [1,2,3];
+array.forEach(function(item) {
+  console.log(item, this.indexOf(item));
+}, array)
+
+var array = [1,2,3];
+array.forEach(array.removeObject, array);
+
+
+enumerable.forEach(function(item, index, self) {
+  console.log(item);
+});
+
+Person = Ember.Object.extend({
+  sayHello: function() {
+    console.log("Hello from " + this.get('name'));
+  }
+});
+var people = [
+  Person.create({ name: "Juan" }),
+  Person.create({ name: "Charles" }),
+  Person.create({ name: "Majd" })
+]
+people.invoke('sayHello');
+// Hello from Juan
+// Hello from Charles
+// Hello from Majd
+
+[1,2,3].get('firstObject') // 1
+[1,2,3].get('lastObject')  // 3
+
+['Goodbye', 'cruel', 'world'].map(function(item, index, self) {
+  return item + "!";
+});
+// returns ["Goodbye!", "cruel!", "world!"]
+
+var arr = [Ember.Object.create(), Ember.Object.create()];
+// we now have an Array containing two Ember.Objects
+arr.setEach('name', 'unknown');
+arr.getEach('name') // ['unknown', 'unknown']
+
+var arr = [1,2,3,4,5];
+arr.filter(function(item, index, self) {
+  if (item < 4) { return true; }
+})
+// returns [1,2,3]
+
+Todo = Ember.Object.extend({
+  title: null,
+  isDone: false
+});
+todos = [
+  Todo.create({ title: 'Write code', isDone: true }),
+  Todo.create({ title: 'Go to sleep' })
+];
+todos.filterProperty('isDone', true);
+// returns an Array containing just the first item
+
+Person = Ember.Object.extend({
+  name: null,
+  isHappy: false
+});
+var people = [
+  Person.create({ name: 'Yehuda', isHappy: true }),
+  Person.create({ name: 'Majd', isHappy: false })
+];
+people.every(function(person, index, self) {
+  if(person.get('isHappy')) { return true; }
+});
+// returns false
+
+people.some(function(person, index, self) {
+  if(person.get('isHappy')) { return true; }
+});
+// returns true
+
+people.everyProperty('isHappy', true) // false
+people.someProperty('isHappy', true)  // true

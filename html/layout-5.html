@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class='no-js lt-ie9 lt-ie8 lt-ie7'> <![endif]-->
+<!--[if IE 7]>         <html class='no-js lt-ie9 lt-ie8'> <![endif]-->
+<!--[if IE 8]>         <html class='no-js lt-ie9'> <![endif]-->
+<!--[if gt IE 8]><!--> <html class='no-js'> <!--<![endif]-->
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+        <title>JKY Software - Layout</title>
+        <meta name='description' 	content='JKY Software - Relations'>
+        <meta name='author' 		content='http://www.jkysoftware.com'>
+        <meta name='viewport' 		content='width=device-width'>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link href='css/normalize.css'				rel='stylesheet'>
+        <link href='css/main.css'					rel='stylesheet'>
+        <link href='css/jquery-ui-1.9.0.custom.css' rel='stylesheet'>
+        <link href='css/jquery.tablescroll.css' 	rel='stylesheet'>
+        <link href='css/bootstrap.css' 				rel='stylesheet'>
+        <link href='css/bootstrap-responsive.css'	rel='stylesheet'>
+
+        <link href='css/JKY-base-5.css' 				rel='stylesheet'>
+        <link href='css/layout-5.css'					rel='stylesheet'>
+
+        <!--script src='js/vendor/modernizr-2.6.1.min.js'></script-->
+    </head>
+
+    <body>
+
+<div id='jky-header'>
+	<div class='container'>
+		<div id='jky-company-name'>JKY Software Corp</div>
+		<div id='jky-user-info'>
+<!--
+			Welcome,
+			please <span id='jky-sign-up'><a>Sign Up</a></span>
+			or <span id='jky-log-in' ><a>Log In</a></span>
+-->
+			Hello <span id='jky-user-name'>Pat Jan</span>,
+			want to view <span id='jky-profile'><a>Your Profile</a></span>
+			or <span id='jky-log-out'><a>Log Out</a></span>
+		</div>
+	</div>
+</div>
+
+<div id='jky-icons'>
+	<div class='container'>
+		<div id='jky-company-logo'><img src='../img/relations.png' /></div>
+		<div id='jky-event-name'>2012 Annual Event</div>
+	</div>
+</div>
+
+<div id='jky-buttons'>
+	<div class='container'>
+<!--	<div id='jky-menus' class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'-->
+		<div id='jky-menus'>
+			<a class='btn btn-large'><i class='icon-home icon-white'></i>Home</a>
+			<a class='btn btn-large'><i class='icon-question-sign icon-white'></i>Help</a>
+			<a class='btn btn-large'><i class='icon-user icon-white'></i>My Info</a>
+		</div>
+		<div id='jky-control'>
+			<a class='btn btn-large'><i class='icon-font icon-white'></i>Language</a>
+			<a class='btn btn-large'><i class='icon-tasks icon-white'></i>Admin</a>
+			<div style='display:none;'>
+				<a>Dictionary</a>
+				<a>Summary</a>
+				<a>Users</a>
+				<a>Groups</a>
+				<a>Templates</a>
+				<a>Organizations</a>
+				<a>Permissions</a>
+				<a>Settings</a>
+				<a>Controls</a>
+			</div>
+			<a class='btn btn-large'><i class='icon-share icon-white'></i>Tickets</a>
+		</div>
+	</div>
+</div>
+
+<div id='jky-body'>
+	<div class='container'>
+		<div id='jky-body-header'>
+			<div id='jky-body-name'><i class='icon-tasks'></i>Controls</div>
+			<div id='jky-body-buttons'>
+				<a class='btn'>Add New</a>
+				<a class='btn'>Export</a>
+				<a class='btn'>Publish</a>
+				<a class='btn'>Combine</a>
+				<a class='btn'>Upload</a>
+				<a class='btn'>Print</a>
+			</div>
+		</div>
+
+		<div id='jky-body-filter'>
+			<div class='left'>
+				<input id='jky-filter' type='text' placeholder='filter' />
+				<img src='img/magnifier.png' />
+			</div>
+			<div class='right'>
+				<span class='jky-label'>Control Set:</span>
+				<select id='jky-select'>
+					<option value='Company Types'>Company Types</option>
+				</select>
+				<span class='jky-label'>Display:</span>
+				<select id='jky-display'>
+					<option value='All'>All</option>
+				</select>
+				<span class='jky-label'>Loaded:</span>
+				<span id='jky-counter'>123 of 123</span>
+			</div>
+		</div>
+
+		<table id='jky-body-table' class='table table-striped'>
+<!--		<thead id='jky-table-header' class='ui-widget-header'-->
+			<thead id='jky-table-header'>
+				<tr>
+					<th id='sequence'		>Seq				</th>
+					<th id='control-name'	>Control<br>Name	</th>
+					<th id='control-value'	>Control<br>Value	</th>
+					<th id='status'			>Status				</th>
+				</tr>
+			</thead>
+
+			<tbody id='jky-table-body'>
+				<tr><td class='C'>0</td><td>Company Types	</td><td>&nbsp;</td><td class='C'>active</td></tr>
+				<tr><td class='C'>0</td><td>Display Rows	</td><td>&nbsp;</td><td class='C'>active</td></tr>
+				<tr><td class='C'>0</td><td>Group Types		</td><td>&nbsp;</td><td class='C'>active</td></tr>
+				<tr><td class='C'>0</td><td>Priorities		</td><td>&nbsp;</td><td class='C'>active</td></tr>
+				<tr><td class='C'>0</td><td>Root			</td><td>&nbsp;</td><td class='C'>active</td></tr>
+				<tr><td class='C'>0</td><td>Status Codes	</td><td>&nbsp;</td><td class='C'>active</td></tr>
+			</tbody>
+
+			<tfoot id='jky-table-footer'>
+				<tr></tr>
+			</tfoot>
+		</table>
+
+		<div id='jky-body-footer'></div>
+	</div>
+</div>
+
+<div id='jky-footer'>
+	<div class='container'>
+		<div id='jky-copyright'><a>© 2013 JKY Software Corp</a></div>
+		<div id='jky-contact-us'><a>Contact Us</a></div>
+	</div>
+</div>
+
+    </body>
+		<!--script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
+		<script>window.jQuery || document.write('<script src='js/vendor/jquery-1.8.0.min.js'><\/script>')</script-->
+
+		<!-- excanvas.js is required on IE7 & IE8 to be able to render jqplot -->
+		<!--[if IE]><script src='lib/excanvas.js'></script><![endif]-->
+		<script src='lib/jquery-1.8.2.js'					></script>
+		<script src='lib/bootstrap.min.js'					></script>
+		<!--script src='lib/handlebars-1.0.js'					></script-->
+		<!--script src='lib/ember-1.0.pre.js'				    ></script-->
+		<!--script src='lib/ember-routemanager.js'				></script-->
+		<!--script src='lib/ember-layout.js'					></script-->
+<!--
+		<script src='lib/jquery.md5.js'						></script>
+		<script src='lib/jquery.validate.min.js'			></script>
+		<script src='lib/jquery.jqplot.min.js'				></script>
+		<script src='lib/jqplot.barRenderer.min.js'			></script>
+		<script src='lib/jqplot.categoryAxisRenderer.min.js'></script>
+		<script src='lib/jqplot.pointLabels.min.js'			></script>
+		<script src='lib/plugins.js'						></script>
+		<script src='lib/main.js'							></script>
+		<script src='js/jky-util.js'	></script>
+		<script src='js/jky-core.js'	></script>
+		<script src='js/IHS-util.js'	></script>
+		<script src='js/index.js'		></script>
+		<script src='js/login.js'		></script>
+		<script src='js/logout.js'		></script>
+		<script src='js/dashboard.js'	></script>
+		<script src='js/controls.js'	></script>
+
+		<script src='obj/control.js'	></script>
+		<script src='obj/user.js'		></script>
+-->
+</html>

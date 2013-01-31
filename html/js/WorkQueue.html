@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+	<head><title></title>
+		<link rel="SHORTCUT ICON" href="/tandem/images/generic/favicon.ico">
+				<link rel="stylesheet" href="/tandem/styles/base.css" type="text/css">
+				<link rel="stylesheet" href="/tandem/themes/generic/ui.all.css" type="text/css">
+				<link rel="stylesheet" href="/tandem/styles/generic/jquery.cluetip.css" type="text/css">
+				<link rel="stylesheet" href="../css/jquery-ui-1.9.0.custom.min.css" type="text/css">
+				<link rel="stylesheet" href="../css/jquery.tablescroll.css" type="text/css">
+				<link rel="stylesheet" href="../css/bootstrap.css" type="text/css">
+				<link rel="stylesheet" href="../css/bootstrap-responsive.css" type="text/css">
+				<link rel="stylesheet" href="../css/CX-base.css" type="text/css">
+				<link rel="stylesheet" href="../css/WorkQueue.css" type="text/css">
+				<link rel="stylesheet" href="/tandem/styles/generic/customize.css" type="text/css">
+						<script type="text/javascript" src="/tandem/scripts/jquery-1.3.2.min.js"></script>
+				<script type="text/javascript" src="/tandem/scripts/jquery.cluetip.js"></script>
+				<script type="text/javascript" src="/tandem/scripts/requestorInfo.js"></script>
+				<script type="text/javascript" src="/tandem/scripts/jquery.tablesorter.min.js"></script>
+				<script type="text/javascript" src="/tandem/scripts/sortable.js"></script>
+				<script type="text/javascript" src="../lib/jquery-1.7.2.min.js"></script>
+				<script type="text/javascript" src="../lib/jquery-ui-1.9.0.custom.min.js"></script>
+				<script type="text/javascript" src="../lib/jquery.tablescroll.js"></script>
+				<script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+				<script type="text/javascript" src="../lib/handlebars-1.0.0.beta.6.js"></script>
+				<script type="text/javascript" src="../lib/ember-1.0.0-pre.2.js"></script>
+				<script type="text/javascript" src="../js/WorkQueue.js"></script>
+				<script type="text/javascript" src="../js/WQ-approve-orders.js"></script>
+				<script type="text/javascript" src="../js/CX-util.js"></script>
+				<script type="text/javascript" src="../js/CX-helpers.js"></script>
+				<script type="text/javascript" src="../model/WorkQueue.js"></script>
+				
+				<link rel="stylesheet" href="/tandem/styles/print.css" type="text/css" media="print">
+				
+		
+		<script type="text/javascript">
+		requireCaseNumberOnFHA = false;
+		sendBoReport = false;
+		</script>
+</head>
+	<body id="bodyContainer">
+		<div id="headerContainer"><div id="header_logo">
+	<img alt="header" src="/tandem/images/generic/logo_large.gif" />
+</div>
+<div id="top_right_nav">
+	<span class='userinfo'>Welcome admin user</span><br/>
+</div>
+
+
+</div>
+		<div id="menuContainer">
+<div id="topBar">
+	<div id="logout">
+		<ul>
+		<li><a href="/tandem/contact-us/">Contact Us</a></li>
+		<li><a href="/tandem/logout/">Log Out</a></li>
+		</ul>
+	</div>
+</div>
+
+<ul id='MainMenu'>
+
+			<li><a href='/tandem/dashboard/'>Dashboard</a></li>
+		<li><a href='/tandem/orders-in-process/'>View Orders</a></li>
+		<li><a href='/tandem/work-queue/'>Work Queue</a></li>
+					<li><a href='/tandem/approve-orders/'>Approve Orders</a></li>
+							<li><a href='/tandem/request-appraisal/'>Request Appraisal</a></li>
+							<li><a href='/tandem/admin/'>Admin</a></li>
+							<li><a href='/tandem/reports/'>Reports</a></li>
+									<li><a href='/tandem/ucdp/resolved-hard-stops/'>UCDP</a></li>
+						<li><a href='/tandem/my-profile/'>My Profile</a></li>
+	<li><a href='/tandem/search/'>Search</a></li>
+</ul>   
+
+<div id="bottomBar"></div>
+</div>
+		<div id="mainContent">
+		
+
+<script type='text/x-handlebars' data-template-name='application'>
+	<div id='wq-menu'>
+		{{outlet outlet-menu}}
+	</div>
+	<div id='wq-data'>
+		<table id='orders-table' class='table table-striped'>
+			{{outlet outlet-head}}
+			{{outlet outlet-body}}
+			{{outlet outlet-foot}}
+		</table>
+	</div>
+	<div class='clear'></div>
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-menu'>
+	<ul id='order-types'>
+		{{#each order-type in content}}
+			<li {{bindAttr class="order-type.class"}}>
+				<a {{action loadNewType order-type.name target="CX.wqMenuView"}}>
+					{{order-type.name}}
+				</a>
+				&nbsp; {{order-type.count}}
+			</li>
+		{{/each}}
+	</ul>
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-head'>
+	<thead id='wq-header'>
+		<tr>
+		{{#each header in content}}
+			<td {{CX-set-header-align header}}>
+				{{CX-fix-header-label header}}
+			</td>
+		{{/each}}
+			<td class='scroll-bar'></td>
+		</tr>
+	</thead>
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-body'>
+	<tbody id='orders-body'>
+	<!--
+		{{#if content}}
+			{{#each row in content}}
+				<tr>
+				{{#each col in row}}
+					{{CX-fix-order-value col}}
+				{{/each}}
+				</tr>
+			{{/each}}
+		{{else}}
+			<tr><td id='empty-table'>No order found</td></tr>
+		{{/if}}
+	-->
+	</tbody>
+</script>
+
+<script type='text/x-handlebars' data-template-name='template-foot'>
+	<tfoot id='wq-footer'>
+		<tr>
+		{{#each footer in content}}
+			<td id='active-order-type'>Order Type: {{footer.order-type}}</td>
+			<td id='active-order-count'>
+				<span id='order-counters'>Loaded: {{footer.loaded-count}} of {{footer.total-count}}</span>
+				<span id='more-action'>
+				{{#if footer.has-more-orders}}
+					<input id='load-more-orders' type='button' {{action loadMoreOrders footer.order-type href=true}} value='Load More Orders' />
+				{{else}}
+					<span id='all-orders-loaded'>All Orders Loaded</span>
+				{{/if}}
+				</span>
+			</td>
+		{{/each}}
+		</tr>
+	</tfoot>
+</script>
+
+		
+		</div>
+		<div id="footerContainer">	Weichert Financial Services &copy;2010
+	<div id="footerLinks">
+	<ul class="nav">
+	<li><a href="/tandem/terms-of-use/" rel="nofollow">Terms of Use</a></li>
+	<li><a href="/tandem/privacy-policy/" rel="nofollow">Privacy Policy</a></li>
+	</ul>
+	</div>
+</div>
+	</body>
+</html>

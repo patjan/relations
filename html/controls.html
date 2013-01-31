@@ -1,0 +1,51 @@
+<div id='jky-body-filters'>
+	<div class='left'>
+		<input id='jky-body-filter' type='text' placeholder='filter' value='' />
+		<img src='img/magnifier.png' />
+	</div>
+	<div class='right'>
+		<span class='jky-label'>Control Set:</span><select id='jky-body-select' ></select>
+		<span class='jky-label'>Display:	</span><select id='jky-body-display'></select>
+		<span class='jky-label'>Loaded:		</span><span id='jky-body-loaded'></span> of <span id='jky-body-total' ></span>
+	</div>
+</div>
+
+<table id='jky-body-table' class='table table-striped'>
+	<thead id='jky-table-header'>
+		<tr>
+			<td class='sequence'		>Seq				</td>
+			<td class='control-name'	>Control<br>Name	</td>
+			<td class='control-value'	>Control<br>Value	</td>
+			<td class='status'			>Status				</td>
+			<td id='scroll-bar'			>&nbsp;				</td>
+		</tr>
+	</thead>
+
+	<tbody id='jky-table-body'>
+				<tr>
+					<td class='sequence'		>{{row.sequence		}}</td>
+					<td class='control-name'	>{{row.control-name	}}</td>
+					<td class='control-value'	>{{row.control-value}}</td>
+					<td class='status'			>{{row.status		}}</td>
+				</tr>
+				<tr><td id='empty-table'>No record found</td></tr>
+	</tbody>
+</table>
+
+<div id='jky_layer' class='modal hide fade in'>
+    <div class='modal-header'></div>
+    <div class='modal-body'>
+        <form class='form-horizontal'>
+            <fieldset>
+                <div class='control-group'><label class='control-label'><?=JKY.t('Control Set'  )?></label><div class='controls'><input    id='control_set'    type='text' readonly                    /></div></div>
+                <div class='control-group'><label class='control-label'><?=JKY.t('Status'       )?></label><div class='controls'><select   id='status'                                         ></select></div></div>
+                <div class='control-group'><label class='control-label'><?=JKY.t('Sequence'     )?></label><div class='controls'><input    id='sequence'       type='text'                             /></div></div>
+                <div class='control-group'><label class='control-label'><?=JKY.t('Control Name' )?></label><div class='controls'><input    id='control_name'   type='text' placeholder='required'      /></div></div>
+                <div class='control-group'><label class='control-label'><?=JKY.t('Control Value')?></label><div class='controls'><textarea id='control_value'                                ></textarea></div></div>
+            </fieldset>
+        </form>
+    </div>
+    <div class='modal-footer'></div>
+</div>
+
+<div id='jky-body-loaded'></div>

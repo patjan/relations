@@ -1,0 +1,132 @@
+jky-header
+	container
+		jky-company-name
+		jky-user-info
+			jky-user-unkown
+				jky-sign-up
+				jky-log-in
+			jky-user-logged
+				jky-full-name
+				jky-profile
+				jky-log-out
+		jky-forgot
+		jky-clock
+
+jky-icons
+	container
+		jky-company-logo
+		jky-event-name
+
+jky-buttons
+	container
+		jky-menus
+			jky-home
+			jky-help
+			jky-my-info
+			jky-news
+			jky-reports
+			jky-features
+			jky-my-account
+
+		jky-control
+			jky-control-language
+			jky-control-admin
+				jky-dictionary
+				jky-summary
+				jky-users
+				jky-groups
+				jky-templates
+				jky-organizations
+				jky-permissions
+				jky-settings
+				jky-controls
+			jky-control-tickets
+
+jky-body
+	container
+		jky-body-header
+			jky-body-name
+			jky-body-buttons
+				jky-add-new
+				jky-export
+				jky-publish
+				jky-combine
+				jky-upload
+				jky-print
+
+		jky-body-body-filters
+			left
+				jky-body-filter
+			right
+				jky-body-select
+				jky-body-display
+				jky-body-counter
+				jky-all-abc
+				jky-all-123
+
+		jky-body-table
+			jky-table-header
+			jky-table-body
+			jky-table-footer
+
+		jky-body-footer
+		
+		jky-body-loaded
+
+jky-footer
+	container
+		jky-copyright
+		jky-contact-us
+		jky-video-demo
+		jky-support
+		jky-terms
+		jky-policy
+		jky-site-map
+		jky-questions
+		jky-blog
+
+jky-loaded
+
+jky-layer
+	jky-layer-header
+		jky-layer-name
+		jky-current
+		jky-total-count
+		jky-previous
+		jky-next
+		jky-close
+	jky-layer-body
+	jky-layer-footer
+		jky-save
+		jky-delete
+		jky-comments
+		jky-close
+		jky-cancel
+
+
+jky-delete
+	jky-close
+	jky-no
+	jky-yes	jky-request_delete()
+
+jky-message
+	jky-close
+	jky-message-body
+
+jky-comments
+	jky-close
+	jky-comments-body
+	jky-posted
+	jky-add-comment
+
+jky-dynamic
+	jky-close
+	jky-dynamic-name
+	jky-save
+	jky-delete
+	jky-cancel
+
+jky-export
+
+jky-loading
+

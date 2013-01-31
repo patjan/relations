@@ -1,0 +1,26 @@
+{
+	"name"			: "IHS",
+	"title"			: "In House System",
+	"description"	: "Smart, Sexier Application",
+	"version"		: "0.1.0",
+	"homepage"		: "http://inhouseusa.com",
+	"author":
+		{ "name"	: "IHS"
+		, "email"	: "patjan@inhouseusa.com"
+		},
+	"repository":
+		{ "type"	: "git"
+		, "url"		: "git://github.com/InHouseUSA/Connexions.git"
+		},
+	"bugs":
+		{ "url"		: "https://github.com/InHouseUSA/Connexions/issues"
+		},
+	"licenses":
+		[ {"type": "MIT" , "url": "http://inhouseusa.com/blob/master/LICENSE-MIT"}
+		, {"type": "GPL" , "url": "http://inhouseusa.com/blob/master/LICENSE-GPL"}
+		],
+	"dependencies":
+		{ "jquery": ">= 1.6"
+		},
+	"keywords": []
+}

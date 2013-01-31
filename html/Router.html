@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ember.js Router Example</title>
+    <meta name="description" content="Example of a basic Ember.js application with a Router" />
+    <meta name="author" content="http://codebrief.com" />
+
+    <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <script src="lib/jquery-1.7.1.js"></script>
+    <script src="lib/jquery.lorem.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+	<script src="lib/handlebars.js"						></script>
+    <script src="lib/ember-1.0.pre.min.js"></script>
+
+    <script type="text/x-handlebars" data-template-name="home">
+      <div class="hero-unit">
+        <h1 {{action "toggle"}}>Home</h1>
+      </div>
+    </script>
+    <script type="text/x-handlebars" data-template-name="about">
+      <div class="hero-unit">
+        <h1 {{action "toggle"}}>About</h1>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="application">
+      <div class="container">
+        {{outlet}}
+      </div>
+    </script>
+    
+	<script>
+(function() {
+'use strict'
+
+// Create the application
+window.App = Ember.Application.create({
+  HomeController: Ember.Controller.extend(),
+  HomeView: Ember.View.extend({templateName: 'home'}),
+  
+  AboutController: Ember.Controller.extend(),
+  AboutView: Ember.View.extend({templateName: 'about'}),
+
+  ApplicationView: Ember.View.extend({templateName: 'application'}),
+  ApplicationController: Ember.Controller.extend({ }),
+
+  Router: Ember.Router.extend({
+    root: Ember.Route.extend({
+      toggle: function(router, event) {
+        console.log();
+        router.transitionTo(router.currentState.next);
+      },
+      home: Ember.Route.extend({
+        route: '/',
+        connectOutlets: function(router, event) {
+          router.get('applicationController').connectOutlet('home');
+        },
+        next: 'about'
+      }),
+      about: Ember.Route.extend({
+        next: 'home',
+        route: '/about',
+        connectOutlets: function(router, event) {
+          router.get('applicationController').connectOutlet('about');
+//          router.get('sidebarController').connectOutlet('sidebar');
+//          router.get('contentController').connectOutlet('content');
+//          router.get('footerController').connectOutlet('footer');
+        }
+      })
+    })
+  })
+});
+
+App.initialize();
+
+})();
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<thead id='table-header'>
+	<tr>
+	{{#each header in content}}
+		<td {{CX-set-header-align header}}>
+			{{CX-fix-header-label header}}
+		</td>
+	{{/each}}
+		<td class='scroll-bar'></td>
+	</tr>
+</thead>

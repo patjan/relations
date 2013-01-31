@@ -1,0 +1,17 @@
+<tfoot id='table-footer'>
+	<tr>
+	{{#each footer in content}}
+		<td id='active-order-type'>Order Type: {{footer.order-type}}</td>
+		<td id='active-order-count'>
+			<span id='order-counters'>Loaded: {{footer.loaded-count}} of {{footer.total-count}}</span>
+			<span id='more-action'>
+			{{#if footer.has-more-orders}}
+				<input id='load-more-orders' type='button' {{action loadMoreOrders footer.order-type href=true}} value='Load More Orders' />
+			{{else}}
+				<span id='all-orders-loaded'>All Orders Loaded</span>
+			{{/if}}
+			</span>
+		</td>
+	{{/each}}
+	</tr>
+</tfoot>
