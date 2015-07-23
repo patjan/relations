@@ -264,7 +264,7 @@ input[ type='file'		]	{margin-left:0;}
 
 .tablescroll_wrapper{width:940px; height:378px; min-height:378px;}
 .table-striped tbody tr:nth-child(2n+1) td,
-.table-striped tbody tr:nth-child(2n+1) th {background-color: #DDE3E1;}
+.table-striped tbody tr:nth-child(2n+1) th {background-color:#ffffff;}
 .tablescroll_head  td {border:1px solid #CCCCCC; border-radius:6px;}
 .tablescroll thead td {border-bottom:1px solid #CCCCCC; border-right:1px solid #CCCCCC; border-radius:6px;}
 

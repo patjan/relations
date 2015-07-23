@@ -1672,23 +1672,36 @@ private function set_language() {
  *   today_date: yyyy-mm-dd
  */
 private function get_session() {
-     $return = array();
-     $return[ 'status'        ] = 'ok';
-     $return[ 'today_date'    ] = date( 'Y-m-d' );
+	$data = array();
+	$data['today_date'] = date('Y-m-d');
 
-     if(  is_session( 'action'          ))   $return[ 'action'             ] = fetch_session( 'action'             );
-     if(  is_session( 'user_key'        ))   $return[ 'user_key'           ] = fetch_session( 'user_key'           );
+	if (is_session('action'			))   $data['action'			] = fetch_session( 'action'		);
+	if (is_session('user_key'		))   $data['user_key'		] = fetch_session( 'user_key'	);
 
-    if (is_session('language'           ))   $return['language'         ] =   get_session('language');
-     if(  is_session( 'control_company' ))   $return[ 'control_company'    ] =   get_session( 'control_company', COMPANY_ID );
-     if(  is_session( 'company_name'    ))   $return[ 'company_name'       ] =   get_session( 'company_name'       );
-     if(  is_session( 'event_id'        ))   $return[ 'event_id'           ] =   get_session( 'event_id'           );
-     if(  is_session( 'event_name'      ))   $return[ 'event_name'         ] =   get_session( 'event_name'         );
-     if(  is_session( 'user_time'       ))   $return[ 'user_time'          ] =   get_session( 'user_time'          );
-     if(  is_session( 'user_id'         ))   $return[ 'user_id'            ] =   get_session( 'user_id'            );
-     if(  is_session( 'full_name'       ))   $return[ 'full_name'          ] =   get_session( 'full_name'          );
-     if(  is_session( 'permissions'     ))   $return[ 'permissions'        ] =   get_session( 'permissions'        );
-     $this->echo_json( $return );
+	if (is_session('language'		))   $data['language'		] =   get_session('language'	);
+	if (is_session('control_company'))   $data['control_company'] =   get_session('control_company', COMPANY_ID);
+	if (is_session('company_name'	))   $data['company_name'	] =   get_session('company_name');
+	if (is_session('company_logo'	))   $data['company_logo'	] =   get_session('company_logo');
+	if (is_session('event_id'		))   $data['event_id'		] =   get_session('event_id'	);
+	if (is_session('event_name'		))   $data['event_name'		] =   get_session('event_name'	);
+	if (is_session('user_name'		))   $data['user_name'		] =   get_session('user_name'	);
+	if (is_session('user_time'		))   $data['user_time'		] =   get_session('user_time'	);
+	if (is_session('user_id'		))   $data['user_id'		] =   get_session('user_id'		);
+	if (is_session('full_name'		))   $data['full_name'		] =   get_session('full_name'	);
+	if (is_session('permissions'	))   $data['permissions'	] =   get_session('permissions'	);
+
+	$data['company_name'] = 'JKY Software Corp.';
+	$data['company_logo'] = 'relations';
+	$data['event_name'	] = 'Event 2013';
+	$data['copyright'	] = '© 2013 JKY Software Corp';
+	$data['contact_us'	] = 'Contact Us';
+	$data['language'	] = 'Taiwanese';
+	$data['languages'	] = array('English', 'Chinese', 'Taiwanese', 'Portugues');
+
+	$obj = array();
+	$obj['status'	] = 'ok';
+	$obj['data'		] = $data;
+	$this->echo_json($obj);
 }
 
 /*

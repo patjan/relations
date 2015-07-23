@@ -1,15 +1,9 @@
-/**
- * JKY-util.js
- * generic functions for the JKY application
- */
+"use strict";
 
 /**
- * initial setup
+ * JKY.Util.js
+ * generic functions for the JKY application
  */
-$(function() {
-	$('body').append('<div id="jky-utils"></div>');
-	JKY.load_html('jky-utils', 'JKY-utils.html'	);
-});
 
 /**
  * define JKY namespace for all application
@@ -24,43 +18,50 @@ JKY.AJAX_APP	= '../';					//  relative to application directory
 //JKY.AJAX_URL	= '../jky_proxy.php?';		//  relative to remote directory
 JKY.AJAX_URL	= '../index.php/ajax?';		//  relative to remote directory
 
-JKY.session		= [];
-JKY.translations= [];
 JKY.sort_name	= '';
 JKY.sort_seq	=  1;
 
+/**
+ * run after jquery loaded
+ * setup ajax
+ */
+$(function() {
+	$.ajaxSetup({
+		async	: false,
+		type	: 'post',
+		dataType: 'json',
+		error	: function(jqXHR, textStatus, errorThrown) {
+			JKY.hide('jky-loading');
+			JKY.display_message('Error from backend server, please re-try later.');
+		}
+	});
+	if ($('#jky-utils').length === 0)	{
+		$('body').append('<div id="jky-utils"></div>');
+		JKY.load_html('jky-utils', 'JKY.utils.html'	);
+	}
+});
 
 /**
  * re direct
+ * @param	program_name
  */
-JKY.reDirect = function(program_name) {
+JKY.re_direct = function(program_name) {
 	alert('re direct to ' + program_name);
 }
 
 /**
  * run when is template ready
  * wait until the template is ready
- * @param	templateName
- * @param	functionName
+ * @param	template_name
+ * @param	function_name
  */
-JKY.runWhenIsTemplate = function(templateName, functionName) {
-	JKY.display_trace('runWhenIsTemplate: ' + templateName);
-	if (Em.TEMPLATES[templateName]) {
-		functionName();
+JKY.run_when_is_ready = function(template_name, function_name) {
+	JKY.display_trace('run_when_is_ready: ' + template_name);
+	if (Em.TEMPLATES[template_name]) {
+		function_name();
 	}else{
-		setTimeout( function() {JKY.runWhenIsTemplate(templateName, functionName);}, 100);
+		setTimeout( function() {JKY.run_when_is_ready(template_name, function_name);}, 100);
 	}
-}
-
-/**
- * set translations table
- *
- * @param	language
- * @param	fileName
- * @example JKY.setTranslations('portugues')
- */
-JKY.setTranslations = function(language) {
-    JKY.translations = language;
 }
 
 /**
@@ -71,26 +72,7 @@ JKY.setTranslations = function(language) {
  * @example JKY.t('Home')
  */
 JKY.t = function(text) {
-	if (text === '') {
-		return '';
-	}
-
-	var result = JKY.translations[text];
-	if (typeof result === undefined) {
-		result = '';
-		var names = text.split('<br>');
-		for(var i=0; i<names.length; i++ ) {
-			var name = names[i];
-			var translation = JKY.translations[name];
-			result += ( i === 0 ) ? '' : '<br>';
-			if (typeof translation === undefined) {
-				result += name;
-			}else{
-				result += translation;
-			}
-		}
-	}
-	return result;
+	return JKY.Translation.translate(text);
 }
 
 /**
@@ -139,37 +121,37 @@ JKY.load_hb = function(template_name, file_name) {
 }
 
 /**
- * replaceIn template into specific id
+ * replace in template into specific id
  * wait until the template is loaded
- * @param	templateName
- * @param	idName
+ * @param	template_name
+ * @param	id_name
  * @return	(new)View
  */
-JKY.replaceIn = function(templateName, idName, viewObject) {
-	JKY.display_trace('replaceIn: ' + templateName);
-	if (Em.TEMPLATES[templateName] && $('#' + idName)) {
-		viewObject.replaceIn('#' + idName);
-		JKY.display_trace('replaceIn: ' + templateName + ' DONE');
+JKY.replace_in = function(template_name, id_name, view_object) {
+	JKY.display_trace('replace_in: ' + template_name);
+	if (Em.TEMPLATES[template_name] && $('#' + id_name)) {
+		view_object.replaceIn('#' + id_name);
+		JKY.display_trace('replace_in: ' + template_name + ' DONE');
 	}else{
-		setTimeout(function() {JKY.replaceIn(templateName, idName, viewObject)}, 100);
+		setTimeout(function() {JKY.replace_in(template_name, id_name, view_object)}, 100);
 	}
 }
 
 /**
  * fix flag
- * @param	flagValue
- * @param	trueValue
- * @param	falseValue
+ * @param	flag_value
+ * @param	true_value
+ * @param	false_value
  * @return	&nbsp;
- * @return	trueValue
- * @return	falseValue
+ * @return	true_value
+ * @return	false_value
  */
-JKY.fixFlag = function(flagValue, trueValue, falseValue){
-	if (flagValue) {
-		if (flagValue === 't') {
-			return trueValue;
+JKY.fix_flag = function(flag_value, true_value, false_value){
+	if (flag_value) {
+		if (flag_value === 't') {
+			return true_value;
 		}else{
-			return falseValue;
+			return false_value;
 		}
 	}else{
 		return '&nbsp;';
@@ -179,16 +161,16 @@ JKY.fixFlag = function(flagValue, trueValue, falseValue){
 /**
  * fix break line
  * replace ' ' with '<br />'
- * @param	stringValue
+ * @param	string_value
  * @return	&nbsp;
- * @return	stringValue
+ * @return	string_value
  */
-JKY.fixBr = function(stringValue){
-	if (stringValue) {
-		if (typeof stringValue === 'string') {
-			return stringValue.replace(' ', '<br />');
+JKY.fix_br = function(string_value){
+	if (string_value) {
+		if (typeof string_value === 'string') {
+			return string_value.replace(' ', '<br />');
 		}else{
-			return stringValue;
+			return string_value;
 		}
 	}else{
 		return '&nbsp;';
@@ -198,15 +180,15 @@ JKY.fixBr = function(stringValue){
 /**
  * fix date time
  * replace ' @ ' with '<br />'
- * @param	dateTime	mm/dd/yy @ hh:mm xm
+ * @param	date_time	mm/dd/yy @ hh:mm xm
  * @return	&nbsp;
- * @return	dateTime	mm/dd/yy<br />hh:mm xm
+ * @return	date_time	mm/dd/yy<br />hh:mm xm
  */
-JKY.fixDate = function(dateTime){
-	if (dateTime) {
-		dateTime = dateTime.replace(' @ ', '<br />');
-		dateTime = dateTime.replace(' @', '');
-		return dateTime;
+JKY.fix_date = function(date_time){
+	if (date_time) {
+		date_time = date_time.replace(' @ ', '<br />');
+		date_time = date_time.replace(' @', '');
+		return date_time;
 	}else{
 		return '&nbsp;';
 	}
@@ -216,14 +198,14 @@ JKY.fixDate = function(dateTime){
  * fix name
  * return lastName, firstName
  * @param	trailer		'<br />'
- * @param	firstName
- * @param	lastName
+ * @param	first_name
+ * @param	last_name
  * @return	&nbsp;
- * @return	fullName
+ * @return	full_name
  */
-JKY.fixName = function(trailer, firstName, lastName){
-	if (firstName && lastName) {
-		return trailer + lastName + ', ' + firstName;
+JKY.fix_name = function(trailer, first_name, last_name){
+	if (first_name && last_name) {
+		return trailer + last_name + ', ' + first_name;
 	}else{
 		return '&nbsp;';
 	}
@@ -232,34 +214,16 @@ JKY.fixName = function(trailer, firstName, lastName){
 /**
  * fix null value
  * replace 'undefined' with '&nbsp;'
- * @param	stringValue
+ * @param	string_value
  * @return	&nbsp;
- * @return	stringValue
+ * @return	string_value
  */
-JKY.fixNull = function(stringValue){
-	if (stringValue) {
-		return stringValue;
+JKY.fix_null = function(string_value){
+	if (string_value) {
+		return string_value;
 	}else{
 		return '&nbsp;';
 	}
-}
-
-/**
- * fix header positions after tablescroll adjustment
- * to be adjusted based on orderType: 7 to 10 px
- * current default = 10px
- * @param	orderType
- * @param	idName
- */
-JKY.fixHeaderPositions = function(orderType, idName) {
-	var myWidth = 0;
-	switch(orderType) {
-		case 'Approve Orders'	: myWidth = 7; break;
-		case 'In Process'		: myWidth = 7; break;
-		case 'On Hold'			: myWidth = 7; break;
-		case 'Fee Changes'		: myWidth = 7; break;
-	}
-	$('#' + idName).css('width', myWidth + 'px');
 }
 
 /**
@@ -270,13 +234,13 @@ JKY.fixHeaderPositions = function(orderType, idName) {
  * @param	minHeight
  * @param	offHeight
  */
-JKY.setTableWidthHeight = function(tableId, width, minHeight, offHeight) {
+JKY.XsetTableWidthHeight = function(tableId, width, minHeight, offHeight) {
 	/*
 	 * jquery 1.7.x the function .height() was working for all 4 browsers (IE,FF,CH,SF)
 	 * but on 1.8.x it was working only on IE
 	 */
 	var myHeight = $(window).height();
-	if (!JKY.isBrowser('msie')) {
+	if (!JKY.is_browser('msie')) {
 		myHeight = document.body[ "clientHeight" ];
 	}
 	myHeight -= offHeight;
@@ -295,28 +259,15 @@ $('#scroll-bar').css('width', '4px');
 }
 
 /**
- * set action approve
- */
-JKY.setActionApprove = function(paymentIssueFlag, appraisalId) {
-	var myHtml = '';
-
-	if (paymentIssueFlag != 't' ) {
-		myHtml += '<img class="hand" src="../images/check.png" rel="tooltip" title="to approve" onclick="JKY.approveOrderAction(\'approve\', \'In Process\', \'2\', ' + appraisalId + ')" />';
-	}else{
-		myHtml += '<img class="opaque" src="../images/check.png" />';
-	}
-
-		myHtml += '<img class="hand" src="../images/redx.gif"  rel="tooltip" title="to cancel"  onclick="JKY.approveOrderAction( \'cancel\',   \'Canceled\', \'7\', ' + appraisalId + ')" />';
-		myHtml += '<img class="hand" src="../images/error.png" rel="tooltip" title="to hold"    onclick="JKY.approveOrderAction(   \'hold\',    \'On Hold\', \'8\', ' + appraisalId + ')" />';
-
-	return myHtml;
-}
-
-/**
  * display message on right bottom corner
  * it will stay be displayed long enought to be read
+ * if provided id_name, will set focus after timeout
  * @param	message
  * @param	id_name
+ *
+ * dependency	#jky-message
+ *				#jky-message-body
+ *
  */
 JKY.display_message = function(message, id_name) {
 	if (message === '') {
@@ -340,7 +291,7 @@ JKY.display_message = function(message, id_name) {
 	JKY.last_time_out = setTimeout(function(){
 		$('#jky-message').css('display', 'none');
 		$('#jky-message-body').html('');
-		if (typeof(id_name) != 'undefined') {
+		if (typeof(id_name) !== 'undefined') {
 			JKY.set_focus(id_name);
 		}
 	}, my_time * 1000);
@@ -352,89 +303,62 @@ JKY.display_message = function(message, id_name) {
  * @param	message
  */
 JKY.display_trace = function(message){
-	if (!JKY.TRACE){		//	this control is set on [setup definition of constants] of [index.js]
+	if(!JKY.TRACE) {		//	this control is set on [setup definition of constants] of [index.js]
 		return
 	}
 	var my_date = new Date();
 	var my_msec = (my_date.getMilliseconds() + 1000).toString().substr(1);
 	var my_time = my_date.getMinutes() + ':' + my_date.getSeconds() + '.' + my_msec;
-    var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
 	console.log(my_time + ' ' + message);
 
-//    $('#jky-trace-body').html(my_html);
-//    $('#jky-trace').css('display', 'block');
+    var my_html = my_time + ' ' + message + '<br />' + $('#jky-trace-body').html();
+    $('#jky-trace-body').html(my_html);
+    $('#jky-trace').css('display', 'block');
+
 }
 
 /**
  * set specific id with html content
- * @param	idName
+ * @param	id_name
  * @param	html
  */
-JKY.set_html = function(idName, html){
-	$('#' + idName).html(html);
+JKY.set_html = function(id_name, html){
+	$('#' + id_name).html(html);
 }
 
 /**
  * set specific id with value
- * @param	idName
+ * @param	id_name
  * @param	value
  */
-JKY.set_val = function(idName, value){
-	$('#' + idName).val(value);
+JKY.set_val = function(id_name, value){
+	$('#' + id_name).val(value);
+}
+
+/**
+ * set 'active' class on specific id
+ * @param	id_name
+ */
+JKY.set_active = function(id_name){
+	$('#' + id_name).addClass('active');
 }
 
 /**
  * show specific id name
- * @param	idName
+ * @param	id_name
  */
-JKY.show = function(idName){
-	$('#' + idName).css('display', 'block');
+JKY.show = function(id_name){
+//	$('#' + id_name).css('display', 'block');
+	$('#' + id_name).show();
 }
 
 /**
  * hide specific id name
- * @param	idName
+ * @param	id_name
  */
-JKY.hide = function(idName){
-	$('#' + idName).css('display', 'none');
-}
-
-/**
- * show specific class name
- * @param	className
- */
-JKY.showClass = function(className){
-	$('.' + className).css('display', 'block');
-}
-
-/**
- * hide specific class name
- * @param	className
- */
-JKY.hideClass = function(className){
-	$('.' + className).css('display', 'none');
-}
-
-/**
- * show loading image
- */
-JKY.showLoading = function(){
-	$('#ihs-loading').show();
-}
-
-/**
- * hide loading image
- */
-JKY.hideLoading = function(){
-	$('#ihs-loading').hide();
-}
-
-/**
- * scroll to top if the table
- * @param	className
- */
-JKY.scrollToTop = function(className){
-	$('.' + className).scrollTop(0);
+JKY.hide = function(id_name){
+//	$('#' + id_name).css('display', 'none');
+	$('#' + id_name).hide();
 }
 
 /**
@@ -443,12 +367,12 @@ JKY.scrollToTop = function(className){
  * @return  true | false
  *
  * @example
- *			JKY.isBrowser('msie')
- *			JKY.isBrowser('firefox')
- *			JKY.isBrowser('chrome')
- *			JKY.isBrowser('safari')
+ *			JKY.is_browser('msie')
+ *			JKY.is_browser('firefox')
+ *			JKY.is_browser('chrome')
+ *			JKY.is_browser('safari')
  */
-JKY.isBrowser = function(browserName){
+JKY.is_browser = function(browserName){
 	var myUserAgent = navigator.userAgent.toLowerCase();
 	if (myUserAgent.indexOf(browserName) > -1) {
 		return true;
@@ -458,52 +382,26 @@ JKY.isBrowser = function(browserName){
 }
 
 /**
+ * scroll to top if the table
+ * @param	class_name
+ */
+JKY.scroll_to_top = function(class_name){
+	$('.' + class_name).scrollTop(0);
+}
+
+/**
  * return true if scroll bar is at end of table
- * @param	className
+ * @param	class_name
  * @return  true | false
  */
-JKY.isScrollAtEnd = function(className){
-	var myId = $('.' + className)[0];
-	var myOffset = myId.scrollHeight - myId.scrollTop - myId.offsetHeight;
-	if (myOffset < 0) {
+JKY.is_scroll_at_end = function(class_name){
+	var my_id = $('.' + class_name)[0];
+	var my_offset = my_id.scrollHeight - my_id.scrollTop - my_id.offsetHeight;
+	if (my_offset < 0) {
 		return true;
 	}else{
 		return false;
 	}
-}
-
-//        JKY.util.js
-//        ----------------------------------------------------------------------
-
-//        JKY.set_translations('portugues')
-//        ----------------------------------------------------------------------
-JKY.set_translations = function(array) {
-    translations = array;
-}
-
-//        JKY.t('Home')
-//        ----------------------------------------------------------------------
-JKY.t = function(text) {
-return text;
-     if( text === '' )
-         return '';
-
-     var result = translations[text];
-     if( typeof result === undefined) {
-         result = '';
-         var names = text.split('<br>');
-         for( var i=0; i<names.length; i++ ) {
-             name = names[i];
-             translation = translations[name];
-             result += ( i === 0 ) ? '' : '<br>';
-             if( typeof translation === undefined) {
-                 result += name;
-             } else {
-                 result += translation;
-             }
-         }
-     }
-    return result;
 }
 
 //        JKY.show_layer('login', 'user_name', 200)
@@ -796,6 +694,7 @@ JKY.set_copyright = function(copyright) {
 JKY.set_contact_us = function(contact_us) {
 	JKY.set_html('jky-contact-us', contact_us);
 }
+
 /**
  * set control set
  */
@@ -835,7 +734,7 @@ JKY.set_control_set = function(selected, control_set) {
 				if (typeof function_error != 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
-					JKY.hideLoading();
+					JKY.hide('jky-loading');
 					JKY.display_message('Error from backend server, please re-try later.');
 				}
 			}
@@ -872,11 +771,10 @@ JKY.ajax = function(async, data, function_success, function_error) {
 				if (typeof function_error != 'undefined') {
 					function_error(jqXHR, text_status, error_thrown);
 				}else{
-					JKY.hideLoading();
+					JKY.hide('jky-loading');
 					JKY.display_message('Error from backend server, please re-try later.');
 				}
 			}
 		}
-	)
+	);
 }
-

@@ -52,7 +52,7 @@ log_proxy( '' );
                if( $this->POSTVARS )     $posted = 1;
           }
 
-$posted = 1;	// Pat test		  
+$posted = 1;	// Pat test
 
           if(  count( $FILES )) {
                $filed = 1;
@@ -71,7 +71,7 @@ $posted = 1;	// Pat test
           $this->POSTURL = $U;
 
           foreach( $GET as $key =>$value ) {
-               if(  $key != 'u' && $key != 'c' )  
+               if(  $key != 'u' && $key != 'c' )
                     $this->POSTURL .= '&' . $key . '=' . str_replace(' ', '+', $value);
           }
 
@@ -121,6 +121,7 @@ log_proxy( ' CONTENT: ' . $this->CONTENT  );
 //log_proxy( 'RESPONSE: ' . var_export( $this->RESPONSE, true ));
 
           curl_close( $ch );
+		unlink('ses_' . session_id());
      }
 
      public function getPage() {
@@ -234,13 +235,13 @@ log_proxy( ' CONTENT: ' . $this->CONTENT  );
 //          this code is replacing src= href= with current doman
 //          $this->CONTENT = preg_replace_callback( $patern, 'replace_html', $this->CONTENT );
      }
-} 
+}
 
 session_start();
 
 $U = SERVER_NAME . 'index.php/ajax?';
 $COOKIE = '';
-    
+
 $program = new jky_proxy();
 $program->query( $U, $_POST, $_GET, $_FILES, $COOKIE );
 $program->getPage();

@@ -1,0 +1,278 @@
+http://javascriptweblog.wordpress.com/2010/10/25/understanding-javascript-closures/
+
+Understanding JavaScript Closures
+
+In JavaScript, a closure is a function to which the variables of the surrounding context are bound by reference.
+
+1	function getMeAClosure() {
+2	    var canYouSeeMe = "here I am";
+3	    return (function theClosure() {
+4	        return {canYouSeeIt: canYouSeeMe ? "yes!": "no"};
+5	    });
+6	}
+7	 
+8	var closure = getMeAClosure();
+9	closure().canYouSeeIt; //"yes!"
+
+Every JavaScript function forms a closure on creation. In a moment I’ll explain why and walk through the process by which closures are created. Then I’ll address some common misconceptions and finish with some practical applications. But first a brief word from our sponsors: JavaScript closures are brought to you by lexical scope and the VariableEnvironment…
+
+Lexical Scope
+
+The word lexical pertains to words or language. Thus the lexical scope of a function is statically defined by the function’s physical placement within the written source code.
+
+Consider the following example:
+
+1	var x = "global";
+2	 
+3	function outer() {
+4	    var y = "outer";   
+5	 
+6	    function inner() {
+7	        var x = "inner";   
+8	    }
+9	}
+
+Function inner is physically surrounded by function outer which in turn is wrapped by the global context. We have formed a lexical hierarchy:
+
+global
+    outer
+         inner
+
+The outer lexical scope of any given function is defined by its ancestors in the lexical hierarchy. Accordingly, the outer lexical scope of function inner comprises the global object and function outer.
+VariableEnvironment
+
+The global object has an associated execution context. Additionally every invocation of a function establishes and enters a new execution context. The execution context is the dynamic counterpart to the static lexical scope. Each execution context defines a VariableEnvironment which is a repository for variables declared by that context. (ES 5 10.4, 10.5)
+
+[Note in EcmaScript 3, the VariableEnvironment of a function was known as the ActivationObject - which is also the term I used in some older articles]
+
+We could represent the VariableEnvironment with pseudo-code…
+
+01	//variableEnvironment: {x: undefined, etc.};
+02	var x = "global";
+03	//variableEnvironment: {x: "global", etc.};
+04	 
+05	function outer() {
+06	    //variableEnvironment: {y: undefined};
+07	    var y = "outer";
+08	    //variableEnvironment: {y: "outer"};
+09	 
+10	    function inner() {
+11	        //variableEnvironment: {x: undefined};
+12	        var x = "inner";   
+13	        //variableEnvironment: {x: "inner"};
+14	    }
+15	}
+
+However, it turns out this is only part of the picture. Each VariableEnvironment will also inherit the VariableEnvironment of its lexical scope. [The hero enters (stage-left)....]
+The [[scope]] property
+
+When a given execution context encounters a function definition in the code, a new function object is created with an internal property named [[scope]] (as in lexical scope) which references the current VariableEnvironment. (ES 5 13.0-2)
+
+Every function gets a [[scope]] property, and when the function is invoked the value of the scope property is assigned to the outer lexical environment reference (or outerLex) property of its VariableEnvironment. (ES 5 10.4.3.5-7) In this way, each VariableEnvironment inherits from the VariableEnvironment of its lexical parent. This scope chaining runs the length of the lexical hierarchy starting from the global object.
+
+Let’s see how our pseudo-code looks now:
+
+01	//VariableEnvironment: {x: undefined, etc.};
+02	var x = "global";
+03	//VariableEnvironment: {x: "global", etc.};
+04	 
+05	function outer() {
+06	    //VariableEnvironment: {y: undefined, outerLex: {x: "global", etc.}};
+07	    var y = "outer";   
+08	    //VariableEnvironment: {y: "outer", outerLex: {x: "global", etc.}};
+09	 
+10	    function inner() {
+11	        //VariableEnvironment: {x: undefined, outerLex: {y: "outer", outerLex: {x:"global", etc.}};
+12	        var x = "inner";   
+13	        //VariableEnvironment: {x: "inner", outerLex: {y: "outer", outerLex: {x:"global", etc.}};
+14	    }
+15	}
+
+The [[scope]] property acts as a bridge between nested VariableEnvironments and enables the process by which outer variables are embedded by inner VariableEnvironments (and prioritized by lexical proximity). The [[scope]] property also enables closures, since without it the variables of an outer function would be dereferenced and garbage collected once the outer function returned.
+
+ 
+So there we have it – closures are nothing but an unavoidable side-effect of lexical scoping ;-)
+Dispelling the Myths
+
+Now that we know how closures work, we can begin to address some of the more scurrilous rumors associated with them.
+
+Myth 1. Closures are created only after an inner function has been returned
+
+When the function is created, it is assigned a [[scope]] property which references the variables of the outer lexical scope and prevents them from being garbage collected. Therefore the closure is formed on function creation
+
+There is no requirement that a function should be returned before it becomes a closure. Here’s a closure that works without returning a function:
+
+1	var callLater = function(fn, args, context) {
+2	    setTimeout(function(){fn.apply(context, args)}, 2000);
+3	}
+4	 
+5	callLater(alert,['hello']);
+
+ 
+Myth 2. The values of outer variables get copied or “baked in” to the closure
+
+As we’ve seen, the closure references variables not values.
+
+01	//Bad Example
+02	//Create an array of functions that add 1,2 and 3 respectively
+03	var createAdders = function() {
+04	    var fns = [];
+05	    for (var i=1; i<4; i++) {
+06	        fns[i] = (function(n) {
+07	            return i+n;
+08	        });
+09	    }
+10	    return fns;
+11	}
+12	 
+13	var adders = createAdders();
+14	adders[1](7); //11 ??
+15	adders[2](7); //11 ??
+16	adders[3](7); //11 ??
+
+All three adder functions point to the same variable i. By the time any of these functions is invoked, the value of i is 4.
+
+One solution is to pass each argument via a self invoking function. Since every function invocation takes place in a unique execution context, we guarantee the uniqueness of the argument variable across successive invocations.
+
+01	//Good Example
+02	//Create an array of functions that add 1,2 and 3 respectively
+03	var createAdders = function() {
+04	    var fns = [];
+05	    for (var i=1; i<4; i++) {
+06	        (function(i) {
+07	            fns[i] = (function(n) {
+08	                return i+n;
+09	            });
+10	        })(i)   
+11	    }
+12	    return fns;
+13	}
+14	 
+15	var adders = createAdders();
+16	adders[1](7); //8 (-:
+17	adders[2](7); //9 (-:
+18	adders[3](7); //10 (-:
+
+ 
+Myth 3. Closures only apply to inner functions
+
+Admittedly closures created by outer functions are not interesting because the [[scope]] property only references the global scope, which is universally visible in any case. Nevertheless its important to note that the closure creation process is identical for every function, and every function creates a closure.
+ 
+Myth 4. Closures only apply to anonymous functions
+
+I’ve seen this claim in one too many articles. Enough said ;-)
+ 
+Myth 5. Closures cause memory leaks
+
+Closures do not of themselves create circular references. In our original example, function inner references outer variables via its [[scope]] property, but neither the referenced variables or function outer references function inner or its local variables.
+
+Older versions of IE are notorious for memory leaks and these usually get blamed on closures. A typical culprit is a DOM element referenced by a function, while an attribute of that same DOM element references another object in the same lexical scope as the function. Between IE6 and IE8 these circular references have been mostly tamed.
+Practical Applications
+
+Function templates
+
+Sometimes we want to define multiple versions of a function, each one conforming to a blueprint but modified by supplied arguments. For example, we can create a standard set of functions for converting units of measures:
+
+01	function makeConverter(toUnit, factor, offset) {
+02	    offset = offset || 0;
+03	    return function(input) {
+04	        return [((offset+input)*factor).toFixed(2), toUnit].join(" "); 
+05	    }
+06	}  
+07	 
+08	var milesToKm = makeConverter('km',1.60936);
+09	var poundsToKg = makeConverter('kg',0.45460);
+10	var farenheitToCelsius = makeConverter('degrees C',0.5556, -32);
+11	 
+12	milesToKm(10); //"16.09 km"
+13	poundsToKg(2.5); //"1.14 kg"
+14	farenheitToCelsius(98); //"36.67 degrees C"
+
+If, like me, you’re into functional abstraction the next logical step would be to currify this process (see below).
+
+Functional JavaScript
+
+Aside from the fact that JavaScript functions are first class objects, functional JavaScript’s other best friend is closures.
+
+The typical implementations of bind, curry, partial and compose all rely on closures to provide the new function with a reference to the original function and arguments.
+
+For example, here’s curry:
+
+01	Function.prototype.curry = function() {
+02	    if (arguments.length<1) {
+03	        return this; //nothing to curry with - return function
+04	    }
+05	    var __method = this;
+06	    var args = toArray(arguments);
+07	    return function() {
+08	        return __method.apply(this, args.concat([].slice.apply(null, arguments)));
+09	    }
+10	}
+
+And here’s our previous example re-done using curry
+
+01	function converter(toUnit, factor, offset, input) {
+02	    offset = offset || 0;
+03	    return [((offset+input)*factor).toFixed(2), toUnit].join(" "); 
+04	}
+05	 
+06	var milesToKm = converter.curry('km',1.60936,undefined);
+07	var poundsToKg = converter.curry('kg',0.45460,undefined);
+08	var farenheitToCelsius = converter.curry('degrees C',0.5556, -32);
+09	 
+10	milesToKm(10); //"16.09 km"
+11	poundsToKg(2.5); //"1.14 kg"
+12	farenheitToCelsius(98); //"36.67 degrees C"
+
+There are plenty of other nifty function modifiers that use closures. This little gem comes courtesy of Oliver Steele
+
+01	/**
+02	 * Returns a function that takes an object, and returns the value of its 'name' property
+03	 */
+04	var pluck = function(name) {
+05	    return function(object) {
+06	        return object[name];
+07	    }
+08	}
+09	 
+10	var getLength = pluck('length');
+11	getLength("SF Giants are going to the World Series!"); //40
+
+The module pattern
+
+This well known technique uses a closure to maintain a private, exclusive reference to a variable of the outer scope. Here I’m using the module pattern to make a “guess the number” game. Note that in this example, the closure (guess) has exclusive access to the secretNumber variable, while the responses object references a copy of the variable’s value at the time of creation.
+
+01	var secretNumberGame = function() {
+02	    var secretNumber = 21;
+03	 
+04	    return {
+05	        responses: {
+06	            true: "You are correct! Answer is " + secretNumber,
+07	            lower: "Too high!",
+08	            higher: "Too low!"
+09	        },
+10	 
+11	        guess: function(guess) {
+12	            var key =
+13	                (guess == secretNumber) ||
+14	                    (guess < secretNumber ? "higher": "lower");
+15	            alert(this.responses[key])
+16	        }
+17	    }
+18	}
+19	 
+20	var game = secretNumberGame();
+21	game.guess(45); //"Too high!"
+22	game.guess(18); //"Too low!"
+23	game.guess(21); //"You are correct! Answer is 21"
+
+Wrap up
+
+In programming terms, closures represent the height of grace and sophistication. They make code more compact, readable and beautiful and promote functional re-use. Knowing how and why closures work eliminates the uncertainty around their usage. I hope this article helps in that regard. Please feel free to comment with questions, thoughts or concerns.
+Further Reading
+
+ECMA-262 5th Edition
+10.4 Creating the VariableEnvironment
+10.4.3.5-7 Referencing the [[scope]] property in the VariableEnvironment
+10.5 Populating the VariableEnvironment
+13.0-2 Assigning the [[scope]] property when a function is created 

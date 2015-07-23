@@ -5,36 +5,18 @@
  */
 $(function() {
 	JKY.display_trace('$(function() {})');
-//	JKY.get_session();
-	JKY.Session.read_values();
-	JKY.set_company_name( JKY.Session.get_value('company_name'	));
-	JKY.set_user_info	( JKY.Session.get_value('full_name'		));
-	JKY.set_company_logo( JKY.Session.get_value('company_logo'	));
-	JKY.set_event_name	( JKY.Session.get_value('event_name'	));
-	JKY.set_copyright	( JKY.Session.get_value('copyright'		));
-	JKY.set_contact_us	( JKY.Session.get_value('contact_us'	));
+	JKY.set_company_name(JKY.Session.get_value('company_name'	));
+	JKY.set_user_info	(JKY.Session.get_value('full_name'		));
+//	JKY.set_company_logo(JKY.Session.get_value('company_logo'	));
+	JKY.set_event_name	(JKY.Session.get_value('event_name'		));
+	JKY.set_copyright	(JKY.Session.get_value('copyright'		));
+	JKY.set_contact_us	(JKY.Session.get_value('contact_us'		));
 	JKY.set_buttons_menus([]);
 	JKY.set_buttons_control([], JKY.Session.get_value('language'), JKY.Session.get_value('languages'));
 	JKY.set_events();
 	JKY.process_action('welcome');
 //	JKY.process_action('controls');
 });
-
-/**
- * get session from backend
- */
-JKY.get_session = function() {
-	JKY.display_trace('get_session');
-	JKY.session = new Array();
-	JKY.session['company_name'	] = 'JKY Software Corp';
-	JKY.session['company_logo'	] = 'relations';
-	JKY.session['event_name'	] = '2013 Annual Event';
-//	JKY.session['user_name'		] = 'patjan';
-	JKY.session['copyright'		] = '© 2013 JKY Software Corp';
-	JKY.session['contact_us'	] = 'Contact Us';
-	JKY.session['language'		] = 'Taiwanese';
-	JKY.session['languages'		] = ['English', 'Chinese', 'Taiwanese', 'Portugues'];
-}
 
 /**
  *	set events (run only once per load)
@@ -73,7 +55,7 @@ JKY.set_buttons_event = function() {
 		setTimeout(function() {JKY.set_events();}, 100);
 	}
 }
-		
+
 /** ------------------------------------------------------------------------ **/
 
 JKY.display_sign_up = function() {

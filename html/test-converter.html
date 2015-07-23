@@ -1,0 +1,25 @@
+<html>
+<body>
+Test Converter
+<script>
+
+function make_converter(toUnit, factor, offset) {
+	offset = offset || 0;
+	return function(input) {
+		result = [((offset+input)*factor).toFixed(2), toUnit].join(" "); 
+//		return result;
+		alert('Converter: ' + result); 
+	}
+}  
+ 
+var miles2Km			= make_converter('km'		, 1.60936);
+var pounds2Kg			= make_converter('kg'		, 0.45460);
+var farenheit2Celsius	= make_converter('degrees C'	, 0.5556 , -32);
+
+miles2Km(10); //"16.09 km"
+pounds2Kg(2.5); //"1.14 kg"
+farenheit2Celsius(98); //"36.67 degrees C"
+
+</script>
+</body>
+</html>

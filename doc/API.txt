@@ -2,11 +2,9 @@
 
 http://relations/jky_proxy.php?data=
 
-
 Protocol	REST
 Type		JSON
 Host		www.jkysoftware.com
-
 
 Tok			123456789-12345789-123456789
 Backup		123456789-12345789-123456789
@@ -32,7 +30,6 @@ response	{ 'status'			: 'ok' | 'error'
 			, 'message'			: 'x...x'
 			}
 
-
 check_session	{}
 				'Session is gone'
 				
@@ -52,7 +49,6 @@ sign_up			{ 'user_name'		: 'x...x'
 				'User Name already taken'
 				'Email Address is required'
 				'Email Address is invalid'
-
 
 log_in			{ "method"		:"log_in"
 				, 'user_name'	:'x...x'
@@ -84,7 +80,6 @@ log_help		{ 'help_name'		:'x...x'
 				'User Name or Email Address is required'
 				'User Name or Email not found'
 
-			
 update_profile	{ 'user_name'		: 'x...x'
 				, 'first_name'		: 'x...x'
 				, 'last_name'		: 'x...x'
@@ -100,7 +95,6 @@ update_profile	{ 'user_name'		: 'x...x'
 				'Email Address is required'
 				'Email Address is invalid'
 
-
 update_password	{ 'current_password'	: 'x...x'
 				, 'new_password'		: 'x...x'
 				, 'confirm_password'	: 'x...x'
@@ -110,10 +104,8 @@ update_password	{ 'current_password'	: 'x...x'
 				'Current Password is invalid'
 				'Confirm Password does not match New Password'
 
-
 log_out			{}
-			
-			
+
 set_language	{}		
 get_language	{}
 			
@@ -130,8 +122,6 @@ get_session		{}
 				'user_key'			: 'x...x'
 				'full_name'			: 'x...x'
 				'permissions'		: {...}
-			
-			
 			
 set_user_id			
 get_user_id		{ 'user_name'		: 'x...x'
@@ -229,16 +219,12 @@ get_categories	{ 'parent_id'	: '9...9'
 				, category_name
 				}
 
-			
-				
 send_email		{ 'template_name'	: 'Sign up confirmation'
 				, 'send_by'			: 'Email sent System'
 				, 'user_id'			: '9...9' 
 				}
 
 send_receipt	{}
-
-
 
 get_names
 get_id
@@ -260,17 +246,13 @@ combine
 publish
 export
 
-
   set_fee_amount
 reset_fee_amount
 
 refresh_service
 
-
 get_security
 get_password
-
-
 
 set_specific
 set_filter
@@ -279,11 +261,9 @@ set_new_fields
 set_left_joins
 set_where
 
-
 insert_user_jky
 update_user_jky
 delete_user_jky
-
 
 get_last_id
 get_only_id
@@ -292,12 +272,3 @@ get_unique_number
 log_sql
 log_history
 
-
-
-
-
-
-		
-			
-
-			

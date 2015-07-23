@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+		<title>In House System</title>
+
+		</head>
+
+	<body>
+
+
+		<script src='lib/jquery-1.7.1.js'					></script>
+		<script src='lib/handlebars-1.0.js'					></script>
+		<script src='lib/ember-1.0.pre.js'				    ></script>
+<!--
+		<script src='lib/ember-routemanager.js'				></script>
+		<script src='lib/ember-layout.js'					></script>
+-->
+Before HB --------------------------------
+<br />
+
+<script type="text/x-handlebars">
+{{#view App.MyView }}
+    {{#each view.items}}
+		<br>Greetings {{name}}
+	{{/each}}
+{{/view}}
+</script>
+
+<br />
+After HB ----------------------------------
+		
+<script>
+$(function() {
+
+App = Ember.Application.create({
+  MyView: Ember.View.extend({
+    items: [
+      Ember.Object.create({name: 'Dave'}),
+      Ember.Object.create({name: 'Mary'}),
+      Ember.Object.create({name: 'Sara'})
+    ]
+  })
+});
+App.AnItemView = Ember.View.extend({
+  template: Ember.Handlebars.compile("Greetings {{name}}")
+});
+
+setTimeout( function() {
+//	App = Ember.Application.create({
+	  MyView: Ember.View.extend({
+		items: [
+		  Ember.Object.create({name: 'XDave'}),
+		  Ember.Object.create({name: 'XMary'}),
+		  Ember.Object.create({name: 'XSara'})
+		]
+//	  })
+	});
+	App.AnItemView = Ember.View.extend({
+	  template: Ember.Handlebars.compile("Greetings {{name}}")
+	});
+}, 2000);
+
+
+});
+</script>
+
+	</body>
+</html>

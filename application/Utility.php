@@ -1,13 +1,13 @@
 <?
 function get_language() {
-    return 'en_us';
+    return 'en_US';
 }
 
 function translate($text) {
      if( $text == '' )
           return '';
 
-     include 'en_us.php';
+     include 'en_US.php';
 
      $result = '';
      if( isset($translations[$text]) ) {
@@ -308,7 +308,7 @@ function put_header_words( $words='', $extra='' ) {
 
 function put_search( $new_link, $index, $first, $previous, $next ) {
 
-if(  HAS_TAGS and get_session( 'contr' ) == 'users' )     
+if(  HAS_TAGS and get_session( 'contr' ) == 'users' )
      $s_tags = NL . '<div style="position:relative; top:18px; left:0px;">'
              . NL . '<input type="text" id="s_tags" name="s_tags" value="' . get_claxx( 's_tags' ) . '" onchange="submit()" size="30" />'
              . NL . '<span style="position:relative; top:-20px; left:-15px;">Tags:</span></div>';
@@ -393,7 +393,7 @@ function get_pos_login() {
      if(  HAS_VIDEOS ) {
           if(  get_session( 'user_level' ) == MINIMUM_TO_BROWSE ) {
                return 'tvideos';
-          } else {     
+          } else {
                if(  is_permitted( MINIMUM_TO_UPDATE ))
                     return POS_LOGIN_INTERNAL;
                else return POS_LOGIN_EXTERNAL;
@@ -409,7 +409,7 @@ function get_pos_login() {
                } else {
                     if(  is_session( 'start' )) {
                          return 'index.php/index/start';
-                    } else {               
+                    } else {
 //                       return INDEX . 'index/dashboard';            //   index.php is required in linux server
                          return 'index.php/index/dashboard';          //   index.php is required in linux server
                     }
@@ -437,7 +437,7 @@ function search_status( $status, $chars ) {
 
      for( $n=0; $n<strlen( $chars); $n++ ) {
           $char  = substr( $chars, $n, 1 );
-          if(  get_session( 'contr' ) == 'productsvn' ) 
+          if(  get_session( 'contr' ) == 'productsvn' )
                switch( $char ) {
                     case 'A'  : $value = 'Added'       ; break;
                     case 'S'  : $value = 'Submitted'   ; break;
@@ -567,7 +567,7 @@ function fix_user_name( $name ) {
      $middle = '';
      $last   = '';
      for( $n=0; $n<$count; $n++ ) {
-               if(  $n == $count-1 )    $last  = $names[ $n ]; 
+               if(  $n == $count-1 )    $last  = $names[ $n ];
           else if(  $n == 0 )           $first = $names[ $n ];
           else $middle .= ' ' . $names[ $n ];
      }
@@ -594,7 +594,7 @@ function set_required( $school ) {
      else return '(required)';
 }
 
-function set_focus_on( $id ) {     
+function set_focus_on( $id ) {
      return ''
           . NL . '<script>document.getElementById( "' . $id . '" ).focus() </script>'
           . NL . '<script>document.getElementById( "' . $id . '" ).select()</script>'
@@ -609,7 +609,7 @@ function Xset_focus_on( $name ) {
 }
 
 function pad_zeros( $number, $length ) {
-     $string = '' . $number;     
+     $string = '' . $number;
      return str_pad( $string, $length, '0', STR_PAD_LEFT );
 }
 
@@ -1466,7 +1466,7 @@ function echo_line() {
                echo NL
                     . '<div class=line>'
                     . '     <div class=label >' . translate( func_get_arg( 0 )) . '</div><div class=input-text >' . func_get_arg( 1 ) . '</div>'
-                    . '</div>' 
+                    . '</div>'
                     ;
           }
      else if(  $num == 4 ) {
@@ -1475,7 +1475,7 @@ function echo_line() {
                     . '     <div class=label1>' . translate( func_get_arg( 0 )) . '</div><div class=input-text1>' . func_get_arg( 1 ) . '</div>'
                     . '     <div class=label2>' .                                 '</div><div class=input-text2>' .                     '</div>'
                     . '     <div class=label3>' . translate( func_get_arg( 2 )) . '</div><div class=input-text3>' . func_get_arg( 3 ) . '</div>'
-                    . '</div>' 
+                    . '</div>'
                     ;
           }
      else if(  $num == 6 ) {
@@ -1484,7 +1484,7 @@ function echo_line() {
                     . '     <div class=label1>' . translate( func_get_arg( 0 )) . '</div><div class=input-text1>' . func_get_arg( 1 ) . '</div>'
                     . '     <div class=label2>' . translate( func_get_arg( 2 )) . '</div><div class=input-text2>' . func_get_arg( 3 ) . '</div>'
                     . '     <div class=label3>' . translate( func_get_arg( 4 )) . '</div><div class=input-text3>' . func_get_arg( 5 ) . '</div>'
-                    . '</div>' 
+                    . '</div>'
                     ;
           }
      else      echo NL
@@ -1498,7 +1498,7 @@ function line( $label, $input ) {
           . '<div class=line>'
           . '     <div class=label>' . translate( $label ) . '</div>'
           . '     <div class=input-text>' . $input . '</div>'
-          . '</div>' 
+          . '</div>'
           ;
 }
 
@@ -1509,7 +1509,7 @@ function ln_4( $label1, $input1, $label2, $input2 ) {
           . '     <div class=input-text1>' . $input1 . '</div>'
           . '     <div class=label2>' . translate( $label2 ) . '</div>'
           . '     <div class=input-text2>' . $input2 . '</div>'
-          . '</div>' 
+          . '</div>'
           ;
 }
 
@@ -2581,7 +2581,7 @@ function adjust_date( $date, $days ) {
 //   date format YYYY-MM-DD
 #
 #    THERE IS AN ERROR ADJUST 1 HOUR = 3600 SECONDS
-#    TO ADJUST SAVING TIME 
+#    TO ADJUST SAVING TIME
 #    begins the second Sunday in March       - set ahead an hour from 2:00 a.m. to 3:00 a.m
 #    ends   the first  Sunday in November    - set back  an hour at   2:00 a.m. to 1:00 a.m
 #    ON 2007-11-4
@@ -2667,7 +2667,7 @@ function get_time() {
 }
 
 function get_now() {
-     return date( 'Y-m-d H:i:s.u' );              //   added PHP 5.2.2          
+     return date( 'Y-m-d H:i:s.u' );              //   added PHP 5.2.2
 //     $milliSec = explode( ' ', microtime());
 //     return date( 'Y-m-d H:i:s' ) . substr( $milliSec[ 0 ], 1, 4 );
 }
@@ -2931,7 +2931,7 @@ function get_company_id( $company_name ) {
 # -------------------------------------------------------------------------
 function get_company_name( $id ) {
      if( !$id )     return translate( 'Undefined' );
-     
+
      $sql = 'SELECT name FROM Companies WHERE id = ' . $id;
      $db  = Zend_Registry::get( 'db' );
      return put_name( $db->fetchOne( $sql ));
@@ -2942,7 +2942,7 @@ function get_company_name( $id ) {
 # -------------------------------------------------------------------------
 function get_user_name( $id ) {
      if( !$id )     return translate( 'Undefined' );
-     
+
      $sql = 'SELECT name FROM Users WHERE id = ' . $id;
      $db  = Zend_Registry::get( 'db' );
      return put_name( $db->fetchOne( $sql ));
@@ -2953,7 +2953,7 @@ function get_user_name( $id ) {
 # -------------------------------------------------------------------------
 function get_user_email( $id ) {
      if( !$id )     return translate( 'Undefined' );
-     
+
      $sql = 'SELECT email FROM Users WHERE id = ' . $id;
      $db  = Zend_Registry::get( 'db' );
      return $db->fetchOne( $sql );
@@ -3281,14 +3281,14 @@ function email_by_event( $user_id, $template_name, $email_from, $additional_mess
      $data[ 'subject'    ] = str_replace( $search, $replace, $template[ 'subject' ]);
      $data[ 'body'       ] = str_replace( $search, $replace, $template[ 'body'    ]);
      $data[ 'body'       ] .= '<br><br>' . $additional_message;
-     
+
      $model = MODEL . 'Emails';
      $Emails = new $model();
      $Emails->insert( $data );
 */
      return email_now( $from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body );
 }
- 
+
 function email_now( $from_email, $from_name, $to_email, $to_name, $cc_email, $cc_name, $subject, $body, $photos=null ) {
      $Mail = new Zend_Mail();
      $Mail->setFrom( $from_email, $from_name );
@@ -3349,7 +3349,7 @@ function expand_tab( $string ) {
      $tab_stop = 8;
      while( strstr( $string, "\t" )) {
           $string = preg_replace( '/^([^\t]*)(\t+)/e', "'\\1'.str_repeat(' ',strlen('\\2') * $tab_stop - strlen('\\1') % $tab_stop)", $string );
-     } 
+     }
      return $string;
 }
 
@@ -3472,7 +3472,7 @@ function remover_acentos( $string ) {
           $output .= $char;
      }
      return $output;
-}     
+}
 
 //   sends the transaction to us and processes the response into a standard PHP array
 function tclink_send( $fields_to_send ) {
@@ -3541,7 +3541,7 @@ function createPhoto( $name, $ext, $maxW, $maxH ) {
      }
 
      $image = $infunc( $tempfile );
-     unlink( $tempfile );     
+     unlink( $tempfile );
 
      if( !$image )                           throw new Exception( 'Unable to read image file' );
 
@@ -3565,10 +3565,10 @@ function createThumb( $name, $ext, $maxW, $maxH ) {
      $ratio = $w / $h;
 
      if(  $ratio < 1 ) {
-          $newW = min( $w, $maxW );     
+          $newW = min( $w, $maxW );
           $newH = $newW / $ratio;
      } else {
-          $newH = min( $h, $maxH );     
+          $newH = min( $h, $maxH );
           $newW = $newH * $ratio;
      }
 
@@ -3597,8 +3597,8 @@ function tooltip_button( $name, $width=300 ) {
 //     return '<img border=0 style="margin:0 10px; vertical-align:bottom;"'
      return '<img '
           . ' src="' . SERVER_NAME . IMAGES . 'oculu/question.png' . '"'
-          . ' onmouseover="tooltip.show( this, \'' . $name . '\',' . $width . ' );"' 
-          . '  onmouseout="tooltip.hide();"' 
+          . ' onmouseover="tooltip.show( this, \'' . $name . '\',' . $width . ' );"'
+          . '  onmouseout="tooltip.hide();"'
           . ' />'
           ;
 }
@@ -3754,7 +3754,7 @@ function set_permissions( $user_role ) {
      $permissions = $db->fetchAll( $sql );
      set_session( 'permissions', $permissions );
 }
-     
+
 function get_user_action( $user_resource ) {
     $permissions  = get_session( 'permissions' );
     $my_separator = '';

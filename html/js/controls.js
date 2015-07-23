@@ -68,7 +68,7 @@ JKY.set_body_events = function() {
 	if ($('#jky-body-loaded').length > 0) {
 		$('#jky-body-filter'	).change(function() {JKY.change_body_filter	(this);});
 		$('#jky-body-select'	).change(function() {JKY.change_body_select	(this);});
-		$('#jky-body-display'	).change(function() {JKY.chnage_body_display(this);});
+		$('#jky-body-display'	).change(function() {JKY.change_body_display(this);});
 	} else {
 		setTimeout(function() {JKY.set_body_events();}, 100);
 	}
@@ -80,7 +80,7 @@ JKY.set_body_events = function() {
 JKY.change_body_filter = function(event) {
 	var my_filter = event.value;
 	JKY.display_trace('change_body_filter: ' + my_filter);
-//	JKY.display_by_filter(my_filter);
+	JKY.display_by_filter(my_filter);
 }
 /**	
  * change body select
@@ -96,12 +96,13 @@ JKY.change_body_select = function(event) {
  */
 JKY.load_new_set = function(control_set) {
 	JKY.display_trace('load_new_set: ' + control_set);
-	JKY.showLoading();
+	JKY.show('jky-loading');
 
 	var my_data =
 		{ method	: 'get_index'
 		, table		: 'Controls'
 		, order_by	: 'sequence,control_name'
+		, filter	: ''
 		, select	: control_set
 		};
 	JKY.ajax(false, my_data, JKY.load_new_set_success);
@@ -110,6 +111,7 @@ JKY.load_new_set = function(control_set) {
 JKY.load_new_set_success = function(response) {
 	JKY.rows = response.rows;
 	JKY.display_by_filter(JKY.rows);
+	JKY.hide('jky-loading');
 }
 
 /**

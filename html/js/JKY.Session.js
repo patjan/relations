@@ -1,63 +1,55 @@
+"use strict";
+
+/**
+ * JKY.Session - process all Session interface
+ *
+ * method:	JKY.Session.load_values()
+ *			JKY.Session.set_value(key, value)
+ *			JKY.Session.get_value(key)
+ *
+ * example:	JKY.Session.load_values();
+ *			JKY.Session.set_value('language', 'taiwanese');
+ *			JKY.Session.get_value('language');		//	taiwanese
+ *
+ * require:	JKY.Utils.js	(JKY.AJAX_URL)
+ */
 JKY.Session = function() {
-	var my_array = [];
+	var my_session = [];
 
-	function my_read_values() {
-		var my_rows = [];
+	function my_load_values() {
+		var my_data = {method:'get_session'};
+		JKY.ajax(false, my_data, my_load_values_success);
+	};
 
-		my_rows.company_name	= 'JKY Software Corp';
-		my_rows.company_logo	= 'relations';
-		my_rows.event_name		= '2013 Annual Event';
-	//	my_rows.user_name		= 'patjan';
-		my_rows.copyright		= '© 2013 JKY Software Corp';
-		my_rows.contact_us		= 'Contact Us';
-		my_rows.language		= 'Taiwanese';
-		my_rows.languages		= ['English', 'Chinese', 'Taiwanese', 'Portugues'];
-/*
-		$.ajax({
-			url		: JKY.AJAX_URL + 'get_session' ,
-			asycn	: true,
-			type	: 'post',
-			dataType: 'json',
-			success	: function(response) {
-				if (response.status === 'ok') {
-					my_rows = response.data;
-				}else{
-					JKY.display_message(response.message);
-				}
-			},
-			error	: function(jq_XHR, text_status, error_thrown) {
-				JKY.display_message('Error from backend server, please re-try later.');
-			}
-		});
-*/
-		return my_rows;
-	}
-	
+	function my_load_values_success(response) {
+		my_session = response.data;
+	};
+
+//	it is incomplete, not sure if it is needed.
 	function my_save_values() {
 		var my_rows = [];
 		$.ajax({
 			url		: JKY.AJAX_URL + 'POST' ,
 			asycn	: true,
-			type	: 'post',
-			dataType: 'json',
 			success	: function(response) {
 				if (response.status === 'ok') {
 					my_rows = response.data;
 				}else{
 					JKY.display_message(response.message);
 				}
-			},
-			error	: function(jq_XHR, text_status, error_thrown) {
-				JKY.display_message('Error from backend server, please re-try later.');
 			}
 		});
 		return my_rows;
-	}
-	
+	};
+
+	$(function() {
+		my_load_values();
+	});
+
 	return {
-		  read_values	: function()			{		my_array = my_read_values()	;}
-		, save_values	: function()			{		my_save_values()			;}
-		,  set_value	: function(key, value)	{		my_array[key] = value		;}
-		,  get_value	: function(key)			{return my_array[key]				;}
+			load_values	: function()			{		my_load_values()		;}
+		,	save_values	: function()			{		my_save_values()		;}
+		,	set_value	: function(key, value)	{		my_session[key] = value	;}
+		,	get_value	: function(key)			{return my_session[key]			;}
 	};
 }();
